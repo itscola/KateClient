@@ -8,13 +8,8 @@ import org.spongepowered.asm.mixin.Mixins;
 import java.util.Map;
 
 @IFMLLoadingPlugin.MCVersion(value = "1.8.9")
+@IFMLLoadingPlugin.Name("KateClient")
 public class MixinLoader implements IFMLLoadingPlugin {
-
-    public MixinLoader(){
-        MixinBootstrap.init();
-        Mixins.addConfiguration("mixins.kateclient.json");
-        MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
-    }
 
     @Override
     public String[] getASMTransformerClass() {
@@ -33,7 +28,9 @@ public class MixinLoader implements IFMLLoadingPlugin {
 
     @Override
     public void injectData(Map<String, Object> data) {
-
+        MixinBootstrap.init();
+        Mixins.addConfiguration("mixins.kateclient.json");
+        MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
     }
 
     @Override
