@@ -15,12 +15,12 @@ buildscript {
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+//        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'com.github.johnrengelman.shadow'
+//apply plugin: 'com.github.johnrengelman.shadow'
 
 
 /*
@@ -49,7 +49,7 @@ minecraft {
 }
 
 mixin {
-//    defaultObfuscationEnv searge
+    defaultObfuscationEnv searge
     sourceSets {
         main {
             ext.refMap = 'mixins.kateclient.refmap.json'
@@ -64,19 +64,36 @@ repositories {
     }
 }
 
-dependencies {
-    compile "org.spongepowered:mixin:0.6.5-SNAPSHOT"
-
+configurations {
+    // Adds a reference so that we extend/add on to it with depends so we can grab them and compile them into the jar.
+    embedded
+    // Grabs what's extended/added on from/to embed and compiles it into the jar when being built.
+    compile.extendsFrom embedded
 }
 
-shadowJar {
-    baseName = 'KateClient'
-    classifier = null
-    version = null
-    dependencies {
-        include(dependency('org.spongepowered:mixin:0.6.5-SNAPSHOT'))
+dependencies {
+    embedded('org.spongepowered:mixin:0.6.5-SNAPSHOT') {
+
+        // Excludes unneeded stuff.
+        exclude module: 'gson'
+        exclude module: 'guava'
+        exclude module: 'jarjar'
+        exclude module: 'commons-codec'
+        exclude module: 'commons-io'
+        exclude module: 'launchwrapper'
+        exclude module: 'asm-commons'
+        exclude module: 'slf4j-api'
     }
 }
+
+//shadowJar {
+//    baseName = 'KateClient'
+//    classifier = null
+//    version = null
+//    dependencies {
+//        include(dependency('org.spongepowered:mixin:0.6.5-SNAPSHOT'))
+//    }
+//}
 
 processResources
         {
@@ -99,6 +116,19 @@ processResources
         }
 
 jar{
+    from(configurations.embedded.collect {
+        it.isDirectory() ? it : zipTree(it)
+    }) {
+        exclude 'dummyThing',
+                'LICENSE.txt'
+    }
+
+//    from{
+//        configurations.embedded.collect {it.isDirectory() ? it : zipTree(it)}
+//        exclude 'dummyThing',
+//                'LICENSE.txt',
+//    }
+
     manifest.attributes(
             'MixinConfigs': 'mixins.kateclient.json',
             'TweakClass': 'org.spongepowered.asm.launch.MixinTweaker',
