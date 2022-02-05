@@ -82,7 +82,7 @@ public class Render2DUtils {
     }
 
 
-    public static void drawImage(final int x, final int y, final int width, final int height,ResourceLocation image) {
+    public static void drawImage(final int x,int y,int width,int height,ResourceLocation image) {
         final ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
         GL11.glDisable(2929);
         GL11.glEnable(3042);
