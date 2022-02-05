@@ -1,4 +1,13 @@
 package top.whitecola.kateclient.ui;
 
-public class MainClickUIMenu {
+import net.minecraft.client.gui.GuiScreen;
+
+public class MainClickUIMenu extends GuiScreen {
+
+    public static void MainClickUIMenu(){
+
+    }
+
+
+
 }

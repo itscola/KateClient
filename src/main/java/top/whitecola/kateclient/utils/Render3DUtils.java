@@ -1,4 +1,4 @@
 package top.whitecola.kateclient.utils;
 
-public class RenderUtils {
+public class Render3DUtils {
 }

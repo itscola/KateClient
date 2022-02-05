@@ -57,8 +57,6 @@ configurations {
 
 dependencies {
     embedded('org.spongepowered:mixin:0.6.5-SNAPSHOT') {
-
-        // Excludes unneeded stuff.
         exclude module: 'gson'
         exclude module: 'guava'
         exclude module: 'jarjar'
