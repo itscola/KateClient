@@ -10,11 +10,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(Minecraft.class)
 @SideOnly(Side.CLIENT)
-public class MixinMinecraft {
-    @Inject(at=@At(value="HEAD"), method = "startGame",cancellable=true)
+public abstract class MixinMinecraft {
+//    @Shadow public abstract void displayGuiScreen(GuiScreen p_displayGuiScreen_1_);
+
+    @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
-        for(int i=0;i<30;i++){
-            System.out.println("Mixin is already!!!!!!");
-        }
+
     }
 }
