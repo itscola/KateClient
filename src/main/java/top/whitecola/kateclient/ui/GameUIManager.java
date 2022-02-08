@@ -1,4 +1,5 @@
 package top.whitecola.kateclient.ui;
 
-public class GameUIManager {
+
+public class GameUIManager{
 }

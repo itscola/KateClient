@@ -6,6 +6,10 @@
   "mixins": [
     "MixinMinecraft",
     "MixinGUIMainMenu",
-    "MixinGUI"
+    "MixinGUI",
+    "MixinGuiOptions",
+    "MixinGuiIngameMenu",
+    "MixinGuiMultiplayer"
+
   ]
 }

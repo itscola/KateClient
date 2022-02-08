@@ -1,6 +1,7 @@
 package top.whitecola.kateclient.injection.mixins;
 
 import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.texture.DynamicTexture;
@@ -29,6 +30,9 @@ public class MixinGUIMainMenu extends GuiScreen {
 
     protected SwitchButton switchButton;
 
+//    protected ResourceLocation minecraftLogo = new ResourceLocation("kateclient","minecraft.png");
+
+
     /**
      * @author white_cola
      */
@@ -37,7 +41,7 @@ public class MixinGUIMainMenu extends GuiScreen {
 
 
         this.viewportTexture = new DynamicTexture(256, 256);
-        this.backgroundTexture = mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
+        this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
         this.splashText = "KateClient";
 
 

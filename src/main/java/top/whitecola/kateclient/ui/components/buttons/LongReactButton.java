@@ -35,6 +35,10 @@ public class LongReactButton extends AbstractButton {
 
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
+        if(!this.visible){
+            return;
+        }
+
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition + animatedHeight, this.xPosition + this.width, this.yPosition + this.height + animatedHeight,this.presentColor.getRGB(),this.presentColor.getRGB());
         FontRenderer fontRenderer = mc.fontRendererObj;
         GlStateManager.color(1.0F,1.0F,1.0F, 1.0F);

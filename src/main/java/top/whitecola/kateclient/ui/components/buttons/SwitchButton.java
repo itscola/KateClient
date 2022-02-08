@@ -31,14 +31,14 @@ public class SwitchButton extends AbstractButton{
     @Override
     public void drawButton(Minecraft mc, int mouseX, int mouseY) {
         if(switched){
-            switchPosx +=1.7;
+            switchPosx +=2.5;
             if(switchPosx > finalPosx){
                 switchPosx = finalPosx;
                 presentCircleColor = finalCircleColor;
             }
 
         }else{
-            switchPosx -=1.7;
+            switchPosx -=2.5;
             if(switchPosx < firstPosx){
                 switchPosx = firstPosx;
                 presentCircleColor = firstCircleColor;
