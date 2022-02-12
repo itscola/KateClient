@@ -7,11 +7,18 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import top.whitecola.kateclient.event.EventManager;
 import top.whitecola.kateclient.event.events.MainMenuEvent;
 import top.whitecola.kateclient.keybinds.MainMenuInGameKeybind;
+import top.whitecola.kateclient.ui.GameUI;
 
 @Mod(modid = KateClient.MODID, version = KateClient.VERSION)
 public class KateClient {
     public static final String MODID = "KateClient";
     public static final String VERSION = "1.0";
+
+    public GameUI gameUI = new GameUI();
+    private static KateClient kateClient = null;
+    {
+        kateClient = this;
+    }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
@@ -27,5 +34,9 @@ public class KateClient {
 
     public void registerKeyBinds(){
         ClientRegistry.registerKeyBinding(MainMenuInGameKeybind.getInstance());
+    }
+
+    public static KateClient getKateClient() {
+        return kateClient;
     }
 }
