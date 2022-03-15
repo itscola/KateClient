@@ -1,9 +1,12 @@
 package top.whitecola.kateclient.ui.components.screen;
 
+import gg.essential.elementa.components.UICircle;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import org.lwjgl.input.Mouse;
+import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
 import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
 import top.whitecola.kateclient.utils.GUIUtils;
@@ -25,10 +28,19 @@ public class MainClickUIIngame extends GuiScreen {
     protected boolean draged;
 
 
-    protected Color mainColor = new Color(31, 31, 31);
+    protected Color mainColor = new Color(33, 33, 33);
+    protected Color mainBarColor = new Color(28, 28, 28);
+
+    protected Color circleButtonColor1 = new Color(252, 98, 93);
+    protected Color circleButtonColor2 = new Color(253, 188, 64);
+    protected Color circleButtonColor3 = new Color(53, 205, 75);
+
+
+    protected Color mainTextColor = new Color(196, 210, 210);
+
     protected CircleButton circleButton;
-
-
+    protected CircleButton circleButton2;
+    protected CircleButton circleButton3;
 
 
 
@@ -36,15 +48,20 @@ public class MainClickUIIngame extends GuiScreen {
 
     private MainClickUIIngame(){
 
-
     }
 
 
     @Override
     public void initGui() {
         super.initGui();
-        circleButton = new CircleButton(0,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 25,"");
-        this.buttonList.add(circleButton);
+        circleButton = new CircleButton(0,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
+        circleButton2 = new CircleButton(1,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
+        circleButton3 = new CircleButton(2,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
+
+        this.buttonList.add(circleButton.setColor(circleButtonColor1));
+        this.buttonList.add(circleButton2.setColor(circleButtonColor2));
+        this.buttonList.add(circleButton3.setColor(circleButtonColor3));
+
     }
 
     public static MainClickUIIngame getGui() {
@@ -79,8 +96,18 @@ public class MainClickUIIngame extends GuiScreen {
         circleButton.xPosition = (int)xPosition;
         circleButton.yPosition = (int)yPosition;
 
+        circleButton2.xPosition = (int)xPosition +9;
+        circleButton2.yPosition = (int)yPosition;
+
+        circleButton3.xPosition = (int)xPosition + 18;
+        circleButton3.yPosition = (int)yPosition;
+
+
 
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, this.mainColor.getRGB(),this.mainColor.getRGB());
+        Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarColor.getRGB(),this.mainBarColor.getRGB());
+        FontRenderer fontRenderer = mc.fontRendererObj;
+        fontRenderer.drawString(KateClient.MODID, (int)(this.xPosition +32 ), (int) this.yPosition +2, this.mainTextColor.getRGB());;
 
         super.drawScreen(mouseX,mouseY,partialTicks);
     }

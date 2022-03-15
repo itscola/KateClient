@@ -98,6 +98,15 @@ public class MixinGuiOptions extends GuiScreen{
 //    }
 
 
+    /**
+     * @author white_cola
+     */
+    @Overwrite
+    public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
+        this.drawCenteredString(this.fontRendererObj, this.field_146442_a, this.width / 2, 15, 16777215);
+        super.drawScreen(p_drawScreen_1_, p_drawScreen_2_, p_drawScreen_3_);
+    }
+
     public String func_175355_a(EnumDifficulty p_175355_1_) {
         IChatComponent lvt_2_1_ = new ChatComponentText("");
         lvt_2_1_.appendSibling(new ChatComponentTranslation("options.difficulty", new Object[0]));
@@ -109,4 +118,6 @@ public class MixinGuiOptions extends GuiScreen{
     static {
         field_146440_f = new GameSettings.Options[]{GameSettings.Options.FOV};
     }
+
+
 }

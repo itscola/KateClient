@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.ui.components.buttons;
 
+import javafx.scene.shape.Circle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import org.lwjgl.input.Mouse;
@@ -51,4 +52,8 @@ public class CircleButton extends AbstractButton{
         super.playPressSound(p_playPressSound_1_);
     }
 
+    public CircleButton setColor(Color color) {
+        this.color = color;
+        return this;
+    }
 }

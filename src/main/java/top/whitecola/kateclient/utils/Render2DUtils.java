@@ -38,39 +38,32 @@ public class Render2DUtils {
 
     public static void drawCircle(double x, double y, double radius, int c) {
         GL11.glEnable(GL_POLYGON_SMOOTH);
-//        boolean blend = GL11.glIsEnabled((int) 3042);
         boolean line = GL11.glIsEnabled((int) 2848);
         boolean texture = GL11.glIsEnabled((int) 3553);
-//        if (!blend) {
-//            GL11.glEnable((int) 3042);
-//        }
         if (!line) {
-            GL11.glEnable((int) 2848);
+            GL11.glEnable(2848);
         }
         if (texture) {
-            GL11.glDisable((int) 3553);
+            GL11.glDisable(3553);
         }
-        GL11.glBlendFunc((int) 770, (int) 771);
-//        GL11.glColor4f((float) red, (float) green, (float) blue, (float) alpha);
+        GL11.glBlendFunc(770, 771);
         setColor(c);
-        GL11.glBegin((int) 9);
+        GL11.glBegin(9);
         int i = 0;
         while (i <= 360) {
             GL11.glVertex2d(
-                    (double) ((double) x + Math.sin((double) ((double) i * 3.141526 / 180.0)) * (double) radius),
-                    (double) ((double) y + Math.cos((double) ((double) i * 3.141526 / 180.0)) * (double) radius));
+                    ( x + Math.sin(((double) i * 3.141526 / 180.0)) *radius),
+                    ( y + Math.cos(((double) i * 3.141526 / 180.0)) *radius));
             ++i;
         }
         GL11.glEnd();
         if (texture) {
-            GL11.glEnable((int) 3553);
+            GL11.glEnable(3553);
         }
         if (!line) {
-            GL11.glDisable((int) 2848);
+            GL11.glDisable(2848);
         }
-//        if (!blend) {
-//            GL11.glDisable((int) 3042);
-//        }
+
         GL11.glDisable(GL_POLYGON_SMOOTH);
         GL11.glClear(0);
     }
@@ -113,18 +106,6 @@ public class Render2DUtils {
     }
 
 
-    public static void drawImage(final int x,int y,int width,int height,ResourceLocation image) {
-        GL11.glDisable(2929);
-        GL11.glEnable(3042);
-        GL11.glDepthMask(false);
-        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
-        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-        Minecraft.getMinecraft().getTextureManager().bindTexture(image);
-        Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0f, 0.0f, width, height, (float) width, (float) height);
-        GL11.glDepthMask(true);
-        GL11.glDisable(3042);
-        GL11.glEnable(2929);
-    }
 
     public static void setColor(int color) {
         float f = (color >> 24 & 255) / 255.0f;
