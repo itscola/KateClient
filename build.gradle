@@ -72,20 +72,20 @@ dependencies {
 }
 
 repositories {
-    maven {
-        url = "https://repo.sk1er.club/repository/maven-public"
-    }
+//    maven {
+//        url = "https://repo.sk1er.club/repository/maven-public"
+//    }
 }
 
 dependencies {
-    implementation "gg.essential:elementa-1.8.9-forge:440"
+//    implementation "gg.essential:elementa-1.8.9-forge:440"
 
 }
 
 
-shadowJar {
-    relocate("gg.essential.elementa", "top.whitecola.elementa")
-}
+//shadowJar {
+//    relocate("gg.essential.elementa", "top.whitecola.elementa")
+//}
 
 processResources
         {
