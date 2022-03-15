@@ -163,5 +163,20 @@ public class Render2DUtils {
         GL11.glHint(3155, 4352);
     }
 
+    public static void drawCustomImage(final int x, final int y, final int width, final int height,
+                                       final ResourceLocation image) {
+        final ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+        GL11.glDisable(2929);
+        GL11.glEnable(3042);
+        GL11.glDepthMask(false);
+        OpenGlHelper.glBlendFunc(770, 771, 1, 0);
+        GL11.glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+        Minecraft.getMinecraft().getTextureManager().bindTexture(image);
+        Gui.drawModalRectWithCustomSizedTexture(x, y, 0.0f, 0.0f, width, height, (float) width, (float) height);
+        GL11.glDepthMask(true);
+        GL11.glDisable(3042);
+        GL11.glEnable(2929);
+    }
+
 
 }

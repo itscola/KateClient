@@ -1,10 +1,10 @@
 package top.whitecola.kateclient.ui.components.screen;
 
-import gg.essential.elementa.components.UICircle;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
@@ -34,6 +34,7 @@ public class MainClickUIIngame extends GuiScreen {
     protected Color circleButtonColor1 = new Color(252, 98, 93);
     protected Color circleButtonColor2 = new Color(253, 188, 64);
     protected Color circleButtonColor3 = new Color(53, 205, 75);
+//    protected Color dockColor = new Color(245,245,245, 200);
 
 
     protected Color mainTextColor = new Color(196, 210, 210);
@@ -42,6 +43,15 @@ public class MainClickUIIngame extends GuiScreen {
     protected CircleButton circleButton2;
     protected CircleButton circleButton3;
 
+    protected ResourceLocation setting = new ResourceLocation("kateclient","ui/settings.png");
+    protected ResourceLocation message = new ResourceLocation("kateclient","ui/message.png");
+    protected ResourceLocation world = new ResourceLocation("kateclient","ui/world.png");
+    protected ResourceLocation visual = new ResourceLocation("kateclient","ui/visual.png");
+    protected ResourceLocation sound = new ResourceLocation("kateclient","ui/sound.png");
+    protected ResourceLocation render = new ResourceLocation("kateclient","ui/render.png");
+    protected ResourceLocation movement = new ResourceLocation("kateclient","ui/movement.png");
+    protected ResourceLocation server = new ResourceLocation("kateclient","ui/server.png");
+    protected ResourceLocation mods = new ResourceLocation("kateclient","ui/mods.png");
 
 
 
@@ -106,8 +116,26 @@ public class MainClickUIIngame extends GuiScreen {
 
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, this.mainColor.getRGB(),this.mainColor.getRGB());
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarColor.getRGB(),this.mainBarColor.getRGB());
+//        Render2DUtils.drawRoundedRect(this.xPosition +6, this.yPosition +this.height -28, this.xPosition + this.width-6, this.yPosition + this.height - 6, this.dockColor.getRGB(),this.dockColor.getRGB());
+
+
+
         FontRenderer fontRenderer = mc.fontRendererObj;
         fontRenderer.drawString(KateClient.MODID, (int)(this.xPosition +32 ), (int) this.yPosition +2, this.mainTextColor.getRGB());;
+
+        // Just for design , I will make them into button later.
+
+        Render2DUtils.drawCustomImage((int)this.xPosition +6, (int)this.yPosition +(int)this.height -32,25,25,setting);
+        Render2DUtils.drawCustomImage((int)this.xPosition +14 +25, (int)this.yPosition +(int)this.height -32,25,25,message);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8, (int)this.yPosition +(int)this.height -32,25,25,world);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8, (int)this.yPosition +(int)this.height -32,25,25,visual);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,sound);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,render);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,movement);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,server);
+        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,mods);
+
+
 
         super.drawScreen(mouseX,mouseY,partialTicks);
     }
