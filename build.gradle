@@ -10,16 +10,17 @@ buildscript {
         maven {
             url "http://files.minecraftforge.net/maven"
         }
+
     }
     dependencies {
         classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
         classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
-//        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
     }
 }
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'org.spongepowered.mixin'
-//apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 
 version = "1.0"
@@ -48,6 +49,7 @@ repositories {
     maven {
         url 'https://repo.spongepowered.org/maven'
     }
+
 }
 
 configurations {
@@ -66,16 +68,24 @@ dependencies {
         exclude module: 'asm-commons'
         exclude module: 'slf4j-api'
     }
+
 }
 
-//shadowJar {
-//    baseName = 'KateClient'
-//    classifier = null
-//    version = null
-//    dependencies {
-//        include(dependency('org.spongepowered:mixin:0.6.5-SNAPSHOT'))
-//    }
-//}
+repositories {
+    maven {
+        url = "https://repo.sk1er.club/repository/maven-public"
+    }
+}
+
+dependencies {
+    implementation "gg.essential:elementa-1.8.9-forge:440"
+
+}
+
+
+shadowJar {
+    relocate("gg.essential.elementa", "top.whitecola.elementa")
+}
 
 processResources
         {
