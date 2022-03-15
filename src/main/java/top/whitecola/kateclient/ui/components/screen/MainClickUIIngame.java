@@ -8,6 +8,7 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
+import top.whitecola.kateclient.ui.components.buttons.IconButton;
 import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
 import top.whitecola.kateclient.utils.GUIUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
@@ -43,6 +44,10 @@ public class MainClickUIIngame extends GuiScreen {
     protected CircleButton circleButton2;
     protected CircleButton circleButton3;
 
+    protected IconButton settingButton;
+    protected IconButton messageButton;
+
+
     protected ResourceLocation setting = new ResourceLocation("kateclient","ui/settings.png");
     protected ResourceLocation message = new ResourceLocation("kateclient","ui/message.png");
     protected ResourceLocation world = new ResourceLocation("kateclient","ui/world.png");
@@ -67,11 +72,14 @@ public class MainClickUIIngame extends GuiScreen {
         circleButton = new CircleButton(0,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
         circleButton2 = new CircleButton(1,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
         circleButton3 = new CircleButton(2,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
+        settingButton = new IconButton(3,(int)this.xPosition +6, (int)this.yPosition +(int)this.height -32,25,25,"").setIcon(setting);
+        messageButton = new IconButton(4,(int)this.xPosition +14 +25, (int)this.yPosition +(int)this.height -32,25,25,"").setIcon(message);
 
         this.buttonList.add(circleButton.setColor(circleButtonColor1));
         this.buttonList.add(circleButton2.setColor(circleButtonColor2));
         this.buttonList.add(circleButton3.setColor(circleButtonColor3));
-
+        this.buttonList.add(settingButton);
+        this.buttonList.add(messageButton);
     }
 
     public static MainClickUIIngame getGui() {
@@ -85,7 +93,7 @@ public class MainClickUIIngame extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
 
-        if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height,mouseX,mouseY) && Mouse.isButtonDown(0)){
+        if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 16,mouseX,mouseY) && Mouse.isButtonDown(0)){
             if (dragX == 0 && dragY == 0) {
                 dragX = mouseX - xPosition;
                 dragY = mouseY - yPosition;
@@ -112,6 +120,12 @@ public class MainClickUIIngame extends GuiScreen {
         circleButton3.xPosition = (int)xPosition + 18;
         circleButton3.yPosition = (int)yPosition;
 
+        settingButton.xPosition = (int)this.xPosition +6;
+        settingButton.yPosition = (int)this.yPosition +(int)this.height -32;
+
+        messageButton.xPosition = (int)this.xPosition +14 +25;
+        messageButton.yPosition = (int)this.yPosition +(int)this.height -32;
+
 
 
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, this.mainColor.getRGB(),this.mainColor.getRGB());
@@ -125,8 +139,9 @@ public class MainClickUIIngame extends GuiScreen {
 
         // Just for design , I will make them into button later.
 
-        Render2DUtils.drawCustomImage((int)this.xPosition +6, (int)this.yPosition +(int)this.height -32,25,25,setting);
-        Render2DUtils.drawCustomImage((int)this.xPosition +14 +25, (int)this.yPosition +(int)this.height -32,25,25,message);
+//        Render2DUtils.drawCustomImage((int)this.xPosition +6, (int)this.yPosition +(int)this.height -32,25,25,setting);
+
+//        Render2DUtils.drawCustomImage((int)this.xPosition +14 +25, (int)this.yPosition +(int)this.height -32,25,25,message);
         Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8, (int)this.yPosition +(int)this.height -32,25,25,world);
         Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8, (int)this.yPosition +(int)this.height -32,25,25,visual);
         Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,sound);
