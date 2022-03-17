@@ -2,7 +2,7 @@
 ## Dark theme mode demo  (All UI with animations):    
 ![image](https://user-images.githubusercontent.com/47351250/158332263-b863dbbc-2cab-4de7-afc6-cf9f58b7a2f7.png)     
 ![image](https://user-images.githubusercontent.com/47351250/158403972-9f7ab385-c3a2-4478-986a-d428957f880a.png)   
-(Right shift to use clickgui)     
+(Right shift to use draggable clickgui)     
 
 ![image](https://user-images.githubusercontent.com/47351250/158368942-96373163-3ed2-4beb-961a-855cfeb71e7e.png)    
 ![image](https://user-images.githubusercontent.com/47351250/158368976-c1547cba-cb24-45e2-92f5-9857180ec2ff.png)
