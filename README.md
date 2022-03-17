@@ -8,7 +8,7 @@
 ![image](https://user-images.githubusercontent.com/47351250/158368976-c1547cba-cb24-45e2-92f5-9857180ec2ff.png)
 
 ### To do:
-1. Fontloader for "Oppo sans font".    
+1. Fontloader for "OPPO sans font".    
 2. Modules system.    
 3. Loading GUI screen.   
 4. An animation system for UI.
