@@ -11,6 +11,7 @@
 1. Fontloader for "Oppo sans font".    
 2. Modules system.    
 3. Loading GUI screen.   
+4. An animation system for UI.
 
 Actually the UI design progress takes more time.
 
