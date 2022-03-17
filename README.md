@@ -10,7 +10,7 @@
 ### To do:
 1. Fontloader for "Oppo sans font".    
 2. Modules system.    
-3. Loading screen.   
+3. Loading GUI screen.   
 
 Actually the UI design progress takes more time.
 
