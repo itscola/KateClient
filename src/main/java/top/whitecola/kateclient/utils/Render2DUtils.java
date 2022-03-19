@@ -6,7 +6,8 @@ import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
-import static org.lwjgl.opengl.GL11.GL_POLYGON_SMOOTH;
+
+import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 
 public class Render2DUtils {
@@ -165,6 +166,10 @@ public class Render2DUtils {
 
     public static void drawCustomImage(final int x, final int y, final int width, final int height,
                                        final ResourceLocation image) {
+        glEnable(GL_BLEND);
+        glEnable(GL_POINT_SMOOTH);
+        glEnable(GL_LINE_SMOOTH);
+//        glEnable(GL_POLYGON_SMOOTH);
         final ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
         GL11.glDisable(2929);
         GL11.glEnable(3042);
@@ -176,6 +181,10 @@ public class Render2DUtils {
         GL11.glDepthMask(true);
         GL11.glDisable(3042);
         GL11.glEnable(2929);
+        glDisable(GL_BLEND);
+        glDisable(GL_LINE_SMOOTH);
+        glDisable(GL_POINT_SMOOTH);
+//        glDisable(GL_POLYGON_SMOOTH);
     }
 
 

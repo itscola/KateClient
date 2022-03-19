@@ -10,7 +10,7 @@ import static top.whitecola.kateclient.utils.MCWrapper.*;
 public class MixinGuiIngame {
     protected WidgetManager widgetManager;
     {
-        widgetManager = KateClient.getKateClient().gameUI.widgetManager;
+        widgetManager = KateClient.getKateClient().getGameUI().widgetManager;
     }
 
 
