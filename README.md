@@ -9,7 +9,7 @@
 
 ### To do:
 1. Fontloader for "OPPO sans font".    
-2. Modules system.    
+2. Notification UI System.   
 3. Loading GUI screen.   
 4. An animation system for UI.
 
