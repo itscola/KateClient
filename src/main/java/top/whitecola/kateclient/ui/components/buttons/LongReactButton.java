@@ -4,7 +4,8 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.GlStateManager;
-import top.whitecola.kateclient.ui.components.buttons.AbstractButton;
+import top.whitecola.animationlib.Animation;
+import top.whitecola.animationlib.functions.type.QuadInOutFunction;
 import top.whitecola.kateclient.utils.Render2DUtils;
 
 import java.awt.*;
@@ -17,6 +18,9 @@ public class LongReactButton extends AbstractButton {
     protected Color textColor2 = new Color(255, 255, 255);
     protected Color presentTextColor = textColor;
 
+    protected Animation upAnimation = new Animation();
+    protected long animationTime;
+
 
 
     int animatedHeight = 0;
@@ -27,10 +31,11 @@ public class LongReactButton extends AbstractButton {
 
     public LongReactButton(int buttonId, int x, int y, String buttonText){
         super(buttonId, x, y, 200, 20, buttonText);
-
     }
 
+    public void init(){
 
+    }
 
 
     @Override
@@ -46,9 +51,9 @@ public class LongReactButton extends AbstractButton {
 
 
         if(this.isHovered(mouseX,mouseY)){
-
-
-
+            if(animationTime==0){
+                animationTime = System.currentTimeMillis();
+            }
 
             presentColor = mainColor2;
             presentTextColor = textColor2;
@@ -58,8 +63,9 @@ public class LongReactButton extends AbstractButton {
                 animatedHeight = -3;
             }
 
-//            presentTextColor = textColor2;
+            presentTextColor = textColor2;
         }else {
+            animationTime = 0;
             presentColor = mainColor;
             presentTextColor = textColor;
 
@@ -69,7 +75,7 @@ public class LongReactButton extends AbstractButton {
                 animatedHeight = 0;
             }
 
-//            presentTextColor = textColor;
+            presentTextColor = textColor;
 
         }
 

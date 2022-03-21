@@ -3,13 +3,16 @@ package top.whitecola.kateclient.ui.components.buttons;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.util.ResourceLocation;
+import top.whitecola.animationlib.Animation;
+import top.whitecola.animationlib.functions.type.QuadInOutFunction;
 import top.whitecola.kateclient.utils.Render2DUtils;
 
 public class IconButton extends AbstractButton{
     protected ResourceLocation resourceLocation;
     int animatedHeight = 0;
 
-
+    protected Animation animation = new Animation();
+    protected long animationTime = 0;
 
     public IconButton(int buttonId, int x, int y, int width, int height, String buttonText) {
         super(buttonId, x, y, width, height, buttonText);
@@ -22,6 +25,7 @@ public class IconButton extends AbstractButton{
     }
 
     public void initAnimation(){
+        animation.setMin(0).setMax(3).setFunction(new QuadInOutFunction()).setTotalTime(200);
     }
 
     @Override
@@ -47,14 +51,25 @@ public class IconButton extends AbstractButton{
 
         if(this.isHovered(mouseX,mouseY)){
 
-            animatedHeight--;
-            if(animatedHeight < -3) {
-                animatedHeight = -3;
+            if(animationTime==0){
+                animationTime = System.currentTimeMillis();
             }
 
+//            animatedHeight--;
+//            if(animatedHeight < -3) {
+//                animatedHeight = -3;
+//            }
+
+            float animationValue = animation.update(System.currentTimeMillis() - animationTime);
+//            System.out.println(animationValue);
+//            System.out.println(System.currentTimeMillis() - animationTime);
+            animatedHeight -= animationValue;
+            if(animatedHeight < -4) {
+                animatedHeight = -4;
+            }
 //            presentTextColor = textColor2;
         }else {
-
+            animationTime = 0;
             animatedHeight++;
             if(animatedHeight > 0) {
                 animatedHeight = 0;
