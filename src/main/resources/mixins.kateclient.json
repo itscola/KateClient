@@ -9,7 +9,7 @@
     "MixinGUI",
     "MixinGuiOptions",
     "MixinGuiIngameMenu",
-    "MixinGuiMultiplayer",
+//    "MixinGuiMultiplayer",
     "MixinGuiIngame",
     "MixinGuiNewChat"
 

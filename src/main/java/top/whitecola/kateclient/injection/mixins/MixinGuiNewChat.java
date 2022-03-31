@@ -189,7 +189,7 @@ public class MixinGuiNewChat extends Gui {
                                 float width = mc.fontRendererObj.getStringWidth(textString);
 
                                 if(shadow==255){
-                                    if(textString.contains("join") || textString.contains("º”»Î")) {
+                                    if(textString.contains("join")) {
                                         chatLineInfo.animation.setMin(0).setMax(width).setFunction(animationFunction2).setTotalTime(500).setLock(true);
                                     }else {
                                         chatLineInfo.animation.setMin(0).setMax(width).setFunction(animationFunction).setTotalTime(500).setLock(true);

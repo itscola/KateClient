@@ -88,6 +88,8 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(circleButton3.setColor(circleButtonColor3));
         this.buttonList.add(settingButton);
         this.buttonList.add(messageButton);
+
+
     }
 
 

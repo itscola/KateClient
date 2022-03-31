@@ -1,9 +1,6 @@
 package top.whitecola.kateclient.injection.mixins;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiMultiplayer;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ServerSelectionList;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -27,8 +24,6 @@ public abstract class MixinGuiMultiplayer extends GuiScreen {
 
     @Shadow
     private ServerSelectionList serverListSelector;
-
-    @Shadow public abstract void selectServer(int p_selectServer_1_);
 
     private SwitchButton switchButton;
 
@@ -58,4 +53,23 @@ public abstract class MixinGuiMultiplayer extends GuiScreen {
         }
     }
 
+    /**
+     * @author
+     */
+    @Overwrite
+    public void selectServer(int p_selectServer_1_) {
+        this.serverListSelector.setSelectedSlotIndex(p_selectServer_1_);
+        GuiListExtended.IGuiListEntry guilistextended$iguilistentry = p_selectServer_1_ < 0 ? null : this.serverListSelector.getListEntry(p_selectServer_1_);
+        this.btnSelectServer.enabled = false;
+        this.btnEditServer.enabled = false;
+        this.btnDeleteServer.enabled = false;
+        if (guilistextended$iguilistentry != null && !(guilistextended$iguilistentry instanceof ServerListEntryLanScan)) {
+            this.btnSelectServer.enabled = true;
+            if (guilistextended$iguilistentry instanceof ServerListEntryNormal) {
+                this.btnEditServer.enabled = true;
+                this.btnDeleteServer.enabled = true;
+            }
+        }
+
+    }
 }

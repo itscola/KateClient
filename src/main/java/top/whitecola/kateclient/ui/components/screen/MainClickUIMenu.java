@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.ui.components.screen;
 
+import net.minecraft.client.LoadingScreenRenderer;
 import net.minecraft.client.gui.GuiScreen;
 import top.whitecola.kateclient.ui.components.buttons.LongReactButton;
 
@@ -10,7 +11,6 @@ public class MainClickUIMenu extends GuiScreen {
 
     @Override
     public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
-
     }
 
     @Override
