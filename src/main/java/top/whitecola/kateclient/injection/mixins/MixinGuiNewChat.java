@@ -40,7 +40,7 @@ public class MixinGuiNewChat extends Gui {
 
     // it will be different animation later
     AbstractAnimationFunction animationFunction = new CubicOutFunction();
-    AbstractAnimationFunction animationFunction2 = new CubicOutFunction();
+    AbstractAnimationFunction animationFunction2 = new BounceOutFunction();
 
     /**
      * @author
@@ -189,7 +189,7 @@ public class MixinGuiNewChat extends Gui {
                                 float width = mc.fontRendererObj.getStringWidth(textString);
 
                                 if(shadow==255){
-                                    if(textString.contains(Minecraft.getMinecraft().thePlayer.getName())) {
+                                    if(textString.contains("join") || textString.contains("º”»Î")) {
                                         chatLineInfo.animation.setMin(0).setMax(width).setFunction(animationFunction2).setTotalTime(500).setLock(true);
                                     }else {
                                         chatLineInfo.animation.setMin(0).setMax(width).setFunction(animationFunction).setTotalTime(500).setLock(true);
