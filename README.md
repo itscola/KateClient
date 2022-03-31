@@ -11,7 +11,8 @@
 1. Fontloader for "OPPO sans font".    
 2. Notification UI System.   
 3. Loading GUI screen.   
-4. An animation system for UI.
+4. An animation system for UI. ✅
+5. GUI Animation ✅
 
 Actually the UI design progress takes more time.
 
