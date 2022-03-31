@@ -1,8 +1,7 @@
 package top.whitecola.kateclient.injection.mixins;
 
-import net.minecraft.client.gui.GuiButton;
-import net.minecraft.client.gui.GuiIngameMenu;
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -24,6 +23,8 @@ public class MixinGuiIngameMenu extends GuiScreen {
         this.field_146445_a = 0;
         this.buttonList.clear();
         int i = -16;
+
+
         this.buttonList.add(new LongReactButton(1, this.width / 2 - 100, this.height / 4 + 120 + i, I18n.format("menu.returnToMenu", new Object[0])));
         if (!this.mc.isIntegratedServerRunning()) {
             (this.buttonList.get(0)).displayString = I18n.format("menu.disconnect", new Object[0]);
@@ -39,5 +40,18 @@ public class MixinGuiIngameMenu extends GuiScreen {
         guibutton.enabled = this.mc.isSingleplayer() && !this.mc.getIntegratedServer().getPublic();
     }
 
+
+
+    /**
+     * @author White_cola
+     */
+    @Overwrite
+    public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
+        if(Minecraft.getMinecraft().theWorld ==null){
+            this.drawDefaultBackground();
+        }
+        this.drawCenteredString(this.fontRendererObj, I18n.format("menu.game", new Object[0]), this.width / 2, 40, 16777215);
+        super.drawScreen(p_drawScreen_1_, p_drawScreen_2_, p_drawScreen_3_);
+    }
 
 }

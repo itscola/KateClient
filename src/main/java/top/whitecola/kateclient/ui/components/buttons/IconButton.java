@@ -4,7 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.util.ResourceLocation;
 import top.whitecola.animationlib.Animation;
-import top.whitecola.animationlib.functions.type.QuadInOutFunction;
+import top.whitecola.animationlib.functions.type.CubeInOutFunction;
 import top.whitecola.kateclient.utils.Render2DUtils;
 
 public class IconButton extends AbstractButton{
@@ -25,7 +25,7 @@ public class IconButton extends AbstractButton{
     }
 
     public void initAnimation(){
-        animation.setMin(0).setMax(3).setFunction(new QuadInOutFunction()).setTotalTime(200);
+        animation.setMin(0).setMax(3).setFunction(new CubeInOutFunction()).setTotalTime(200);
     }
 
     @Override
@@ -91,5 +91,11 @@ public class IconButton extends AbstractButton{
     public IconButton setIcon(ResourceLocation resourceLocation){
         this.resourceLocation = resourceLocation;
         return this;
+    }
+
+    @Override
+    public void mouseReleased(int p_mouseReleased_1_, int p_mouseReleased_2_) {
+
+        super.mouseReleased(p_mouseReleased_1_, p_mouseReleased_2_);
     }
 }

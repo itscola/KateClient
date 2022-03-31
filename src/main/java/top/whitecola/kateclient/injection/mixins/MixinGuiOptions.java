@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.injection.mixins;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.audio.SoundCategory;
 import net.minecraft.client.audio.SoundEventAccessorComposite;
@@ -103,6 +104,9 @@ public class MixinGuiOptions extends GuiScreen{
      */
     @Overwrite
     public void drawScreen(int p_drawScreen_1_, int p_drawScreen_2_, float p_drawScreen_3_) {
+        if(Minecraft.getMinecraft().theWorld ==null){
+            this.drawDefaultBackground();
+        }
         this.drawCenteredString(this.fontRendererObj, this.field_146442_a, this.width / 2, 15, 16777215);
         super.drawScreen(p_drawScreen_1_, p_drawScreen_2_, p_drawScreen_3_);
     }

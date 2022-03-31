@@ -10,7 +10,8 @@
     "MixinGuiOptions",
     "MixinGuiIngameMenu",
     "MixinGuiMultiplayer",
-    "MixinGuiIngame"
+    "MixinGuiIngame",
+    "MixinGuiNewChat"
 
   ]
 }

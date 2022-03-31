@@ -1,11 +1,15 @@
 package top.whitecola.kateclient.ui.components.screen;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.ISound;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.input.Mouse;
+import top.whitecola.animationlib.Animation;
+import top.whitecola.animationlib.functions.type.*;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
 import top.whitecola.kateclient.ui.components.buttons.IconButton;
@@ -31,11 +35,15 @@ public class MainClickUIIngame extends GuiScreen {
 
     protected Color mainColor = new Color(33, 33, 33);
     protected Color mainBarColor = new Color(28, 28, 28);
+    protected Color mainBarDragColor = new Color(18, 80, 123);
+
 
     protected Color circleButtonColor1 = new Color(252, 98, 93);
     protected Color circleButtonColor2 = new Color(253, 188, 64);
     protected Color circleButtonColor3 = new Color(53, 205, 75);
 //    protected Color dockColor = new Color(245,245,245, 200);
+
+    protected Animation displayAnimation = new Animation();
 
 
     protected Color mainTextColor = new Color(196, 210, 210);
@@ -62,7 +70,7 @@ public class MainClickUIIngame extends GuiScreen {
 
 
     private MainClickUIIngame(){
-
+        displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(260);
     }
 
 
@@ -82,18 +90,21 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(messageButton);
     }
 
+
+
     public static MainClickUIIngame getGui() {
         return gui;
     }
 
 
 
-
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-
+        float value = displayAnimation.update();
+        height = 50 + value;
 
         if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 16,mouseX,mouseY) && Mouse.isButtonDown(0)){
+
             if (dragX == 0 && dragY == 0) {
                 dragX = mouseX - xPosition;
                 dragY = mouseY - yPosition;
@@ -105,7 +116,15 @@ public class MainClickUIIngame extends GuiScreen {
         } else if (dragX != 0 || dragY != 0) {
             dragX = 0;
             dragY = 0;
+            if(draged){
+                draged = false;
+            }
         }
+
+
+
+
+
 
 
 
@@ -129,7 +148,11 @@ public class MainClickUIIngame extends GuiScreen {
 
 
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, this.mainColor.getRGB(),this.mainColor.getRGB());
-        Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarColor.getRGB(),this.mainBarColor.getRGB());
+        if(draged){
+            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarDragColor.getRGB(),this.mainBarDragColor.getRGB());
+        }else {
+            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarColor.getRGB(),this.mainBarColor.getRGB());
+        }
 //        Render2DUtils.drawRoundedRect(this.xPosition +6, this.yPosition +this.height -28, this.xPosition + this.width-6, this.yPosition + this.height - 6, this.dockColor.getRGB(),this.dockColor.getRGB());
 
 
@@ -160,6 +183,8 @@ public class MainClickUIIngame extends GuiScreen {
     @Override
     public void onGuiClosed() {
         super.onGuiClosed();
+        displayAnimation.reset();
+
     }
 
     @Override
@@ -176,7 +201,11 @@ public class MainClickUIIngame extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         if(button.id == 0){
             Minecraft.getMinecraft().displayGuiScreen(null);
-            button.playPressSound(Minecraft.getMinecraft().getSoundHandler());
+            playButtonSound();
         }
+    }
+
+    private void playButtonSound(){
+        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
     }
 }
