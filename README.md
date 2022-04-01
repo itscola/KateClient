@@ -6,7 +6,7 @@
 (Right shift to use **draggable clickgui**, open GUI with nonlinear animation)  
 
 ![image](https://user-images.githubusercontent.com/47351250/161271248-21d89261-a13d-4aae-8d6e-23650dd0fcc8.png)    
-(Chat line with **nonlinear animations** without black background.)   
+(**Chat line with nonlinear animations** and without black background.)   
 (Animations powered by [AnimationLib](https://github.com/itscola/AnimationLib]) , an animations lib of my)
 
 And, you can install any **mods** you want if mods are compatible.
