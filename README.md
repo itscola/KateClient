@@ -1,18 +1,22 @@
   # KateClient.
-## Dark theme mode demo  (All UI with animations):    
-![image](https://user-images.githubusercontent.com/47351250/158332263-b863dbbc-2cab-4de7-afc6-cf9f58b7a2f7.png)     
-![image](https://user-images.githubusercontent.com/47351250/158403972-9f7ab385-c3a2-4478-986a-d428957f880a.png)   
-(Right shift to use draggable clickgui)     
+## Dark theme mode demo  (All UI with animations):       
+![image](https://user-images.githubusercontent.com/47351250/161268871-2dea5bf0-0008-4575-a8c9-0e26c3e9278b.png)     
 
-![image](https://user-images.githubusercontent.com/47351250/158368942-96373163-3ed2-4beb-961a-855cfeb71e7e.png)    
-![image](https://user-images.githubusercontent.com/47351250/158368976-c1547cba-cb24-45e2-92f5-9857180ec2ff.png)
+![image](https://user-images.githubusercontent.com/47351250/161268791-192dd853-8a91-4ac1-9283-77500a2c7557.png)     
+(Right shift to use **draggable clickgui**, open GUI with nonlinear animation)  
+
+![image](https://user-images.githubusercontent.com/47351250/161269637-dbf0bd98-bb49-418b-8e1a-fc16ed9a6b3f.png)     
+(Chat line with **nonlinear animations** without black background.)   
+(Animations powered by [AnimationLib](https://github.com/itscola/AnimationLib]) , an animations lib of my)
+
+And, you can install any **mods** you want if mods are compatible.
 
 ### To do:
 1. Fontloader for "OPPO sans font".    
 2. Notification UI System.   
 3. Loading GUI screen.   
-4. An animation system for UI. ✅
-5. GUI Animation ✅
+4. Click GUI close animations.
+5. Click gui layout system.
 
 Actually the UI design progress takes more time.
 
