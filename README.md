@@ -7,7 +7,7 @@
 
 ![image](https://user-images.githubusercontent.com/47351250/161271248-21d89261-a13d-4aae-8d6e-23650dd0fcc8.png)    
 (**Chat line with nonlinear animations** and without black background. The black background will be displayed when you pressed "T")   
-(Animations powered by [AnimationLib](https://github.com/itscola/AnimationLib]) , an animations lib of mine)
+(Animations powered by [AnimationLib](https://github.com/itscola/AnimationLib) , an animations lib of mine)
 
 And, you can install any **mods** you want if mods are compatible.
 
