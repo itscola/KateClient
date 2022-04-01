@@ -1,12 +1,23 @@
 package top.whitecola.kateclient.injection.mixins;
 
+import com.google.common.base.Strings;
+import com.google.common.collect.Lists;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
+import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.settings.GameSettings;
+import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.ForgeHooksClient;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -16,8 +27,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.whitecola.kateclient.ui.UICache;
 import top.whitecola.kateclient.ui.components.buttons.LongReactButton;
 import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
+import top.whitecola.kateclient.utils.Render2DUtils;
 
 import java.io.IOException;
+import java.util.List;
 
 @Mixin(GuiMainMenu.class)
 public class MixinGUIMainMenu extends GuiScreen {
@@ -28,7 +41,42 @@ public class MixinGUIMainMenu extends GuiScreen {
 
     @Shadow private String splashText;
 
+    @Shadow
+    private float updateCounter;
+
+    @Shadow
+    private String openGLWarning1;
+    @Shadow
+    private String openGLWarning2;
+    @Shadow
+    private String openGLWarningLink;
+
+//    @Shadow
+//    private int field_92024_r;
+//    @Shadow
+//    private int field_92023_s;
+//    @Shadow
+//    private int field_92022_t;
+//    @Shadow
+//    private int field_92021_u;
+//    @Shadow
+//    private int field_92020_v;
+//    @Shadow
+//    private int field_92019_w;
+//
+//    @Shadow
+//    private GuiScreen field_183503_M;
+//
+//    @Shadow
+//    private static final ResourceLocation minecraftTitleTextures = new ResourceLocation("textures/gui/title/minecraft.png");
+
+
+
+    protected ResourceLocation background = new ResourceLocation("kateclient","pic/background2.jpg");
     protected SwitchButton switchButton;
+
+
+
 
 //    protected ResourceLocation minecraftLogo = new ResourceLocation("kateclient","minecraft.png");
 
@@ -42,7 +90,7 @@ public class MixinGUIMainMenu extends GuiScreen {
 
         this.viewportTexture = new DynamicTexture(256, 256);
         this.backgroundTexture = this.mc.getTextureManager().getDynamicTextureLocation("background", this.viewportTexture);
-        this.splashText = "KateClient";
+        this.splashText = "";
 
 
         int j = this.height / 4 + 48;
@@ -67,4 +115,15 @@ public class MixinGUIMainMenu extends GuiScreen {
             switchButton.toggle();
         }
     }
+
+    /**
+     * @author White_cola
+     * @reason Change the background.
+     */
+    @Overwrite
+    private void renderSkybox(int p_renderSkybox_1_, int p_renderSkybox_2_, float p_renderSkybox_3_) {
+        Render2DUtils.drawCustomImage(0,0,width,height,background);
+    }
+
+
 }

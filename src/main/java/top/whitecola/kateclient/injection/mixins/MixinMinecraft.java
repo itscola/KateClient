@@ -54,7 +54,7 @@ public abstract class MixinMinecraft {
     }
 
     /**
-     * @author
+     * @author White_cola
      */
     @Overwrite
     private void createDisplay() throws LWJGLException {

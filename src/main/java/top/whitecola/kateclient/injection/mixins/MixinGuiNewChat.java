@@ -367,7 +367,7 @@ public class MixinGuiNewChat extends Gui {
             }
         }
 
-        while(this.field_146253_i.size() > 100) {
+        while(this.field_146253_i.size() > 300) {
             ChatLine chatLine = this.field_146253_i.get(this.field_146253_i.size() - 1);
             this.chatLineManager.deleteChatLine(chatLine);
             this.field_146253_i.remove(chatLine);
