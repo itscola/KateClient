@@ -9,9 +9,9 @@
     "MixinGUI",
     "MixinGuiOptions",
     "MixinGuiIngameMenu",
-//    "MixinGuiMultiplayer",
     "MixinGuiIngame",
-    "MixinGuiNewChat"
+    "MixinGuiNewChat",
+    "MixinGuiPlayerTabOverlay"
 
   ]
 }
