@@ -56,15 +56,15 @@ public class MainClickUIIngame extends GuiScreen {
     protected IconButton messageButton;
 
 
-    protected ResourceLocation setting = new ResourceLocation("kateclient","ui/settings.png");
-    protected ResourceLocation message = new ResourceLocation("kateclient","ui/message.png");
-    protected ResourceLocation world = new ResourceLocation("kateclient","ui/world.png");
-    protected ResourceLocation visual = new ResourceLocation("kateclient","ui/visual.png");
-    protected ResourceLocation sound = new ResourceLocation("kateclient","ui/sound.png");
-    protected ResourceLocation render = new ResourceLocation("kateclient","ui/render.png");
-    protected ResourceLocation movement = new ResourceLocation("kateclient","ui/movement.png");
-    protected ResourceLocation server = new ResourceLocation("kateclient","ui/server.png");
-    protected ResourceLocation mods = new ResourceLocation("kateclient","ui/mods.png");
+    public ResourceLocation setting = new ResourceLocation("kateclient","ui/settings.png");
+    public ResourceLocation message = new ResourceLocation("kateclient","ui/message.png");
+    public ResourceLocation world = new ResourceLocation("kateclient","ui/world.png");
+    public ResourceLocation visual = new ResourceLocation("kateclient","ui/visual.png");
+    public ResourceLocation sound = new ResourceLocation("kateclient","ui/sound.png");
+    public ResourceLocation render = new ResourceLocation("kateclient","ui/render.png");
+    public ResourceLocation movement = new ResourceLocation("kateclient","ui/movement.png");
+    public ResourceLocation server = new ResourceLocation("kateclient","ui/server.png");
+    public ResourceLocation mods = new ResourceLocation("kateclient","ui/mods.png");
 
 
 

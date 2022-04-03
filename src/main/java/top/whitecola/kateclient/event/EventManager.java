@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event;
 
+import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -56,6 +57,13 @@ public class EventManager {
     public void tickEvent(TickEvent e) {
         for(EventAdapter eventAdapter : events){
             eventAdapter.tickEvent(e);
+        }
+    }
+
+    @SubscribeEvent
+    public void onRender2D(RenderWorldLastEvent e) {
+        for(EventAdapter eventAdapter : events){
+            eventAdapter.onRender2D(e);
         }
     }
 

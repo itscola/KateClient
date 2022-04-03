@@ -1,5 +1,7 @@
 package top.whitecola.kateclient.module;
 
+import top.whitecola.kateclient.event.EventAdapter;
+
 import java.util.Vector;
 
 public class ModuleManager {
@@ -18,13 +20,26 @@ public class ModuleManager {
     }
 
     public AbstractModule getModuleByName(String name){
-        for(int i=0;i<modules.size();i++){
-            AbstractModule module = modules.get(i);
-            if(module.getModuleName().equalsIgnoreCase(name)){
+        for(AbstractModule module : modules){
+            if(module.getModuleName().equalsIgnoreCase(name))
                 return module;
+        }
+        return null;
+    }
+
+    public <T extends AbstractModule> T getModuleByClass(Class<T> clazz) {
+        for(AbstractModule module : modules){
+            if(module.getClass() == clazz){
+                return (T)module;
             }
         }
         return null;
     }
+
+    public Vector<AbstractModule> getModules() {
+        return modules;
+    }
+
+
 
 }

@@ -2,13 +2,21 @@ package top.whitecola.kateclient.module;
 
 
 public class ModuleOption {
-    public String optionName;
-    public boolean enabled;
-    public float level;
+    private String optionName;
+    private boolean enabled;
+    private float level;
 
     public ModuleOption setEnabled(boolean enabled) {
         this.enabled = enabled;
         return this;
+    }
+
+    public void enable(){
+        setEnabled(true);
+    }
+
+    public void disable(){
+        setEnabled(false);
     }
 
     public ModuleOption setOptionName(String optionName) {

@@ -1,12 +1,24 @@
 package top.whitecola.kateclient.module;
 
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 public interface IModule {
     void onTick();
-    void onRender(RenderWorldLastEvent e);
+    void onRender2D(RenderWorldLastEvent e);
+
+    void onRender(TickEvent.RenderTickEvent e);
+
     void onEnable();
     void onDisable();
+
+    void enable();
+    void disable();
+    boolean isEnabled();
+
+    void addOption(ModuleOption option);
+    void removeOption(ModuleOption option);
+
     ModuleCategory getModuleType();
     String getModuleName();
     void optionEnable(String optionName);
