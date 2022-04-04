@@ -14,7 +14,9 @@
     "MixinGuiIngame",
     "MixinScoreBoard",
     "MixinNetHandlerPlayClient",
-    "MixinS3EPacketTeams"
+    "MixinS3EPacketTeams",
+    "MixinRegionRenderCache",
+    "MixinBlockModelRenderer"
 
   ]
 }
