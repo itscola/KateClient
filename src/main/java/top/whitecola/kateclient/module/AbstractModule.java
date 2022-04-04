@@ -59,6 +59,11 @@ public class AbstractModule implements IModule{
     }
 
     @Override
+    public void renderGameOverlayRETURN() {
+
+    }
+
+    @Override
     public void addOption(ModuleOption option) {
         options.add(option);
     }

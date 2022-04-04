@@ -75,4 +75,9 @@ public class EventManager {
         }
     }
 
+    public void renderGameOverlayRETURN(){
+        for(EventAdapter eventAdapter : events){
+            eventAdapter.renderGameOverlayRETURN();
+        }
+    }
 }

@@ -44,5 +44,10 @@ public abstract class EventAdapter {
         return id;
     }
 
+    @SubscribeEvent
+    public void renderGameOverlayRETURN() {
+
+    }
+
 
 }

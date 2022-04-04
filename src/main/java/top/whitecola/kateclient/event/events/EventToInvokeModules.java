@@ -61,4 +61,14 @@ public class EventToInvokeModules extends EventAdapter {
         }
         super.onRenderOverLay(event);
     }
+
+    @Override
+    public void renderGameOverlayRETURN() {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.renderGameOverlayRETURN();
+        }
+        super.renderGameOverlayRETURN();
+    }
 }

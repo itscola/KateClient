@@ -17,6 +17,8 @@ public interface IModule {
     void enable();
     void disable();
     boolean isEnabled();
+    @Deprecated
+    void renderGameOverlayRETURN();
 
     void addOption(ModuleOption option);
     void removeOption(ModuleOption option);
