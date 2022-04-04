@@ -26,7 +26,7 @@ Actually the UI design progress takes more time.
 ### >>> The client is in the development stage. It is not recommended to use it for now.
 But you can still test it if you want.
 
-### The license is AGPLV3 and ,if you want to use the codes, please mark the author name in your projects.
+### The license is AGPLV3 and ,if you want to use the codes, please mark the author name (White_cola) in your projects .
 Why the ui is apple style, because Im an apple fan.   But to be a student,I dont have a my own macbook at present.       
 
 #### Prohibited for commercial use.
