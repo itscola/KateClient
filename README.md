@@ -10,7 +10,7 @@
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
 ![image](https://user-images.githubusercontent.com/47351250/161497697-eae01e8c-c217-498a-8f30-40f9629e6aaf.png)
-(The Notification UI will be coming as soon as..)
+(The Notification UI animations are designing and dev.)
 
 And, you can install any **mods** you want if mods are compatible.
 
