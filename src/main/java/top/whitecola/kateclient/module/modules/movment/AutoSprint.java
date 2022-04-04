@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.potion.Potion;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import top.whitecola.kateclient.module.AbstractModule;
@@ -44,8 +45,9 @@ public class AutoSprint extends AbstractModule {
         super.onTick();
     }
 
+
     @Override
-    public void onRender(TickEvent.RenderTickEvent e) {
+    public void onRenderOverLay(RenderGameOverlayEvent event) {
         if(Minecraft.getMinecraft()==null||Minecraft.getMinecraft().theWorld==null || mc.thePlayer==null){
             return;
         }
@@ -53,8 +55,9 @@ public class AutoSprint extends AbstractModule {
 
         FontRenderer fontRenderer = mc.fontRendererObj;
 
-        fontRenderer.drawStringWithShadow("Auto Sprint",65 ,scaledResolution.getScaledHeight()-10,colorRGB);
-        super.onRender(e);
+        fontRenderer.drawStringWithShadow("Auto Sprint",scaledResolution.getScaledWidth()/7 ,scaledResolution.getScaledHeight()-10,colorRGB);
+
+        super.onRenderOverLay(event);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event.events;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import top.whitecola.kateclient.KateClient;
@@ -9,7 +10,6 @@ public class EventToInvokeNotification extends EventAdapter {
     public EventToInvokeNotification() {
         super(MainMenuEvent.class.getSimpleName());
     }
-
 
 
 

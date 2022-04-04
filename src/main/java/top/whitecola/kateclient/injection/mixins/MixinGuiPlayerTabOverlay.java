@@ -26,6 +26,9 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import top.whitecola.kateclient.KateClient;
+import top.whitecola.kateclient.module.ModuleManager;
+import top.whitecola.kateclient.module.modules.renders.PingDisplay;
 
 import static top.whitecola.kateclient.utils.MCWrapper.*;
 
@@ -157,7 +160,16 @@ public abstract class MixinGuiPlayerTabOverlay extends Gui{
             GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
             if (lvt_19_4_ < lvt_5_1_.size()) {
                 NetworkPlayerInfo lvt_24_1_ = (NetworkPlayerInfo)lvt_5_1_.get(lvt_19_4_);
-                String lvt_25_1_ = this.getPlayerName(lvt_24_1_) +EnumChatFormatting.LIGHT_PURPLE +" ["+lvt_24_1_.getResponseTime()+"ms]";
+                String lvt_25_1_;
+
+                String playerName = this.getPlayerName(lvt_24_1_);
+                if(KateClient.getKateClient().getModuleManager().getModuleByClass(PingDisplay.class).isEnabled()){
+                    int ping = lvt_24_1_.getResponseTime();
+                    lvt_25_1_ = playerName + (ping==1?"":(EnumChatFormatting.LIGHT_PURPLE +" ["+lvt_24_1_.getResponseTime()+"ms]"));
+                }else {
+                    lvt_25_1_ = playerName;
+                }
+
                 GameProfile lvt_26_1_ = lvt_24_1_.getGameProfile();
                 if (lvt_11_1_) {
                     EntityPlayer lvt_27_1_ = mc.theWorld.getPlayerEntityByUUID(lvt_26_1_.getId());

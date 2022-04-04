@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.module;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -8,6 +9,7 @@ public interface IModule {
     void onRender2D(RenderWorldLastEvent e);
 
     void onRender(TickEvent.RenderTickEvent e);
+    void onRenderOverLay(RenderGameOverlayEvent event);
 
     void onEnable();
     void onDisable();

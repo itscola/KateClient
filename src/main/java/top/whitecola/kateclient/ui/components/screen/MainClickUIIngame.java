@@ -14,6 +14,8 @@ import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
 import top.whitecola.kateclient.ui.components.buttons.IconButton;
 import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
+import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
+import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.GUIUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
 
@@ -88,6 +90,11 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(circleButton3.setColor(circleButtonColor3));
         this.buttonList.add(settingButton);
         this.buttonList.add(messageButton);
+
+
+        //temp : for test
+        ClientUtils.sendAClientMessage("ClickGUI ON","");
+
 
 
     }
@@ -187,6 +194,8 @@ public class MainClickUIIngame extends GuiScreen {
         super.onGuiClosed();
         displayAnimation.reset();
 
+        //temp: clean the NotificationManager
+        KateClient.getKateClient().getNotificationManager().clear();
     }
 
     @Override

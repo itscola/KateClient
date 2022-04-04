@@ -14,7 +14,9 @@ public class AbstractWidget {
 
     }
 
-    public void drawWidget(){
+
+
+        public void drawWidget(){
 
     }
 

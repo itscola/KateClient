@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.module;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -21,6 +22,11 @@ public class AbstractModule implements IModule{
 
     @Override
     public void onRender(TickEvent.RenderTickEvent e) {
+
+    }
+
+    @Override
+    public void onRenderOverLay(RenderGameOverlayEvent event) {
 
     }
 

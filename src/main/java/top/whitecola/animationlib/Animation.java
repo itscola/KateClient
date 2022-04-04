@@ -105,8 +105,9 @@ public class Animation {
     }
 
 
-    public void setLock(boolean lock){
+    public Animation setLock(boolean lock){
         lock = lock;
+        return this;
     }
 
     public boolean getLock(){

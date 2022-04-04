@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -64,6 +65,13 @@ public class EventManager {
     public void onRender2D(RenderWorldLastEvent e) {
         for(EventAdapter eventAdapter : events){
             eventAdapter.onRender2D(e);
+        }
+    }
+
+    @SubscribeEvent
+    public void onRenderOverLay(RenderGameOverlayEvent e) {
+        for(EventAdapter eventAdapter : events){
+            eventAdapter.onRenderOverLay(e);
         }
     }
 

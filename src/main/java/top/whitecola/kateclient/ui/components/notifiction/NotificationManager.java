@@ -1,7 +1,6 @@
 package top.whitecola.kateclient.ui.components.notifiction;
 
 
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 
 import java.util.Vector;
 
@@ -9,8 +8,19 @@ public class NotificationManager {
     protected Vector<Notification> notifications = new Vector<Notification>();
 
     public void draw(){
-        for(Notification notification : notifications){
-            notification.drawWidget();
+        for(int i=0;i<notifications.size();i++){
+//            if(i==0){
+//                notifications.get(i).drawWidget();
+//            }else if(i==2){
+//
+//            }else if(i==3){
+//
+//            }else{
+//                notifications.remove(0);
+//            }
+
+            notifications.get(i).drawWidget();
+
         }
     }
 

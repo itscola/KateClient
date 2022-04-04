@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -33,7 +34,10 @@ public abstract class EventAdapter {
 
     }
 
+    @SubscribeEvent
+    public void onRenderOverLay(RenderGameOverlayEvent event) {
 
+    }
 
 
     public String getId() {

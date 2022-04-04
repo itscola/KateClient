@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event.events;
 
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import top.whitecola.kateclient.KateClient;
@@ -49,5 +50,15 @@ public class EventToInvokeModules extends EventAdapter {
         }
 
         super.tickEvent(event);
+    }
+
+    @Override
+    public void onRenderOverLay(RenderGameOverlayEvent event) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onRenderOverLay(event);
+        }
+        super.onRenderOverLay(event);
     }
 }

@@ -24,7 +24,5 @@ public class MainMenuEvent extends EventAdapter {
         }
 
 
-//        ClientUtils.sendAClientMessage("Display Click GUI","");
-
     }
 }

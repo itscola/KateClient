@@ -11,6 +11,7 @@ import top.whitecola.kateclient.event.events.MainMenuEvent;
 import top.whitecola.kateclient.keybinds.MainMenuInGameKeybind;
 import top.whitecola.kateclient.module.ModuleManager;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
+import top.whitecola.kateclient.module.modules.renders.PingDisplay;
 import top.whitecola.kateclient.ui.GameUI;
 import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
 
@@ -47,7 +48,10 @@ public class KateClient {
 
     public void addModules(){
         this.moduleManager.addModule(new AutoSprint());
+        this.moduleManager.addModule(new PingDisplay());
         moduleManager.getModuleByName("AutoSprint").enable();
+        moduleManager.getModuleByName("PingDisplay").enable();
+
     }
 
     public void registerKeyBinds(){
