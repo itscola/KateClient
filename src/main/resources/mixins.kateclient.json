@@ -11,7 +11,10 @@
     "MixinGuiIngameMenu",
     "MixinGuiNewChat",
     "MixinGuiPlayerTabOverlay",
-    "MixinGuiIngame"
+    "MixinGuiIngame",
+    "MixinScoreBoard",
+    "MixinNetHandlerPlayClient",
+    "MixinS3EPacketTeams"
 
   ]
 }
