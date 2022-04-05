@@ -12,7 +12,7 @@
 ![image](https://user-images.githubusercontent.com/47351250/161530195-4152e7e1-7136-4ef4-9c04-80614de00bc1.png)
 (The Notification UI animations are designing and dev.)
 
-And, you can install any **mods** you want if mods are compatible.
+And, you can install any **mod** you want if mods are compatible.
 
 ### To do:
 1. Fontloader for "OPPO sans font".    
