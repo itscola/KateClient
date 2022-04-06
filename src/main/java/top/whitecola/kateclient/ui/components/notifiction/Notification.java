@@ -77,7 +77,7 @@ public class Notification extends AbstractWidget {
         }
 
 
-        x = scaledResolution.getScaledWidth() - scaledResolution.getScaledWidth()/5 -7 + value;
+        x = scaledResolution.getScaledWidth() - scaledResolution.getScaledWidth()/5 -7 + value +3;
         y = scaledResolution.getScaledHeight() - scaledResolution.getScaledWidth()/14 -7;
         int titleWidth = Minecraft.getMinecraft().fontRendererObj.getStringWidth(title);
         Render2DUtils.drawRoundedRect(x,y,x+scaledResolution.getScaledWidth()/5+6,y+scaledResolution.getScaledWidth()/14,color.getRGB(),color.getRGB());
