@@ -85,7 +85,7 @@ public class IconButton extends AbstractButton{
 
     @Override
     public void playPressSound(SoundHandler p_playPressSound_1_) {
-        super.playPressSound(p_playPressSound_1_);
+//        super.playPressSound(p_playPressSound_1_);
     }
 
     public IconButton setIcon(ResourceLocation resourceLocation){

@@ -44,7 +44,7 @@ public class MainClickUIIngame extends GuiScreen {
     protected Color circleButtonColor2 = new Color(253, 188, 64);
     protected Color circleButtonColor3 = new Color(53, 205, 75);
 
-    protected Color moduleButtonColor = new Color(33, 33, 33);
+    protected Color moduleButtonColor = new Color(51, 168, 186);
 
 //    protected Color dockColor = new Color(245,245,245, 200);
 
@@ -79,6 +79,7 @@ public class MainClickUIIngame extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
+        buttonList.clear();
         circleButton = new CircleButton(0,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
         circleButton2 = new CircleButton(1,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
         circleButton3 = new CircleButton(2,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
@@ -202,15 +203,15 @@ public class MainClickUIIngame extends GuiScreen {
             if(displayAnimation.isFinish()) {
 
                 // Just for design , I will make them into button later.
-                float xRange = 101;
-                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 16, this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 16, this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 16, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-
-                float yRange = this.height / 2.5f - 10;
-                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 16 + yRange, this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f + yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 16 + yRange, this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f + yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 16 + yRange, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f + yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//                float xRange = 101;
+//                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 14, this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 14, this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 14, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//
+//                float yRange = this.height / 2.5f - 10;
+//                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 16 + yRange + 14 , this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f + yRange + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 16 + yRange + 14 , this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f + yRange + 14 , moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 16 + yRange+ 14, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f + yRange + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
 
             }
 
@@ -243,15 +244,15 @@ public class MainClickUIIngame extends GuiScreen {
 
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
-        if(button.id == 0){
-//            Minecraft.getMinecraft().displayGuiScreen(null);
-            closeGUI();
-            playButtonSound();
-        }
+//        if(button.id == 0){
+////            Minecraft.getMinecraft().displayGuiScreen(null);
+//            closeGUI();
+//            playButtonSound();
+//        }
     }
 
     private void playButtonSound(){
-        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+//        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
     }
 
 

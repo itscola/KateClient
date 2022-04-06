@@ -28,7 +28,7 @@ public class AbstractButton extends GuiButton {
 
     @Override
     public void playPressSound(SoundHandler p_playPressSound_1_) {
-        super.playPressSound(p_playPressSound_1_);
+//        super.playPressSound(p_playPressSound_1_);
     }
 
     public void setHeight(int height){

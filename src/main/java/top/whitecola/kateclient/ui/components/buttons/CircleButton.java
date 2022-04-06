@@ -49,7 +49,7 @@ public class CircleButton extends AbstractButton{
 
     @Override
     public void playPressSound(SoundHandler p_playPressSound_1_) {
-        super.playPressSound(p_playPressSound_1_);
+//        super.playPressSound(p_playPressSound_1_);
     }
 
     public CircleButton setColor(Color color) {
