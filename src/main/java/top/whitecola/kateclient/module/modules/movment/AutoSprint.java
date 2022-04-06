@@ -5,8 +5,6 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.fml.common.gameevent.TickEvent;
 import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleCategory;
 import top.whitecola.kateclient.utils.PlayerSPUtils;
@@ -18,7 +16,6 @@ import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 public class AutoSprint extends AbstractModule {
     private int colorRGB = new Color(40, 168, 220).getRGB();
-    ScaledResolution scaledResolution = new ScaledResolution(mc);
 
 
     @Override
@@ -27,7 +24,7 @@ public class AutoSprint extends AbstractModule {
             return;
         }
 
-        if(!PlayerSPUtils.isMoving() || PlayerSPUtils.isSneaking() || mc.thePlayer.getFoodStats().getFoodLevel() <= 6.0F || mc.thePlayer.isPotionActive(Potion.blindness)){
+        if(!PlayerSPUtils.isMoving() || PlayerSPUtils.isSneaking() || mc.thePlayer.getFoodStats().getFoodLevel() <= 6.0F || mc.thePlayer.isPotionActive(Potion.blindness) || mc.thePlayer.isCollidedHorizontally){
             if(mc.thePlayer.isSprinting()) {
                 mc.thePlayer.setSprinting(false);
             }

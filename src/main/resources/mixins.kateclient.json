@@ -16,7 +16,9 @@
     "MixinNetHandlerPlayClient",
     "MixinS3EPacketTeams",
     "MixinRegionRenderCache",
-    "MixinBlockModelRenderer"
+    "MixinBlockModelRenderer",
+    "MixinRender",
+    "MixinRenderPlayer"
 
   ]
 }

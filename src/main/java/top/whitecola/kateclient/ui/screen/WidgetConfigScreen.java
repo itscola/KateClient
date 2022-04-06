@@ -1,4 +1,4 @@
-package top.whitecola.kateclient.ui.components.screen;
+package top.whitecola.kateclient.ui.screen;
 
 import net.minecraft.client.gui.GuiScreen;
 

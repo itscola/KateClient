@@ -1,6 +1,5 @@
 package top.whitecola.kateclient.injection.mixins;
 
-import com.google.common.collect.Sets;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.GlStateManager;
@@ -9,15 +8,18 @@ import net.minecraft.client.renderer.WorldRenderer;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.DefaultResourcePack;
 import net.minecraft.client.shader.Framebuffer;
-import net.minecraft.util.Util;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.IOUtils;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.PixelFormat;
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -49,6 +51,20 @@ public abstract class MixinMinecraft {
     @Shadow
     public int displayHeight;
 
+    @Shadow protected abstract void updateDisplayMode() throws LWJGLException;
+
+    @Shadow @Final public DefaultResourcePack mcDefaultResourcePack;
+
+    @Shadow @Final private static ResourceLocation locationMojangPng;
+
+    @Shadow private ResourceLocation mojangLogo;
+
+    @Shadow @Final private static Logger logger;
+
+    @Shadow public abstract void func_181536_a(int p_181536_1_, int p_181536_2_, int p_181536_3_, int p_181536_4_, int p_181536_5_, int p_181536_6_, int p_181536_7_, int p_181536_8_, int p_181536_9_, int p_181536_10_);
+
+    @Shadow public abstract void updateDisplay();
+
     @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
     }
@@ -79,109 +95,58 @@ public abstract class MixinMinecraft {
 
     }
 
-//    /**
-//     * @author
-//     */
-//    @Overwrite
-//    public void drawSplashScreen(TextureManager p_drawSplashScreen_1_) throws LWJGLException {
-//        ScaledResolution scaledresolution = new ScaledResolution(this);
-//        int i = scaledresolution.getScaleFactor();
-//        Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i, true);
-//        framebuffer.bindFramebuffer(false);
-//        GlStateManager.matrixMode(5889);
-//        GlStateManager.loadIdentity();
-//        GlStateManager.ortho(0.0D, (double)scaledresolution.getScaledWidth(), (double)scaledresolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
-//        GlStateManager.matrixMode(5888);
-//        GlStateManager.loadIdentity();
-//        GlStateManager.translate(0.0F, 0.0F, -2000.0F);
-//        GlStateManager.disableLighting();
-//        GlStateManager.disableFog();
-//        GlStateManager.disableDepth();
-//        GlStateManager.enableTexture2D();
-//        InputStream inputstream = null;
-//
-//        try {
-//            inputstream = this.mcDefaultResourcePack.getInputStream(locationMojangPng);
-//            this.mojangLogo = p_drawSplashScreen_1_.getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(inputstream)));
-//            p_drawSplashScreen_1_.bindTexture(this.mojangLogo);
-//        } catch (IOException var12) {
-//            logger.error("Unable to load logo: " + locationMojangPng, var12);
-//        } finally {
-//            IOUtils.closeQuietly(inputstream);
-//        }
-//
-//        Tessellator tessellator = Tessellator.getInstance();
-//        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
-//        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
-//        worldrenderer.pos(0.0D, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-//        worldrenderer.pos((double)this.displayWidth, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-//        worldrenderer.pos((double)this.displayWidth, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-//        worldrenderer.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
-//        tessellator.draw();
-//        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-//        int j = 256;
-//        int k = 256;
-//        this.func_181536_a((scaledresolution.getScaledWidth() - j) / 2, (scaledresolution.getScaledHeight() - k) / 2, 0, 0, j, k, 255, 255, 255, 255);
-//        GlStateManager.disableLighting();
-//        GlStateManager.disableFog();
-//        framebuffer.unbindFramebuffer();
-//        framebuffer.framebufferRender(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i);
-//        GlStateManager.enableAlpha();
-//        GlStateManager.alphaFunc(516, 0.1F);
-//        this.updateDisplay();
-//    }
+
 
     /**
-     * @author
+     * @author White_cola
+     * @reason KateClient SplashScreen.
      */
     @Overwrite
-    private void updateDisplayMode() throws LWJGLException {
-        Set<DisplayMode> set = Sets.newHashSet();
-        Collections.addAll(set, Display.getAvailableDisplayModes());
-        DisplayMode displaymode = Display.getDesktopDisplayMode();
-        if (!set.contains(displaymode) && Util.getOSType() == Util.EnumOS.OSX) {
-            Iterator var3 = macDisplayModes.iterator();
+    public void drawSplashScreen(TextureManager p_drawSplashScreen_1_) throws LWJGLException {
+        ScaledResolution scaledresolution = new ScaledResolution(Minecraft.getMinecraft());
+        int i = scaledresolution.getScaleFactor();
+        Framebuffer framebuffer = new Framebuffer(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i, true);
+        framebuffer.bindFramebuffer(false);
+        GlStateManager.matrixMode(5889);
+        GlStateManager.loadIdentity();
+        GlStateManager.ortho(0.0D, (double)scaledresolution.getScaledWidth(), (double)scaledresolution.getScaledHeight(), 0.0D, 1000.0D, 3000.0D);
+        GlStateManager.matrixMode(5888);
+        GlStateManager.loadIdentity();
+        GlStateManager.translate(0.0F, 0.0F, -2000.0F);
+        GlStateManager.disableLighting();
+        GlStateManager.disableFog();
+        GlStateManager.disableDepth();
+        GlStateManager.enableTexture2D();
+        InputStream inputstream = null;
 
-            label52:
-            while(true) {
-                while(true) {
-                    DisplayMode displaymode1;
-                    boolean flag;
-                    Iterator iterator;
-                    DisplayMode displaymode3;
-                    do {
-                        if (!var3.hasNext()) {
-                            break label52;
-                        }
-
-                        displaymode1 = (DisplayMode)var3.next();
-                        flag = true;
-                        iterator = set.iterator();
-
-                        while(iterator.hasNext()) {
-                            displaymode3 = (DisplayMode)iterator.next();
-                            if (displaymode3.getBitsPerPixel() == 32 && displaymode3.getWidth() == displaymode1.getWidth() && displaymode3.getHeight() == displaymode1.getHeight()) {
-                                flag = false;
-                                break;
-                            }
-                        }
-                    } while(flag);
-
-                    iterator = set.iterator();
-
-                    while(iterator.hasNext()) {
-                        displaymode3 = (DisplayMode)iterator.next();
-                        if (displaymode3.getBitsPerPixel() == 32 && displaymode3.getWidth() == displaymode1.getWidth() / 2 && displaymode3.getHeight() == displaymode1.getHeight() / 2) {
-                            displaymode = displaymode3;
-                            break;
-                        }
-                    }
-                }
-            }
+        try {
+            inputstream = this.mcDefaultResourcePack.getInputStream(locationMojangPng);
+            this.mojangLogo = p_drawSplashScreen_1_.getDynamicTextureLocation("logo", new DynamicTexture(ImageIO.read(inputstream)));
+            p_drawSplashScreen_1_.bindTexture(this.mojangLogo);
+        } catch (IOException var12) {
+            logger.error("Unable to load logo: " + locationMojangPng, var12);
+        } finally {
+            IOUtils.closeQuietly(inputstream);
         }
 
-        Display.setDisplayMode(displaymode);
-        this.displayWidth = displaymode.getWidth();
-        this.displayHeight = displaymode.getHeight();
+        Tessellator tessellator = Tessellator.getInstance();
+        WorldRenderer worldrenderer = tessellator.getWorldRenderer();
+        worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
+        worldrenderer.pos(0.0D, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        worldrenderer.pos((double)this.displayWidth, (double)this.displayHeight, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        worldrenderer.pos((double)this.displayWidth, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        worldrenderer.pos(0.0D, 0.0D, 0.0D).tex(0.0D, 0.0D).color(255, 255, 255, 255).endVertex();
+        tessellator.draw();
+        GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+        int j = 256;
+        int k = 256;
+        this.func_181536_a((scaledresolution.getScaledWidth() - j) / 2, (scaledresolution.getScaledHeight() - k) / 2, 0, 0, j, k, 255, 255, 255, 255);
+        GlStateManager.disableLighting();
+        GlStateManager.disableFog();
+        framebuffer.unbindFramebuffer();
+        framebuffer.framebufferRender(scaledresolution.getScaledWidth() * i, scaledresolution.getScaledHeight() * i);
+        GlStateManager.enableAlpha();
+        GlStateManager.alphaFunc(516, 0.1F);
+        this.updateDisplay();
     }
 }

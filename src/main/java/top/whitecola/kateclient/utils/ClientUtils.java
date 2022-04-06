@@ -3,7 +3,7 @@ package top.whitecola.kateclient.utils;
 import net.minecraft.util.ResourceLocation;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.notifiction.Notification;
-import top.whitecola.kateclient.ui.components.screen.MainClickUIIngame;
+import top.whitecola.kateclient.ui.screen.MainClickUIIngame;
 
 public class ClientUtils {
     public static void sendAClientMessage(String title,String content){

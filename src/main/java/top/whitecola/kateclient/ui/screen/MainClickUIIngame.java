@@ -1,7 +1,6 @@
-package top.whitecola.kateclient.ui.components.screen;
+package top.whitecola.kateclient.ui.screen;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.ISound;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
@@ -13,8 +12,6 @@ import top.whitecola.animationlib.functions.type.*;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
 import top.whitecola.kateclient.ui.components.buttons.IconButton;
-import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
-import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
 import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.GUIUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
@@ -34,6 +31,7 @@ public class MainClickUIIngame extends GuiScreen {
 
     protected boolean draged;
 
+    private boolean needClose;
 
     protected Color mainColor = new Color(33, 33, 33);
     protected Color mainBarColor = new Color(28, 28, 28);
@@ -46,6 +44,8 @@ public class MainClickUIIngame extends GuiScreen {
 //    protected Color dockColor = new Color(245,245,245, 200);
 
     protected Animation displayAnimation = new Animation();
+    protected Animation closeAnimation = new Animation();
+
 
 
     protected Color mainTextColor = new Color(196, 210, 210);
@@ -72,9 +72,13 @@ public class MainClickUIIngame extends GuiScreen {
 
 
     private MainClickUIIngame(){
-        displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(260);
+        initAnimation();
     }
 
+    public void initAnimation(){
+        displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(260);
+        closeAnimation.setMin(150).setMax(0).setFunction(new CubicOutFunction()).setTotalTime(230);
+    }
 
     @Override
     public void initGui() {
@@ -169,11 +173,9 @@ public class MainClickUIIngame extends GuiScreen {
         FontRenderer fontRenderer = mc.fontRendererObj;
         fontRenderer.drawString(KateClient.MODID, (int)(this.xPosition +32 ), (int) this.yPosition +2, this.mainTextColor.getRGB());;
 
+
+
         // Just for design , I will make them into button later.
-
-//        Render2DUtils.drawCustomImage((int)this.xPosition +6, (int)this.yPosition +(int)this.height -32,25,25,setting);
-
-//        Render2DUtils.drawCustomImage((int)this.xPosition +14 +25, (int)this.yPosition +(int)this.height -32,25,25,message);
         Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8, (int)this.yPosition +(int)this.height -32,25,25,world);
         Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8, (int)this.yPosition +(int)this.height -32,25,25,visual);
         Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,sound);
@@ -218,5 +220,20 @@ public class MainClickUIIngame extends GuiScreen {
 
     private void playButtonSound(){
         Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+    }
+
+
+    public void closeGUI(){
+        setNeedClose(true);
+
+    }
+
+
+    public boolean isNeedClose() {
+        return needClose;
+    }
+
+    public void setNeedClose(boolean needClose) {
+        this.needClose = needClose;
     }
 }
