@@ -15,11 +15,9 @@
 And, you can install any **mod** you want if mods are compatible.
 
 ### To do:
-1. Fontloader for "OPPO sans font".    
-2. Notification UI System.   
-3. Loading GUI screen.   
-4. Click GUI close animations.
-5. Click gui layout system.
+1. Notification UI handler.   
+2. Loading GUI screen.   
+3. Click gui layout handler.
 
 Actually the UI design progress takes more time.
 
