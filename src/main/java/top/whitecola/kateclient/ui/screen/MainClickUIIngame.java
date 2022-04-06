@@ -55,6 +55,8 @@ public class MainClickUIIngame extends GuiScreen {
 
 
     protected Color mainTextColor = new Color(196, 210, 210);
+    protected Color fontColor = new Color(220, 220, 218);
+
 
     protected CircleButton circleButton;
     protected CircleButton circleButton2;
@@ -63,8 +65,10 @@ public class MainClickUIIngame extends GuiScreen {
     protected IconButton settingButton;
     protected IconButton messageButton;
 
-    protected ResourceLocation cube = new ResourceLocation("kateclient","ui/components/cube3.png");
+    protected ResourceLocation cube = new ResourceLocation("kateclient","ui/components/cube.png");
     protected ResourceLocation sprint = new ResourceLocation("kateclient","ui/components/sprint.png");
+    protected ResourceLocation threepoints = new ResourceLocation("kateclient","ui/components/threepoints.png");
+    protected ResourceLocation switchon = new ResourceLocation("kateclient","ui/components/switchon.png");
 
 
 
@@ -208,11 +212,21 @@ public class MainClickUIIngame extends GuiScreen {
             if(displayAnimation.isFinish()) {
 
                 // Just for design , I will make them into button later.
-
+                float yRange = this.height/7;
                 Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
                 Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
                 Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)this.yPosition + 16+2, (int)this.width /15, (int)this.width /15,cube);
-//                fontRendererObj.drawStringWithShadow("AutoSprint");
+                fontRendererObj.drawStringWithShadow("AutoSprint  -  Keep sprinting ...",this.xPosition + this.height/5.5f,this.yPosition + 24,fontColor.getRGB());
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,threepoints);
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,switchon);
+
+                Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)(this.yPosition + 16+2+yRange) , (int)this.width /15, (int)this.width /15,cube);
+                fontRendererObj.drawStringWithShadow("DisplayPing  -  display pings ...",this.xPosition + this.height/5.5f,this.yPosition + 24 +yRange,fontColor.getRGB());
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,threepoints);
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,switchon);
+
 
             }
 
