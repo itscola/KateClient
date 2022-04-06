@@ -9,22 +9,19 @@ public class NotificationManager {
 
     public void draw(){
         for(int i=0;i<notifications.size();i++){
-//            if(i==0){
-//                notifications.get(i).drawWidget();
-//            }else if(i==2){
-//
-//            }else if(i==3){
-//
-//            }else{
-//                notifications.remove(0);
-//            }
-
             notifications.get(i).drawWidget();
-
+            if(notifications.get(i).shouldRemove){
+                removeNotification(notifications.get(i));
+            }
         }
     }
 
     public void addNotification(Notification notification){
+        if(notifications.size()>1){
+            for(int i=0;i<notifications.size();i++){
+                notifications.get(i).setShouldRemove(true);
+            }
+        }
         notifications.add(notification);
     }
 

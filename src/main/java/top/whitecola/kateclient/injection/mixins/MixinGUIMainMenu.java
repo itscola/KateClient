@@ -27,6 +27,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.whitecola.kateclient.ui.UICache;
 import top.whitecola.kateclient.ui.components.buttons.LongReactButton;
 import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
+import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
 
 import java.io.IOException;
@@ -50,6 +51,8 @@ public class MixinGUIMainMenu extends GuiScreen {
     private String openGLWarning2;
     @Shadow
     private String openGLWarningLink;
+
+    private boolean welcomed;
 
 //    @Shadow
 //    private int field_92024_r;
@@ -123,7 +126,17 @@ public class MixinGUIMainMenu extends GuiScreen {
     @Overwrite
     private void renderSkybox(int p_renderSkybox_1_, int p_renderSkybox_2_, float p_renderSkybox_3_) {
         Render2DUtils.drawCustomImage(0,0,width,height,background);
+        if(!isWelcomed()){
+            setWelcomed(true);
+            ClientUtils.sendAClientMessage("KateClient","");
+        }
     }
 
+    public void setWelcomed(boolean welcomed) {
+        this.welcomed = welcomed;
+    }
 
+    public boolean isWelcomed() {
+        return welcomed;
+    }
 }

@@ -9,7 +9,7 @@ public class PlayerSPUtils {
 
 
 
-        if(mc==null || mc.thePlayer==null){
+        if(mc==null || mc.thePlayer==null || mc.thePlayer.movementInput==null){
             return false;
         }
 

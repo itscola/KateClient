@@ -2,7 +2,6 @@ package top.whitecola.kateclient.ui.components.notifiction;
 
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.util.ResourceLocation;
 import top.whitecola.animationlib.Animation;
@@ -22,17 +21,30 @@ public class Notification extends AbstractWidget {
     protected String content = "";
     protected Color color = new Color(31, 31, 31);
     protected Color textColor = new Color(243, 242, 241);
-    protected Animation animation1;
+    protected Animation showAnimation;
+    protected Animation leaveAnimation;
+    protected Animation upAnimation;
+
+
     private AbstractAnimationFunction animationFunction = new CubicOutFunction();
 
     protected final long firstShowTime = System.currentTimeMillis();
+
+    protected boolean shoudLeave;
+    protected boolean shouldRemove;
 
 
 
     private Notification(float x, float y, float width, float height) {
         super(x, y, width, height);
-        animation1 = new Animation();
-        animation1.setMin(0).setMax(100).setFunction(animationFunction).setTotalTime(600).setLock(true);
+        showAnimation = new Animation();
+        showAnimation.setMin(0).setMax(100).setFunction(animationFunction).setTotalTime(600).setLock(true);
+
+        leaveAnimation = new Animation();
+        leaveAnimation.setMin(0).setMax(100).setFunction(animationFunction).setTotalTime(600).setLock(true);
+
+        upAnimation = new Animation();
+
 
     }
 
@@ -45,15 +57,34 @@ public class Notification extends AbstractWidget {
     @Override
     public void drawWidget() {
 
+        if(getTotalShowedTime()>1000 && !isShoudLeave()){
+            setShoudLeave(true);
+        }
+
         ScaledResolution scaledResolution = new ScaledResolution(mc);
-        x = scaledResolution.getScaledWidth() - scaledResolution.getScaledWidth()/5 -7 + 100 - animation1.update();
+
+        float value;
+
+        if(shoudLeave && showAnimation.isFinish()) {
+            value = leaveAnimation.update();
+        }else{
+            value = 100 - showAnimation.update();
+        }
+
+
+        if(leaveAnimation.isFinish() && !isShouldRemove()){
+            setShouldRemove(true);
+        }
+
+
+        x = scaledResolution.getScaledWidth() - scaledResolution.getScaledWidth()/5 -7 + value;
         y = scaledResolution.getScaledHeight() - scaledResolution.getScaledWidth()/14 -7;
         int titleWidth = Minecraft.getMinecraft().fontRendererObj.getStringWidth(title);
         Render2DUtils.drawRoundedRect(x,y,x+scaledResolution.getScaledWidth()/5+6,y+scaledResolution.getScaledWidth()/14,color.getRGB(),color.getRGB());
 //        Render2DUtils.drawCustomImage((int)x,(int)y,scaledResolution.getScaledWidth()/5,scaledResolution.getScaledWidth()/14,background);
 
         Render2DUtils.drawCustomImage((int)x+3,(int)y+3,scaledResolution.getScaledWidth()/14-6,scaledResolution.getScaledWidth()/14-6,icon);
-        mc.fontRendererObj.drawStringWithShadow(title,x+scaledResolution.getScaledWidth()/14 +4 ,y +(scaledResolution.getScaledWidth()/14/2-4),textColor.getRGB());
+        mc.fontRendererObj.drawStringWithShadow(title,x+scaledResolution.getScaledWidth()/14 ,y +(scaledResolution.getScaledWidth()/14/2-4),textColor.getRGB());
         super.drawWidget();
     }
 
@@ -78,4 +109,19 @@ public class Notification extends AbstractWidget {
     }
 
 
+    public void setShoudLeave(boolean shoudLeave) {
+        this.shoudLeave = shoudLeave;
+    }
+
+    public boolean isShoudLeave() {
+        return shoudLeave;
+    }
+
+    public boolean isShouldRemove() {
+        return shouldRemove;
+    }
+
+    public void setShouldRemove(boolean shouldRemove) {
+        this.shouldRemove = shouldRemove;
+    }
 }

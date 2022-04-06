@@ -43,6 +43,9 @@ public class MainClickUIIngame extends GuiScreen {
     protected Color circleButtonColor1 = new Color(252, 98, 93);
     protected Color circleButtonColor2 = new Color(253, 188, 64);
     protected Color circleButtonColor3 = new Color(53, 205, 75);
+
+    protected Color moduleButtonColor = new Color(33, 33, 33);
+
 //    protected Color dockColor = new Color(245,245,245, 200);
 
     protected Animation displayAnimation = new Animation();
@@ -70,7 +73,7 @@ public class MainClickUIIngame extends GuiScreen {
 
     public void initAnimation(){
         displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(260);
-        closeAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(150);
+        closeAnimation.setMin(0).setMax(200).setFunction(new CubicOutFunction()).setTotalTime(150);
     }
 
     @Override
@@ -89,7 +92,6 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(messageButton);
 
 
-        //temp : for test
         ClientUtils.sendAClientMessage("ClickGUI ON","");
 
 
@@ -115,9 +117,6 @@ public class MainClickUIIngame extends GuiScreen {
                 super.onGuiClosed();
                 setClosed(true);
                 Minecraft.getMinecraft().displayGuiScreen(null);
-                //temp: clean the NotificationManager
-                KateClient.getKateClient().getNotificationManager().clear();
-
                 return;
             }
 
@@ -188,14 +187,35 @@ public class MainClickUIIngame extends GuiScreen {
 
 
 
-        // Just for design , I will make them into button later.
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8, (int)this.yPosition +(int)this.height -32,25,25,world);
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8, (int)this.yPosition +(int)this.height -32,25,25,visual);
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,sound);
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,render);
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,movement);
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,server);
-        Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,mods);
+        if(!isNeedClose()){
+
+            // Just for design , I will make them into button later.
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8, (int)this.yPosition +(int)this.height -32,25,25,world);
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8, (int)this.yPosition +(int)this.height -32,25,25,visual);
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,sound);
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,render);
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,movement);
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,server);
+            Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,mods);
+
+
+            if(displayAnimation.isFinish()) {
+
+                // Just for design , I will make them into button later.
+                float xRange = 101;
+                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 16, this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 16, this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 16, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+
+                float yRange = this.height / 2.5f - 10;
+                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 16 + yRange, this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f + yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 16 + yRange, this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f + yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 16 + yRange, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f + yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+
+            }
+
+        }
+
 
 
 
@@ -206,6 +226,7 @@ public class MainClickUIIngame extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
+        ClientUtils.sendAClientMessage("ClickGUI OFF","");
         closeGUI();
     }
 
@@ -244,6 +265,7 @@ public class MainClickUIIngame extends GuiScreen {
     }
 
     public void setNeedClose(boolean needClose) {
+        removeButtons();
         this.needClose = needClose;
     }
 
@@ -254,5 +276,12 @@ public class MainClickUIIngame extends GuiScreen {
 
     public void setClosed(boolean closed) {
         this.closed = closed;
+    }
+
+    public void removeButtons(){
+        this.buttonList.remove(messageButton);
+        this.buttonList.remove(settingButton);
+
+
     }
 }
