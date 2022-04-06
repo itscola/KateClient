@@ -44,7 +44,8 @@ public class MainClickUIIngame extends GuiScreen {
     protected Color circleButtonColor2 = new Color(253, 188, 64);
     protected Color circleButtonColor3 = new Color(53, 205, 75);
 
-    protected Color moduleButtonColor = new Color(51, 168, 186);
+    protected Color moduleButtonColor = new Color(23, 23, 23);
+    protected Color moduleButtonColor2 = new Color(26, 26, 26);
 
 //    protected Color dockColor = new Color(245,245,245, 200);
 
@@ -61,6 +62,10 @@ public class MainClickUIIngame extends GuiScreen {
 
     protected IconButton settingButton;
     protected IconButton messageButton;
+
+    protected ResourceLocation cube = new ResourceLocation("kateclient","ui/components/cube3.png");
+    protected ResourceLocation sprint = new ResourceLocation("kateclient","ui/components/sprint.png");
+
 
 
 
@@ -203,15 +208,11 @@ public class MainClickUIIngame extends GuiScreen {
             if(displayAnimation.isFinish()) {
 
                 // Just for design , I will make them into button later.
-//                float xRange = 101;
-//                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 14, this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 14, this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 14, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-//
-//                float yRange = this.height / 2.5f - 10;
-//                Render2DUtils.drawRoundedRect(this.xPosition + 1, this.yPosition + 16 + yRange + 14 , this.xPosition + this.width / 3 - 3, this.yPosition + this.height / 2.5f + yRange + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange, this.yPosition + 16 + yRange + 14 , this.xPosition + this.width / 3 + xRange - 3, this.yPosition + this.height / 2.5f + yRange + 14 , moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-//                Render2DUtils.drawRoundedRect(this.xPosition + 1 + xRange * 2, this.yPosition + 16 + yRange+ 14, this.xPosition + this.width / 3 + xRange * 2 - 3, this.yPosition + this.height / 2.5f + yRange + 14, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+
+                Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)this.yPosition + 16+2, (int)this.width /15, (int)this.width /15,cube);
+//                fontRendererObj.drawStringWithShadow("AutoSprint");
 
             }
 
