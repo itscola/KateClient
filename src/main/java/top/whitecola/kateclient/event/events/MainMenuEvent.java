@@ -16,7 +16,7 @@ public class MainMenuEvent extends EventAdapter {
     @Override
     public void onKeyInput(InputEvent.KeyInputEvent e) {
         if(MainMenuInGameKeybind.getInstance().isPressed()){
-            Minecraft.getMinecraft().displayGuiScreen(MainClickUIIngame.getGui());
+            Minecraft.getMinecraft().displayGuiScreen(new MainClickUIIngame());
         }
 
 

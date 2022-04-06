@@ -3,11 +3,12 @@ package top.whitecola.kateclient.utils;
 import net.minecraft.util.ResourceLocation;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.components.notifiction.Notification;
-import top.whitecola.kateclient.ui.screen.MainClickUIIngame;
+import static top.whitecola.kateclient.utils.MCWrapper.*;
+
 
 public class ClientUtils {
     public static void sendAClientMessage(String title,String content){
-        sendAClientMessage(title,content, MainClickUIIngame.getGui().server);
+        sendAClientMessage(title,content, server);
     }
 
     public static void sendAClientMessage(String title, String content, ResourceLocation icon){

@@ -92,7 +92,7 @@ public class Animation {
     }
 
     public boolean isFinish(){
-        if(getProgressValue() >= (getMax()-getMin())){
+        if(getProgressValue() >= (getMax())){
             return true;
         }
         return false;

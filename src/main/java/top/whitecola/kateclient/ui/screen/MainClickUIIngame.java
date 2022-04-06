@@ -15,12 +15,12 @@ import top.whitecola.kateclient.ui.components.buttons.IconButton;
 import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.GUIUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
+import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 import java.awt.*;
 import java.io.IOException;
 
 public class MainClickUIIngame extends GuiScreen {
-    private static MainClickUIIngame gui = new MainClickUIIngame();
     protected float width = 300;
     protected float height = 200;
     protected float xPosition = 90;
@@ -32,6 +32,8 @@ public class MainClickUIIngame extends GuiScreen {
     protected boolean draged;
 
     private boolean needClose;
+    private boolean closed;
+
 
     protected Color mainColor = new Color(33, 33, 33);
     protected Color mainBarColor = new Color(28, 28, 28);
@@ -58,26 +60,17 @@ public class MainClickUIIngame extends GuiScreen {
     protected IconButton messageButton;
 
 
-    public ResourceLocation setting = new ResourceLocation("kateclient","ui/settings.png");
-    public ResourceLocation message = new ResourceLocation("kateclient","ui/message.png");
-    public ResourceLocation world = new ResourceLocation("kateclient","ui/world.png");
-    public ResourceLocation visual = new ResourceLocation("kateclient","ui/visual.png");
-    public ResourceLocation sound = new ResourceLocation("kateclient","ui/sound.png");
-    public ResourceLocation render = new ResourceLocation("kateclient","ui/render.png");
-    public ResourceLocation movement = new ResourceLocation("kateclient","ui/movement.png");
-    public ResourceLocation server = new ResourceLocation("kateclient","ui/server.png");
-    public ResourceLocation mods = new ResourceLocation("kateclient","ui/mods.png");
 
 
 
 
-    private MainClickUIIngame(){
+    public MainClickUIIngame(){
         initAnimation();
     }
 
     public void initAnimation(){
         displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(260);
-        closeAnimation.setMin(150).setMax(0).setFunction(new CubicOutFunction()).setTotalTime(230);
+        closeAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(150);
     }
 
     @Override
@@ -105,15 +98,35 @@ public class MainClickUIIngame extends GuiScreen {
 
 
 
-    public static MainClickUIIngame getGui() {
-        return gui;
-    }
+//    public static MainClickUIIngame getGui() {
+//        return gui;
+//    }
 
 
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-        float value = displayAnimation.update();
+        float value;
+
+        if(isNeedClose() && displayAnimation.isFinish()) {
+
+            value = 150 - closeAnimation.update();
+            if(closeAnimation.isFinish()){
+                super.onGuiClosed();
+                setClosed(true);
+                Minecraft.getMinecraft().displayGuiScreen(null);
+                //temp: clean the NotificationManager
+                KateClient.getKateClient().getNotificationManager().clear();
+
+                return;
+            }
+
+        }else {
+            value = displayAnimation.update();
+        }
+
+
+
         height = 50 + value;
 
         if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 16,mouseX,mouseY) && Mouse.isButtonDown(0)){
@@ -193,12 +206,9 @@ public class MainClickUIIngame extends GuiScreen {
 
     @Override
     public void onGuiClosed() {
-        super.onGuiClosed();
-        displayAnimation.reset();
-
-        //temp: clean the NotificationManager
-        KateClient.getKateClient().getNotificationManager().clear();
+        closeGUI();
     }
+
 
     @Override
     protected void mouseClicked(int p_mouseClicked_1_, int p_mouseClicked_2_, int p_mouseClicked_3_) throws IOException {
@@ -213,7 +223,8 @@ public class MainClickUIIngame extends GuiScreen {
     @Override
     protected void actionPerformed(GuiButton button) throws IOException {
         if(button.id == 0){
-            Minecraft.getMinecraft().displayGuiScreen(null);
+//            Minecraft.getMinecraft().displayGuiScreen(null);
+            closeGUI();
             playButtonSound();
         }
     }
@@ -225,7 +236,6 @@ public class MainClickUIIngame extends GuiScreen {
 
     public void closeGUI(){
         setNeedClose(true);
-
     }
 
 
@@ -235,5 +245,14 @@ public class MainClickUIIngame extends GuiScreen {
 
     public void setNeedClose(boolean needClose) {
         this.needClose = needClose;
+    }
+
+
+    public boolean isClosed() {
+        return closed;
+    }
+
+    public void setClosed(boolean closed) {
+        this.closed = closed;
     }
 }
