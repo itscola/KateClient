@@ -10,9 +10,10 @@ public class AbstractWidget {
     public float dragX;
     public float dragY;
     public boolean draged;
+    protected String text;
 
     protected Color color = new Color(237, 235, 233);
-    protected Color backgroundColor = new Color(237, 235, 233);
+    protected Color backgroundColor = null;
 
     public AbstractWidget(){
 
@@ -85,5 +86,15 @@ public class AbstractWidget {
 
     public boolean isHovered(int mouseX,int mouseY){
         return mouseX >= this.getX() && mouseY >= this.getY() && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
+    }
+
+
+    public AbstractWidget setText(String text) {
+        this.text = text;
+        return this;
+    }
+
+    public String getText() {
+        return text;
     }
 }

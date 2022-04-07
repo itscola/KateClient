@@ -7,6 +7,7 @@ import net.minecraft.potion.Potion;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleCategory;
+import top.whitecola.kateclient.ui.widget.widgets.TextWidget;
 import top.whitecola.kateclient.utils.PlayerSPUtils;
 
 import java.awt.*;
@@ -15,8 +16,14 @@ import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 
 public class AutoSprint extends AbstractModule {
-    private int colorRGB = new Color(40, 168, 220).getRGB();
+    private Color color = new Color(40, 168, 220);
+    private Color backgroundcolor = new Color(255,255,255, 32);
 
+
+    public AutoSprint(){
+        ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());
+        widget = new TextWidget(scaledResolution.getScaledWidth()/7 ,scaledResolution.getScaledHeight()-10,this.getModuleName(),color,null);
+    }
 
     @Override
     public void onTick() {
@@ -53,9 +60,22 @@ public class AutoSprint extends AbstractModule {
 
         FontRenderer fontRenderer = mc.fontRendererObj;
 
-        fontRenderer.drawStringWithShadow("Auto Sprint",scaledResolution.getScaledWidth()/7 ,scaledResolution.getScaledHeight()-10,colorRGB);
+        fontRenderer.drawStringWithShadow("Auto Sprint",scaledResolution.getScaledWidth()/7 ,scaledResolution.getScaledHeight()-10,color.getRGB());
 
         super.onRenderOverLay(event);
+    }
+
+
+    @Override
+    public void onEnable() {
+//        KateClient.getKateClient().getWidgetManager().addWidget(getWidget());
+        super.onEnable();
+    }
+
+    @Override
+    public void onDisable() {
+//        KateClient.getKateClient().getWidgetManager().removeWidget(getWidget());
+        super.onDisable();
     }
 
     @Override

@@ -19,6 +19,7 @@ public class WidgetEditorScreen extends GuiScreen {
     public void initGui() {
         widgetManager = KateClient.getKateClient().getWidgetManager();
         widgets = widgetManager.getWidgets();
+        drawDefaultBackground();
         super.initGui();
     }
 
@@ -32,6 +33,7 @@ public class WidgetEditorScreen extends GuiScreen {
 
 
         for(AbstractWidget widget : widgets){
+
             widget.drawWidget();
             if(widget.isHovered(mouseX,mouseY) && Mouse.isButtonDown(0)){
                 if (widget.dragX == 0 && widget.dragY == 0) {
@@ -50,6 +52,7 @@ public class WidgetEditorScreen extends GuiScreen {
                     widget.draged = false;
                 }
             }
+
 
         }
 

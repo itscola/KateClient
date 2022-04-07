@@ -11,7 +11,8 @@ import java.util.Vector;
 
 public class AbstractModule implements IModule{
     Vector<ModuleOption> options = new Vector<ModuleOption>();
-    private boolean enabled;
+    protected boolean enabled;
+    protected AbstractWidget widget;
 
     @Override
     public void onTick() {
@@ -113,5 +114,13 @@ public class AbstractModule implements IModule{
     @Override
     public void removeWidget(AbstractWidget widget) {
         KateClient.getKateClient().getWidgetManager().removeWidget(widget);
+    }
+
+    public void setWidget(AbstractWidget widget) {
+        this.widget = widget;
+    }
+
+    public AbstractWidget getWidget() {
+        return widget;
     }
 }
