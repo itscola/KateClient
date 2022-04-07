@@ -123,4 +123,9 @@ public class AbstractModule implements IModule{
     public AbstractWidget getWidget() {
         return widget;
     }
+
+    @Override
+    public String getDescription() {
+        return "";
+    }
 }

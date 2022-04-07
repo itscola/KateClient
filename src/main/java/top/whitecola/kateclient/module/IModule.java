@@ -33,4 +33,6 @@ public interface IModule {
     void addWidget(AbstractWidget widget);
     void removeWidget(AbstractWidget widget);
 
+    String getDescription();
+
 }

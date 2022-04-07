@@ -108,7 +108,7 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(settingButton);
         this.buttonList.add(messageButton);
 
-        
+
         loadDefaultEntries();
 
         ClientUtils.sendAClientMessage("ClickGUI ON","");
@@ -120,17 +120,19 @@ public class MainClickUIIngame extends GuiScreen {
 
     public void loadDefaultEntries(){
         clearEntries();
-        for(AbstractModule module: KateClient.getKateClient().getModuleManager().getModules()){
-            addEntrie(new ClickGUIEntry().fromModule(module));
+        Vector<AbstractModule> modules = KateClient.getKateClient().getModuleManager().getModules();
+        for(AbstractModule module: modules){
+            addEntrie(new ClickGUIEntry(modules.size()-1).fromModule(module));
         }
 
     }
 
     public void loadEntriesByCategory(ModuleCategory category){
         clearEntries();
-        for(AbstractModule module: KateClient.getKateClient().getModuleManager().getModules()){
+        Vector<AbstractModule> modules = KateClient.getKateClient().getModuleManager().getModules();
+        for(AbstractModule module: modules){
             if(module.getModuleType().equals(category)) {
-                addEntrie(new ClickGUIEntry().fromModule(module));
+                addEntrie(new ClickGUIEntry(modules.size()-1).fromModule(module));
             }
         }
     }
