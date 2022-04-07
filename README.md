@@ -15,9 +15,8 @@
 And, you can install any **mod** you want if mods are compatible.
 
 ### To do:
-1. Notification UI handler.   
-2. Loading GUI screen.   
-3. Click gui layout handler.
+1. Loading GUI screen.   
+2. Click gui entries handler.
 
 Actually the UI design progress takes more time.
 
