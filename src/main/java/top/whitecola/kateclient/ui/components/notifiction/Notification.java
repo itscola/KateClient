@@ -57,7 +57,7 @@ public class Notification extends AbstractWidget {
     @Override
     public void drawWidget() {
 
-        if(getTotalShowedTime()>1000 && !isShoudLeave()){
+        if(getTotalShowedTime()>1500 && !isShoudLeave()){
             setShoudLeave(true);
         }
 

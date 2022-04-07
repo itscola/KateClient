@@ -3,6 +3,7 @@ package top.whitecola.kateclient.module;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import top.whitecola.kateclient.utils.ClientUtils;
 
 import java.util.Vector;
 
@@ -33,12 +34,12 @@ public class AbstractModule implements IModule{
 
     @Override
     public void onEnable() {
-
+        ClientUtils.sendAClientMessage(this.getModuleName()+" ON.","");
     }
 
     @Override
     public void onDisable() {
-
+        ClientUtils.sendAClientMessage(this.getModuleName()+" OFF.","");
     }
 
     @Override
@@ -80,7 +81,7 @@ public class AbstractModule implements IModule{
 
     @Override
     public String getModuleName() {
-        return null;
+        return "";
     }
 
     @Override
