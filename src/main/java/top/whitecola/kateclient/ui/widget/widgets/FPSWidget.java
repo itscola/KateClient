@@ -13,8 +13,9 @@ import static top.whitecola.kateclient.utils.MCWrapper.mc;
 public class FPSWidget extends AbstractWidget {
 
 
-    public FPSWidget(){
-        setX(0).setY(0).setColor(new Color(239, 239, 239));
+    public FPSWidget(float x,float y,float width,float height){
+        super(x,y,width,height);
+        setColor(new Color(239, 239, 239));
         setBackgroundColor(new Color(255,255,255, 32));
     }
 

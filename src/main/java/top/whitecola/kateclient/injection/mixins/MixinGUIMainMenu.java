@@ -129,7 +129,7 @@ public class MixinGUIMainMenu extends GuiScreen {
         Render2DUtils.drawCustomImage(0,0,width,height,background);
         if(!isWelcomed()){
             setWelcomed(true);
-            ClientUtils.sendAClientMessage("KateClient","",mods);
+            ClientUtils.sendAClientMessage("KateClient","",visual);
         }
     }
 

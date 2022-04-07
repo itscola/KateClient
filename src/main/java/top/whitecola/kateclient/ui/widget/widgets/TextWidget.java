@@ -12,8 +12,8 @@ import static top.whitecola.kateclient.utils.MCWrapper.mc;
 public class TextWidget extends AbstractWidget {
 
     public TextWidget(float x,float y,String text,Color textColor,Color backgroundColor){
-
-        setX(x).setY(y).setText(text).setColor(textColor);
+        super(x,y,0,0);
+        this.setText(text).setColor(textColor);
         if(backgroundColor!=null){
             setBackgroundColor(backgroundColor);
         }

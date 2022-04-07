@@ -1,7 +1,6 @@
 package top.whitecola.kateclient.ui.screen;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -10,9 +9,12 @@ import org.lwjgl.input.Mouse;
 import top.whitecola.animationlib.Animation;
 import top.whitecola.animationlib.functions.type.*;
 import top.whitecola.kateclient.KateClient;
+import top.whitecola.kateclient.module.AbstractModule;
+import top.whitecola.kateclient.module.ModuleCategory;
 import top.whitecola.kateclient.ui.UICache;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
 import top.whitecola.kateclient.ui.components.buttons.IconButton;
+import top.whitecola.kateclient.ui.screen.innerscreen.ClickGUIEntry;
 import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.GUIUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
@@ -20,6 +22,7 @@ import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 import java.awt.*;
 import java.io.IOException;
+import java.util.Vector;
 
 public class MainClickUIIngame extends GuiScreen {
     protected float width = 300;
@@ -71,8 +74,7 @@ public class MainClickUIIngame extends GuiScreen {
     protected ResourceLocation threepoints = new ResourceLocation("kateclient","ui/components/threepoints.png");
     protected ResourceLocation switchon = new ResourceLocation("kateclient","ui/components/switchon.png");
 
-
-
+    protected Vector<ClickGUIEntry> entries = new Vector<ClickGUIEntry>();
 
 
 
@@ -106,12 +108,45 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(settingButton);
         this.buttonList.add(messageButton);
 
+        loadDefaultEntries();
 
         ClientUtils.sendAClientMessage("ClickGUI ON","");
 
 
 
     }
+
+
+    public void loadDefaultEntries(){
+        clearEntries();
+        for(AbstractModule module: KateClient.getKateClient().getModuleManager().getModules()){
+            addEntrie(new ClickGUIEntry().fromModule(module));
+        }
+
+    }
+
+    public void loadEntriesByCategory(ModuleCategory category){
+        clearEntries();
+        for(AbstractModule module: KateClient.getKateClient().getModuleManager().getModules()){
+            if(module.getModuleType().equals(category)) {
+                addEntrie(new ClickGUIEntry().fromModule(module));
+            }
+        }
+    }
+
+
+    public void addEntrie(ClickGUIEntry entry){
+        this.entries.add(entry);
+    }
+
+    public void removeEntrie(ClickGUIEntry entry){
+        this.entries.remove(entry);
+    }
+
+    public void clearEntries(){
+        this.entries.clear();
+    }
+
 
 
 
@@ -221,21 +256,21 @@ public class MainClickUIIngame extends GuiScreen {
 
 //            if(displayAnimation.isFinish()) {
 
-                // Just for design , I will make them into button later.
-                float yRange = this.height/7;
-                Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-                Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
-                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)this.yPosition + 16+2, (int)this.width /15, (int)this.width /15,cube);
-                fontRendererObj.drawStringWithShadow("AutoSprint  -  Keep sprinting ...",this.xPosition + this.height/5.5f,this.yPosition + 24,fontColor.getRGB());
-                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,threepoints);
-                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,switchon);
+            // Just for design , I will make them into button later.
+            float yRange = this.height/7;
+            Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+            Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
+            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)this.yPosition + 16+2, (int)this.width /15, (int)this.width /15,cube);
+            fontRendererObj.drawStringWithShadow("AutoSprint  -  Keep sprinting ...",this.xPosition + this.height/5.5f,this.yPosition + 24,fontColor.getRGB());
+            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,threepoints);
+            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,switchon);
 
-                Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-                Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
-                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)(this.yPosition + 16+2+yRange) , (int)this.width /15, (int)this.width /15,cube);
-                fontRendererObj.drawStringWithShadow("DisplayPing  -  display pings ...",this.xPosition + this.height/5.5f,this.yPosition + 24 +yRange,fontColor.getRGB());
-                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,threepoints);
-                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,switchon);
+            Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+            Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
+            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)(this.yPosition + 16+2+yRange) , (int)this.width /15, (int)this.width /15,cube);
+            fontRendererObj.drawStringWithShadow("DisplayPing  -  display pings ...",this.xPosition + this.height/5.5f,this.yPosition + 24 +yRange,fontColor.getRGB());
+            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,threepoints);
+            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,switchon);
 
 
 //            }
@@ -259,12 +294,19 @@ public class MainClickUIIngame extends GuiScreen {
 
     @Override
     protected void mouseClicked(int p_mouseClicked_1_, int p_mouseClicked_2_, int p_mouseClicked_3_) throws IOException {
+        // todo: click logic
+//        this.scrollList.mouseClicked(p_mouseClicked_1_,p_mouseClicked_2_,p_mouseClicked_3_);
+
         super.mouseClicked(p_mouseClicked_1_, p_mouseClicked_2_, p_mouseClicked_3_);
+
     }
 
     @Override
     protected void mouseReleased(int p_mouseReleased_1_, int p_mouseReleased_2_, int p_mouseReleased_3_) {
+        // todo: click logic
+//        this.scrollList.mouseReleased(p_mouseReleased_1_,p_mouseReleased_2_,p_mouseReleased_3_);
         super.mouseReleased(p_mouseReleased_1_, p_mouseReleased_2_, p_mouseReleased_3_);
+
     }
 
     @Override
@@ -309,5 +351,19 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.remove(settingButton);
 
 
+    }
+
+    public float getWidth() {
+        return width;
+    }
+
+    public float getHeight() {
+        return height;
+    }
+
+    @Override
+    public void handleMouseInput() throws IOException {
+        super.handleMouseInput();
+//        this.scrollList.handleMouseInput();
     }
 }

@@ -6,7 +6,7 @@ import top.whitecola.kateclient.ui.widget.AbstractWidget;
 import top.whitecola.kateclient.ui.widget.widgets.FPSWidget;
 
 public class FPSDisplay extends AbstractModule {
-    protected AbstractWidget fpsWidget = new FPSWidget();
+    protected AbstractWidget fpsWidget = new FPSWidget(0,0,0,0);
 
     @Override
     public void onEnable() {

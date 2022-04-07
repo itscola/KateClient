@@ -11,13 +11,16 @@ public class AbstractWidget {
     public float dragY;
     public boolean draged;
     protected String text;
+    protected DefaultRelativePosition relativePosition;
 
     protected Color color = new Color(237, 235, 233);
     protected Color backgroundColor = null;
 
-    public AbstractWidget(){
-
-
+    public AbstractWidget(float x,float y,float width,float height){
+        this.x = x;
+        this.y = y;
+        this.width = width;
+        this.height = height;
     }
 
 
@@ -28,12 +31,13 @@ public class AbstractWidget {
 
 
 
-
+    @Deprecated
     public AbstractWidget setX(float x) {
         this.x = x;
         return this;
     }
 
+    @Deprecated
     public AbstractWidget setY(float y) {
         this.y = y;
         return this;
