@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event.events;
 
+import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -9,6 +10,8 @@ import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleManager;
 
 import java.util.Vector;
+
+import static top.whitecola.kateclient.utils.MCWrapper.mc;
 
 public class EventToInvokeModules extends EventAdapter {
     private Vector<AbstractModule> modules;
@@ -54,6 +57,14 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onRenderOverLay(RenderGameOverlayEvent event) {
+        if(Minecraft.getMinecraft()==null||Minecraft.getMinecraft().theWorld==null || mc.thePlayer==null){
+            return;
+        }
+
+        if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
+            return;
+        }
+
         for(AbstractModule module : modules){
             if(!module.isEnabled())
                 continue;

@@ -12,6 +12,7 @@ import top.whitecola.kateclient.event.events.MainMenuEvent;
 import top.whitecola.kateclient.keybinds.MainMenuInGameKeybind;
 import top.whitecola.kateclient.module.ModuleManager;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
+import top.whitecola.kateclient.module.modules.renders.FPSDisplay;
 import top.whitecola.kateclient.module.modules.renders.PingDisplay;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
 import top.whitecola.kateclient.ui.GameUI;
@@ -55,8 +56,12 @@ public class KateClient {
         this.moduleManager.addModule(new AutoSprint());
         this.moduleManager.addModule(new PingDisplay());
         this.moduleManager.addModule(new FullBright());
+        this.moduleManager.addModule(new FPSDisplay());
+
         moduleManager.getModuleByName("AutoSprint").enable();
         moduleManager.getModuleByName("PingDisplay").enable();
+//        moduleManager.getModuleByName("FPSDisplay").enable();
+
 
     }
 

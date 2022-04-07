@@ -36,7 +36,7 @@ public class Notification extends AbstractWidget {
 
 
     private Notification(float x, float y, float width, float height) {
-        super(x, y, width, height);
+        setX(x).setY(y).setWidth(width).setHeight(height);
         showAnimation = new Animation();
         showAnimation.setMin(0).setMax(100).setFunction(animationFunction).setTotalTime(600).setLock(true);
 

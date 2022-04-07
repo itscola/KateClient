@@ -47,13 +47,6 @@ public class AutoSprint extends AbstractModule {
 
     @Override
     public void onRenderOverLay(RenderGameOverlayEvent event) {
-        if(Minecraft.getMinecraft()==null||Minecraft.getMinecraft().theWorld==null || mc.thePlayer==null){
-            return;
-        }
-
-        if (event.type != RenderGameOverlayEvent.ElementType.ALL) {
-            return;
-        }
 
 
         ScaledResolution scaledResolution = new ScaledResolution(Minecraft.getMinecraft());

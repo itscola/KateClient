@@ -13,9 +13,7 @@ public class WidgetManager {
 
     public void drawWidgets() {
         for (AbstractWidget widget : widgets) {
-            if (widget.isDisplay()) {
-                widget.drawWidget();
-            }
+            widget.drawWidget();
         }
     }
 

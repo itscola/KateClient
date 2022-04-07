@@ -157,13 +157,14 @@ public class MainClickUIIngame extends GuiScreen {
             dragX = 0;
             dragY = 0;
             if(draged){
+                UICache.mainUIPosX = xPosition;
+                UICache.mainUIPosY = yPosition;
                 draged = false;
             }
         }
 
 
-        UICache.mainUIPosX = xPosition;
-        UICache.mainUIPosY = yPosition;
+
 
 
 

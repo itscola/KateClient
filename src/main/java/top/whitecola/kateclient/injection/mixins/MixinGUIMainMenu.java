@@ -29,6 +29,7 @@ import top.whitecola.kateclient.ui.components.buttons.LongReactButton;
 import top.whitecola.kateclient.ui.components.buttons.SwitchButton;
 import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.Render2DUtils;
+import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -128,7 +129,7 @@ public class MixinGUIMainMenu extends GuiScreen {
         Render2DUtils.drawCustomImage(0,0,width,height,background);
         if(!isWelcomed()){
             setWelcomed(true);
-            ClientUtils.sendAClientMessage("KateClient","");
+            ClientUtils.sendAClientMessage("KateClient","",mods);
         }
     }
 

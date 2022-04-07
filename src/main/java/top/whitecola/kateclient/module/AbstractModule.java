@@ -3,6 +3,8 @@ package top.whitecola.kateclient.module;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import top.whitecola.kateclient.KateClient;
+import top.whitecola.kateclient.ui.widget.AbstractWidget;
 import top.whitecola.kateclient.utils.ClientUtils;
 
 import java.util.Vector;
@@ -101,5 +103,15 @@ public class AbstractModule implements IModule{
     public ModuleOption getOptionByName(String optionName) {
 
         return null;
+    }
+
+    @Override
+    public void addWidget(AbstractWidget widget) {
+        KateClient.getKateClient().getWidgetManager().addWidget(widget);
+    }
+
+    @Override
+    public void removeWidget(AbstractWidget widget) {
+        KateClient.getKateClient().getWidgetManager().removeWidget(widget);
     }
 }

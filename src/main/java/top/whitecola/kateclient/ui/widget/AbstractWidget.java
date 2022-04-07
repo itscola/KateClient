@@ -1,17 +1,17 @@
 package top.whitecola.kateclient.ui.widget;
 
+import java.awt.*;
+
 public class AbstractWidget {
     protected float x;
     protected float y;
     protected float width;
     protected float height;
-    protected boolean display;
+    protected Color color = new Color(237, 235, 233);
+    protected Color backgroundColor = new Color(237, 235, 233);
 
-    public AbstractWidget(float x,float y, float width,float height){
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
+    public AbstractWidget(){
+
 
     }
 
@@ -24,12 +24,29 @@ public class AbstractWidget {
 
 
 
-    public void setX(float x) {
+    public AbstractWidget setX(float x) {
         this.x = x;
+        return this;
     }
 
-    public void setY(float y) {
+    public AbstractWidget setY(float y) {
         this.y = y;
+        return this;
+    }
+
+    public AbstractWidget setHeight(float height) {
+        this.height = height;
+        return this;
+    }
+
+
+    public AbstractWidget setWidth(float width) {
+        this.width = width;
+        return this;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
     }
 
     public float getY() {
@@ -44,11 +61,21 @@ public class AbstractWidget {
         return this.getClass().getSimpleName();
     }
 
-    public void setDisplay(boolean display) {
-        this.display = display;
+
+    public Color getColor() {
+        return color;
     }
 
-    public boolean isDisplay() {
-        return display;
+    public void setBackgroundColor(Color backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
+    public Color getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setPos(float x,float y){
+        setX(x);
+        setY(y);
     }
 }

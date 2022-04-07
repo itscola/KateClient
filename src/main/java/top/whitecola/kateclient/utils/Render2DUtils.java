@@ -10,11 +10,11 @@ import org.lwjgl.opengl.GL11;
 import java.awt.*;
 
 import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL13.GL_MULTISAMPLE;
 
 public class Render2DUtils {
-
-
+    public static final float PI = 3.1415927F;
+    public static final float PI2 = 6.2831855F;
+    public static final float PId2 = 1.5707964F;
 
     public static void drawRect(float x1,float y1,float x2,float y2,int RGBColor){
         GL11.glEnable(3042);
@@ -110,12 +110,25 @@ public class Render2DUtils {
 
 
 
+
+
+
+
     public static void setColor(int color) {
         float f = (color >> 24 & 255) / 255.0f;
         float f1 = (color >> 16 & 255) / 255.0f;
         float f2 = (color >> 8 & 255) / 255.0f;
         float f3 = (color & 255) / 255.0f;
         GL11.glColor4f(f1,f2,f3,f);
+    }
+
+    public static int getColor(int red, int green, int blue, int alpha) {
+        int color = 0;
+        color |= alpha << 24;
+        color |= red << 16;
+        color |= green << 8;
+        color |= blue;
+        return color;
     }
 
     public static void enableGL2D() {

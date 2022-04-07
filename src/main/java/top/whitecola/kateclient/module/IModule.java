@@ -3,6 +3,7 @@ package top.whitecola.kateclient.module;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import top.whitecola.kateclient.ui.widget.AbstractWidget;
 
 public interface IModule {
     void onTick();
@@ -28,4 +29,8 @@ public interface IModule {
     void optionEnable(String optionName);
     void optionDisable(String optionName);
     ModuleOption getOptionByName(String optionName);
+
+    void addWidget(AbstractWidget widget);
+    void removeWidget(AbstractWidget widget);
+
 }
