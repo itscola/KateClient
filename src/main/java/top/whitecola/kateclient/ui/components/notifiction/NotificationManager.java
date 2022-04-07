@@ -17,11 +17,6 @@ public class NotificationManager {
     }
 
     public void addNotification(Notification notification){
-        if(notifications.size()>1){
-            for(int i=0;i<notifications.size();i++){
-                notifications.get(i).setShouldRemove(true);
-            }
-        }
         notifications.add(notification);
     }
 

@@ -5,6 +5,7 @@ public class AbstractWidget {
     protected float y;
     protected float width;
     protected float height;
+    protected boolean display;
 
     public AbstractWidget(float x,float y, float width,float height){
         this.x = x;
@@ -37,5 +38,17 @@ public class AbstractWidget {
 
     public float getX() {
         return x;
+    }
+
+    public String getWidgetName(){
+        return this.getClass().getSimpleName();
+    }
+
+    public void setDisplay(boolean display) {
+        this.display = display;
+    }
+
+    public boolean isDisplay() {
+        return display;
     }
 }

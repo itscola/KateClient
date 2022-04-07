@@ -10,6 +10,7 @@ import org.lwjgl.input.Mouse;
 import top.whitecola.animationlib.Animation;
 import top.whitecola.animationlib.functions.type.*;
 import top.whitecola.kateclient.KateClient;
+import top.whitecola.kateclient.ui.UICache;
 import top.whitecola.kateclient.ui.components.buttons.CircleButton;
 import top.whitecola.kateclient.ui.components.buttons.IconButton;
 import top.whitecola.kateclient.utils.ClientUtils;
@@ -88,6 +89,10 @@ public class MainClickUIIngame extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
+
+        yPosition = UICache.mainUIPosY;
+        xPosition = UICache.mainUIPosX;
+
         buttonList.clear();
         circleButton = new CircleButton(0,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
         circleButton2 = new CircleButton(1,(int)this.xPosition+6,(int)this.yPosition+6,(int)this.width,(int)this.height / 30,"");
@@ -157,6 +162,9 @@ public class MainClickUIIngame extends GuiScreen {
         }
 
 
+        UICache.mainUIPosX = xPosition;
+        UICache.mainUIPosY = yPosition;
+
 
 
 
@@ -209,7 +217,7 @@ public class MainClickUIIngame extends GuiScreen {
             Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,mods);
 
 
-            if(displayAnimation.isFinish()) {
+//            if(displayAnimation.isFinish()) {
 
                 // Just for design , I will make them into button later.
                 float yRange = this.height/7;
@@ -228,7 +236,7 @@ public class MainClickUIIngame extends GuiScreen {
                 Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,switchon);
 
 
-            }
+//            }
 
         }
 
