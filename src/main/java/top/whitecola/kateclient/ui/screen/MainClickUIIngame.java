@@ -108,6 +108,7 @@ public class MainClickUIIngame extends GuiScreen {
         this.buttonList.add(settingButton);
         this.buttonList.add(messageButton);
 
+        
         loadDefaultEntries();
 
         ClientUtils.sendAClientMessage("ClickGUI ON","");
