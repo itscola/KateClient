@@ -153,6 +153,7 @@ public class MainClickUIIngame extends GuiScreen {
                 yPosition = mouseY - dragY;
             }
             draged = true;
+
         } else if (dragX != 0 || dragY != 0) {
             dragX = 0;
             dragY = 0;
