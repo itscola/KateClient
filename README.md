@@ -31,14 +31,10 @@ Modules :   src/main/java/top/whitecola/kateclient/module/
 Hooks:   src/main/java/top/whitecola/kateclient/injection**
 
 
-### >>> The client is in the development stage. It is not recommended to use it for now.
+### >>> The client is in the development stage.
 If you want to try it now, you can build a jar file using Gradlew and put the jar into the mods folder of Forge.
-
-
 
 ### The license is AGPLV3 and ,if you want to use the codes, please mark the author name (White_cola) in your projects .
 Why the ui is apple style, because Im an apple fan.   But to be a student,I dont have a my own macbook at present.       
-
-### Project 
 
 #### Prohibited for commercial use.
