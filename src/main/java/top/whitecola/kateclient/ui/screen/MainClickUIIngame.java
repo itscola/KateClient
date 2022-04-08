@@ -60,6 +60,8 @@ public class MainClickUIIngame extends GuiScreen {
 
     protected Color mainTextColor = new Color(196, 210, 210);
     protected Color fontColor = new Color(220, 220, 218);
+    protected Color enabledfontColor = new Color(98, 168, 229);
+
 
 
     protected CircleButton circleButton;
@@ -70,11 +72,15 @@ public class MainClickUIIngame extends GuiScreen {
     protected IconButton messageButton;
 
     protected ResourceLocation cube = new ResourceLocation("kateclient","ui/components/cube.png");
+    protected ResourceLocation cube2 = new ResourceLocation("kateclient","ui/components/cube2.png");
+
     protected ResourceLocation sprint = new ResourceLocation("kateclient","ui/components/sprint.png");
     protected ResourceLocation threepoints = new ResourceLocation("kateclient","ui/components/threepoints.png");
     protected ResourceLocation switchon = new ResourceLocation("kateclient","ui/components/switchon.png");
 
     protected Vector<ClickGUIEntry> entries = new Vector<ClickGUIEntry>();
+    int rollingValue = 0;
+
 
 
 
@@ -120,19 +126,22 @@ public class MainClickUIIngame extends GuiScreen {
 
     public void loadDefaultEntries(){
         clearEntries();
+
+        //some handler later
         Vector<AbstractModule> modules = KateClient.getKateClient().getModuleManager().getModules();
         for(AbstractModule module: modules){
-            addEntrie(new ClickGUIEntry(modules.size()-1).fromModule(module));
+            addEntrie(new ClickGUIEntry().fromModule(module));
         }
 
     }
 
     public void loadEntriesByCategory(ModuleCategory category){
         clearEntries();
+        //some handler later
         Vector<AbstractModule> modules = KateClient.getKateClient().getModuleManager().getModules();
         for(AbstractModule module: modules){
             if(module.getModuleType().equals(category)) {
-                addEntrie(new ClickGUIEntry(modules.size()-1).fromModule(module));
+                addEntrie(new ClickGUIEntry().fromModule(module));
             }
         }
     }
@@ -161,6 +170,8 @@ public class MainClickUIIngame extends GuiScreen {
 
     @Override
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        //todo: I will clean up the codes here later.
+
         float value;
 
         if(isNeedClose() && displayAnimation.isFinish()) {
@@ -231,21 +242,82 @@ public class MainClickUIIngame extends GuiScreen {
 
 
         Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + this.height, this.mainColor.getRGB(),this.mainColor.getRGB());
-        if(draged){
-            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarDragColor.getRGB(),this.mainBarDragColor.getRGB());
-        }else {
-            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarColor.getRGB(),this.mainBarColor.getRGB());
-        }
-//        Render2DUtils.drawRoundedRect(this.xPosition +6, this.yPosition +this.height -28, this.xPosition + this.width-6, this.yPosition + this.height - 6, this.dockColor.getRGB(),this.dockColor.getRGB());
-
-
-
-        FontRenderer fontRenderer = mc.fontRendererObj;
-        fontRenderer.drawString(KateClient.MODID, (int)(this.xPosition +32 ), (int) this.yPosition +2, this.mainTextColor.getRGB());;
 
 
 
         if(!isNeedClose()){
+
+
+//            if(displayAnimation.isFinish()) {
+
+
+            if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition +this.height,mouseX,mouseY)){
+                int dwheel = Mouse.getDWheel();
+
+                if(dwheel<0){
+
+                    rollingValue +=15;
+
+                    //down
+
+                }else if(dwheel>0){
+                    rollingValue -=15;
+                    //up
+                }
+
+
+
+
+            }
+
+            for(int i=0;i<this.entries.size();i++){
+                float yRange = this.height/7 * i;
+                float firstY = this.yPosition + 16 +rollingValue +yRange;
+                float lastY = this.yPosition + this.height / 5 +rollingValue +yRange;
+
+                if(firstY<yPosition || lastY>yPosition+height){
+                    continue;
+                }
+
+                ClickGUIEntry entry = entries.get(i);
+
+//                if(this.yPosition>=this.yPosition + 16 +rollingValue +yRange || this.yPosition + this.height / 5 +rollingValue +yRange<=this.yPosition+height){
+//                    continue;
+//                }
+
+                Render2DUtils.drawRoundedRect(this.xPosition + 3, firstY, this.xPosition + this.width  - 3, lastY, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+                Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, firstY, this.xPosition + this.width  - 3, lastY, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
+                ResourceLocation cube;
+                Color font;
+
+                if(entry.isEnabled()) {
+                    cube = this.cube;
+                    font = this.enabledfontColor;
+                }else{
+                    cube = this.cube2;
+                    font = this.fontColor;
+                }
+                Render2DUtils.drawCustomImage((int) (this.xPosition + this.height / 25), (int) this.yPosition + 16 + 2 + rollingValue + (int) yRange, (int) this.width / 15, (int) this.width / 15, cube);
+                fontRendererObj.drawStringWithShadow(entry.getEntryName(),this.xPosition + this.height/5.5f,this.yPosition + 24 +rollingValue +yRange,font.getRGB());
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)this.yPosition + 20 +rollingValue +(int)yRange, (int)this.width /18, (int)this.width /18,threepoints);
+                Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)this.yPosition + 20 +rollingValue +(int)yRange, (int)this.width /18, (int)this.width /18,switchon);
+
+
+            }
+
+
+            // Just for design , I will make them into button later.
+
+//            Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 +yRange +rollingValue, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange +rollingValue, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
+//            Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 +yRange +rollingValue, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange +rollingValue, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
+//            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)(this.yPosition + 16+2+yRange) +rollingValue, (int)this.width /15, (int)this.width /15,cube);
+//            fontRendererObj.drawStringWithShadow("DisplayPing  -  display pings ...",this.xPosition + this.height/5.5f,this.yPosition + 24 +yRange +rollingValue,fontColor.getRGB());
+//            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)(this.yPosition + 20+yRange) +rollingValue, (int)this.width /18, (int)this.width /18,threepoints);
+//            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)(this.yPosition + 20+yRange) +rollingValue, (int)this.width /18, (int)this.width /18,switchon);
+
+
+//            }
+
 
             // Just for design , I will make them into button later.
             Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8, (int)this.yPosition +(int)this.height -32,25,25,world);
@@ -257,30 +329,20 @@ public class MainClickUIIngame extends GuiScreen {
             Render2DUtils.drawCustomImage((int)this.xPosition +(14 +25 ) +25 +8 +25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8 + 25 + 8, (int)this.yPosition +(int)this.height -32,25,25,mods);
 
 
-//            if(displayAnimation.isFinish()) {
-
-            // Just for design , I will make them into button later.
-            float yRange = this.height/7;
-            Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-            Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 , this.xPosition + this.width  - 3, this.yPosition + this.height / 5, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
-            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)this.yPosition + 16+2, (int)this.width /15, (int)this.width /15,cube);
-            fontRendererObj.drawStringWithShadow("AutoSprint  -  Keep sprinting ...",this.xPosition + this.height/5.5f,this.yPosition + 24,fontColor.getRGB());
-            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,threepoints);
-            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)this.yPosition + 20, (int)this.width /18, (int)this.width /18,switchon);
-
-            Render2DUtils.drawRoundedRect(this.xPosition + 3, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
-            Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, this.yPosition + 16 +yRange, this.xPosition + this.width  - 3, this.yPosition + this.height / 5 +yRange, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
-            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height/25), (int)(this.yPosition + 16+2+yRange) , (int)this.width /15, (int)this.width /15,cube);
-            fontRendererObj.drawStringWithShadow("DisplayPing  -  display pings ...",this.xPosition + this.height/5.5f,this.yPosition + 24 +yRange,fontColor.getRGB());
-            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 78), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,threepoints);
-            Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)(this.yPosition + 20+yRange), (int)this.width /18, (int)this.width /18,switchon);
-
-
-//            }
-
         }
 
 
+        if(draged){
+            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarDragColor.getRGB(),this.mainBarDragColor.getRGB());
+        }else {
+            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition + 12, this.mainBarColor.getRGB(),this.mainBarColor.getRGB());
+        }
+//        Render2DUtils.drawRoundedRect(this.xPosition +6, this.yPosition +this.height -28, this.xPosition + this.width-6, this.yPosition + this.height - 6, this.dockColor.getRGB(),this.dockColor.getRGB());
+
+
+
+        FontRenderer fontRenderer = mc.fontRendererObj;
+        fontRenderer.drawString(KateClient.MODID, (int)(this.xPosition +32 ), (int) this.yPosition +2, this.mainTextColor.getRGB());;
 
 
         super.drawScreen(mouseX,mouseY,partialTicks);

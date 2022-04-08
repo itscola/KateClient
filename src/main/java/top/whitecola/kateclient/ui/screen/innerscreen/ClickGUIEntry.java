@@ -10,12 +10,13 @@ public class ClickGUIEntry extends AbstractClickGUIEntry{
     protected ModuleCategory category;
     protected float xPosition;
     protected float yPosition;
+    protected float width;
+    protected float height;
     protected boolean enabled;
-    protected int index;
 
 
-    public ClickGUIEntry(int index){
-        this.index = index;
+    public ClickGUIEntry(){
+
     }
 
     public ClickGUIEntry fromModule(AbstractModule module){
@@ -33,15 +34,40 @@ public class ClickGUIEntry extends AbstractClickGUIEntry{
         return false;
     }
 
-    public void draw(int mouseX, int mouseY, float partialTicks){
-
+    public float getHeight() {
+        return height;
     }
 
-    public int getIndex() {
-        return index;
+    public float getWidth() {
+        return width;
     }
 
-    public void setIndex(int index) {
-        this.index = index;
+
+    public float getxPosition() {
+        return xPosition;
+    }
+
+
+    public float getyPosition() {
+        return yPosition;
+    }
+
+    public ModuleCategory getCategory() {
+        return category;
+    }
+
+
+    public String getEntryDescription() {
+        return entryDescription;
+    }
+
+
+    public String getEntryName() {
+        return entryName;
+    }
+
+
+    public boolean isEnabled() {
+        return enabled;
     }
 }
