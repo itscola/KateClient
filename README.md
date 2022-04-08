@@ -9,8 +9,8 @@
 (**Chat lines with nonlinear animations** and without black background. The black background will be displayed when you pressed "T")   
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
-![image](https://user-images.githubusercontent.com/47351250/162371580-b767824b-e7f9-43f8-8ae6-b0150e4790e0.png)    
-(The ClickGUI modules selector is designing and dev.)
+![image](https://user-images.githubusercontent.com/47351250/162402156-229f99cd-4059-4e38-9063-1d6f5d3b3e10.png)    
+(Click on the ClickGUI to enable or close the modules, or slide the scroll wheel up and down to see more modules.)
 
 
 And, you can install any **mod** you want if mods are compatible.
