@@ -17,7 +17,8 @@ And, you can install any **mod** you want if mods are compatible.
 
 ### To do:
 1. Loading GUI screen.   
-2. Click gui entries handler.
+2. ClickGUI dock.
+3. WidgetManager position handler.
 
 Actually the UI design progress takes more time.
 
