@@ -2,7 +2,7 @@
 ## Dark theme mode demo  :       
 ![image](https://user-images.githubusercontent.com/47351250/161268871-2dea5bf0-0008-4575-a8c9-0e26c3e9278b.png)     
 
-![image](https://user-images.githubusercontent.com/47351250/161271090-3ab4b32b-eff2-4694-b96d-a4ea6e4d2e80.png)    
+![image](https://user-images.githubusercontent.com/47351250/162371149-5c0518f7-63f2-4b99-a115-8b4b7caad78c.png)  
 (Right shift to use **draggable clickgui**, open GUI with nonlinear animation)  
 
 ![image](https://user-images.githubusercontent.com/47351250/161271248-21d89261-a13d-4aae-8d6e-23650dd0fcc8.png)    
@@ -10,7 +10,6 @@
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
 ![image](https://user-images.githubusercontent.com/47351250/162371580-b767824b-e7f9-43f8-8ae6-b0150e4790e0.png)    
-![image](https://user-images.githubusercontent.com/47351250/162371149-5c0518f7-63f2-4b99-a115-8b4b7caad78c.png)          
 (The ClickGUI modules selector is designing and dev.)
 
 And, you can install any **mod** you want if mods are compatible.
