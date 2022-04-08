@@ -25,7 +25,7 @@ Actually the UI design progress takes more time.
 ### Project Directories：
 
 **UI:   src/main/java/top/whitecola/kateclient/ui    
-GUIScrenn :   src/main/java/top/whitecola/kateclient/ui/screen/    
+GUIScreen :   src/main/java/top/whitecola/kateclient/ui/screen/    
 ClickGUI :   src/main/java/top/whitecola/kateclient/ui/screen/MainClickUIIngame.java    
 Modules :   src/main/java/top/whitecola/kateclient/module/     
 Hooks:   src/main/java/top/whitecola/kateclient/injection/     
