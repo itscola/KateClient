@@ -5,13 +5,12 @@
 ![image](https://user-images.githubusercontent.com/47351250/162371149-5c0518f7-63f2-4b99-a115-8b4b7caad78c.png)  
 (Right shift to use **draggable clickgui**, open GUI with nonlinear animation)  
 
-![image](https://user-images.githubusercontent.com/47351250/162371580-b767824b-e7f9-43f8-8ae6-b0150e4790e0.png)    
-(The ClickGUI modules selector is designing and dev.)
-
 ![image](https://user-images.githubusercontent.com/47351250/161271248-21d89261-a13d-4aae-8d6e-23650dd0fcc8.png)    
 (**Chat lines with nonlinear animations** and without black background. The black background will be displayed when you pressed "T")   
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
+![image](https://user-images.githubusercontent.com/47351250/162371580-b767824b-e7f9-43f8-8ae6-b0150e4790e0.png)    
+(The ClickGUI modules selector is designing and dev.)
 
 
 And, you can install any **mod** you want if mods are compatible.
