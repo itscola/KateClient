@@ -14,5 +14,7 @@ public class MCWrapper {
     public static ResourceLocation movement = new ResourceLocation("kateclient","ui/movement.png");
     public static ResourceLocation server = new ResourceLocation("kateclient","ui/server.png");
     public static ResourceLocation mods = new ResourceLocation("kateclient","ui/mods.png");
+    public static ResourceLocation cube2 = new ResourceLocation("kateclient","ui/components/cube2.png");
+    public static ResourceLocation cube1 = new ResourceLocation("kateclient","ui/components/cube.png");
 
 }

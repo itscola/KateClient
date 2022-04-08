@@ -8,6 +8,7 @@ import top.whitecola.kateclient.ui.widget.AbstractWidget;
 import top.whitecola.kateclient.utils.ClientUtils;
 
 import java.util.Vector;
+import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 public class AbstractModule implements IModule{
     Vector<ModuleOption> options = new Vector<ModuleOption>();
@@ -37,12 +38,12 @@ public class AbstractModule implements IModule{
 
     @Override
     public void onEnable() {
-        ClientUtils.sendAClientMessage(this.getModuleName()+" ON.","");
+        ClientUtils.sendAClientMessage(this.getModuleName(),"",cube1);
     }
 
     @Override
     public void onDisable() {
-        ClientUtils.sendAClientMessage(this.getModuleName()+" OFF.","");
+        ClientUtils.sendAClientMessage(this.getModuleName(),"",cube2);
     }
 
     @Override

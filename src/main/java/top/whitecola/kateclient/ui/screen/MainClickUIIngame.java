@@ -1,6 +1,7 @@
 package top.whitecola.kateclient.ui.screen;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -71,8 +72,6 @@ public class MainClickUIIngame extends GuiScreen {
     protected IconButton settingButton;
     protected IconButton messageButton;
 
-    protected ResourceLocation cube = new ResourceLocation("kateclient","ui/components/cube.png");
-    protected ResourceLocation cube2 = new ResourceLocation("kateclient","ui/components/cube2.png");
 
     protected ResourceLocation sprint = new ResourceLocation("kateclient","ui/components/sprint.png");
     protected ResourceLocation threepoints = new ResourceLocation("kateclient","ui/components/threepoints.png");
@@ -251,24 +250,7 @@ public class MainClickUIIngame extends GuiScreen {
 //            if(displayAnimation.isFinish()) {
 
 
-            if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition +this.height,mouseX,mouseY)){
-                int dwheel = Mouse.getDWheel();
 
-                if(dwheel<0){
-
-                    rollingValue +=15;
-
-                    //down
-
-                }else if(dwheel>0){
-                    rollingValue -=15;
-                    //up
-                }
-
-
-
-
-            }
 
             for(int i=0;i<this.entries.size();i++){
                 float yRange = this.height/7 * i;
@@ -285,16 +267,17 @@ public class MainClickUIIngame extends GuiScreen {
 //                    continue;
 //                }
 
+                entry.setPos(this.xPosition + 3, firstY, this.xPosition + this.width  - 3, lastY);
                 Render2DUtils.drawRoundedRect(this.xPosition + 3, firstY, this.xPosition + this.width  - 3, lastY, moduleButtonColor.getRGB(), moduleButtonColor.getRGB());
                 Render2DUtils.drawRoundedRect(this.xPosition + this.height/8 +8, firstY, this.xPosition + this.width  - 3, lastY, moduleButtonColor2.getRGB(), moduleButtonColor2.getRGB());
                 ResourceLocation cube;
                 Color font;
 
                 if(entry.isEnabled()) {
-                    cube = this.cube;
+                    cube = cube1;
                     font = this.enabledfontColor;
                 }else{
-                    cube = this.cube2;
+                    cube = cube2;
                     font = this.fontColor;
                 }
                 Render2DUtils.drawCustomImage((int) (this.xPosition + this.height / 25), (int) this.yPosition + 16 + 2 + rollingValue + (int) yRange, (int) this.width / 15, (int) this.width / 15, cube);
@@ -303,6 +286,24 @@ public class MainClickUIIngame extends GuiScreen {
                 Render2DUtils.drawCustomImage((int)(this.xPosition + this.height + 55), (int)this.yPosition + 20 +rollingValue +(int)yRange, (int)this.width /18, (int)this.width /18,switchon);
 
 
+
+
+
+            }
+
+            if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition +this.height,mouseX,mouseY)){
+                int dwheel = Mouse.getDWheel();
+
+                if(dwheel<0 && rollingValue>=entries.size()*-15){
+
+                    rollingValue -=15;
+
+                    //down
+
+                }else if(dwheel>0 && rollingValue<=-15){
+                    rollingValue +=15;
+                    //up
+                }
             }
 
 
@@ -317,6 +318,9 @@ public class MainClickUIIngame extends GuiScreen {
 
 
 //            }
+
+
+            Render2DUtils.drawRoundedRect(this.xPosition, this.yPosition +height-42, this.xPosition + this.width, this.yPosition + height, this.mainColor.getRGB(),this.mainColor.getRGB());
 
 
             // Just for design , I will make them into button later.
@@ -341,6 +345,7 @@ public class MainClickUIIngame extends GuiScreen {
 
 
 
+
         FontRenderer fontRenderer = mc.fontRendererObj;
         fontRenderer.drawString(KateClient.MODID, (int)(this.xPosition +32 ), (int) this.yPosition +2, this.mainTextColor.getRGB());;
 
@@ -357,19 +362,23 @@ public class MainClickUIIngame extends GuiScreen {
     }
 
 
-    @Override
-    protected void mouseClicked(int p_mouseClicked_1_, int p_mouseClicked_2_, int p_mouseClicked_3_) throws IOException {
-        // todo: click logic
-//        this.scrollList.mouseClicked(p_mouseClicked_1_,p_mouseClicked_2_,p_mouseClicked_3_);
 
-        super.mouseClicked(p_mouseClicked_1_, p_mouseClicked_2_, p_mouseClicked_3_);
+    @Override
+    protected void mouseClicked(int mouseX, int mouseY, int mouseButton) throws IOException {
+        for(ClickGUIEntry entry : entries){
+            if(GUIUtils.isHovered(entry.getxPosition(),entry.getyPosition(),entry.getX2Position(),entry.getY2Position(),mouseX,mouseY)){
+                entry.toggle();
+                playButtonSound();
+            }
+        }
+
+
+        super.mouseClicked(mouseX, mouseY, mouseButton);
 
     }
 
     @Override
     protected void mouseReleased(int p_mouseReleased_1_, int p_mouseReleased_2_, int p_mouseReleased_3_) {
-        // todo: click logic
-//        this.scrollList.mouseReleased(p_mouseReleased_1_,p_mouseReleased_2_,p_mouseReleased_3_);
         super.mouseReleased(p_mouseReleased_1_, p_mouseReleased_2_, p_mouseReleased_3_);
 
     }
@@ -384,7 +393,7 @@ public class MainClickUIIngame extends GuiScreen {
     }
 
     private void playButtonSound(){
-//        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
+        Minecraft.getMinecraft().getSoundHandler().playSound(PositionedSoundRecord.create(new ResourceLocation("gui.button.press"), 1.0F));
     }
 
 
