@@ -5,12 +5,11 @@ import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleCategory;
 
 public class FullBright extends AbstractModule {
-    float lastGammaSetting = 100;
+    float defaulttGammaSetting = 100;
 
     @Override
     public void onEnable() {
         super.onEnable();
-        lastGammaSetting = Minecraft.getMinecraft().gameSettings.gammaSetting;
         Minecraft.getMinecraft().gameSettings.gammaSetting = 260;
 
     }
@@ -18,7 +17,7 @@ public class FullBright extends AbstractModule {
     @Override
     public void onDisable() {
         super.onDisable();
-        Minecraft.getMinecraft().gameSettings.gammaSetting = lastGammaSetting;
+        Minecraft.getMinecraft().gameSettings.gammaSetting = defaulttGammaSetting;
     }
 
     @Override

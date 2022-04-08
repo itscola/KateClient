@@ -2,7 +2,9 @@ package top.whitecola.kateclient.event.events;
 
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.event.EventAdapter;
@@ -81,5 +83,26 @@ public class EventToInvokeModules extends EventAdapter {
             module.renderGameOverlayRETURN();
         }
         super.renderGameOverlayRETURN();
+    }
+
+    @Override
+    public void onAttackEntity(AttackEntityEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onAttackEntity(e);
+        }
+        super.onAttackEntity(e);
+    }
+
+
+    @Override
+    public void onWordRender(RenderWorldEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onWordRender(e);
+        }
+        super.onWordRender(e);
     }
 }

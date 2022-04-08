@@ -1,7 +1,9 @@
 package top.whitecola.kateclient.module;
 
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.widget.AbstractWidget;
@@ -108,6 +110,16 @@ public class AbstractModule implements IModule{
     }
 
     @Override
+    public void onAttackEntity(AttackEntityEvent e) {
+
+    }
+
+    @Override
+    public void onWordRender(RenderWorldEvent e) {
+
+    }
+
+    @Override
     public void addWidget(AbstractWidget widget) {
         KateClient.getKateClient().getWidgetManager().addWidget(widget);
     }
@@ -128,5 +140,9 @@ public class AbstractModule implements IModule{
     @Override
     public String getDescription() {
         return "";
+    }
+
+    public Vector<ModuleOption> getOptions() {
+        return options;
     }
 }

@@ -15,6 +15,7 @@ import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
+import top.whitecola.kateclient.module.modules.visual.HitParticle;
 import top.whitecola.kateclient.module.modules.visual.Weather;
 import top.whitecola.kateclient.ui.GameUI;
 import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
@@ -58,11 +59,15 @@ public class KateClient {
         this.moduleManager.addModule(new PingDisplay());
         this.moduleManager.addModule(new FullBright());
         this.moduleManager.addModule(new FPSDisplay());
+        this.moduleManager.addModule(new HitSounds());
+        this.moduleManager.addModule(new LockTime());
+
         this.moduleManager.addModule(new Weather()); // not finish
+
+        this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new CPSDisplay()); // not finish
         this.moduleManager.addModule(new ArmorDisplay()); // not finish
         this.moduleManager.addModule(new AttackRangeDisplay()); // not finish
-        this.moduleManager.addModule(new HitSounds()); // not finish
 
 
         moduleManager.getModuleByName("AutoSprint").enable();

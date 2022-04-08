@@ -1,7 +1,9 @@
 package top.whitecola.kateclient.event;
 
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
@@ -46,6 +48,16 @@ public abstract class EventAdapter {
 
     @SubscribeEvent
     public void renderGameOverlayRETURN() {
+
+    }
+
+    @SubscribeEvent
+    public void onAttackEntity(AttackEntityEvent e) {
+
+    }
+
+    @SubscribeEvent
+    public void onWordRender(RenderWorldEvent e){
 
     }
 

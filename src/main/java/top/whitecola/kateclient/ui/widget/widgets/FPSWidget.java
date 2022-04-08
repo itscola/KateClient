@@ -24,8 +24,8 @@ public class FPSWidget extends AbstractWidget {
 
         FontRenderer fontRenderer = mc.fontRendererObj;
         String text = "[FPS] "+Minecraft.getDebugFPS();
-        int textWidth = fontRenderer.getStringWidth(text)-3;
-        Render2DUtils.drawRect(getX(),getY(),getX()+textWidth+1,getY()+10,getBackgroundColor().getRGB());
+//        int textWidth = fontRenderer.getStringWidth(text)-3;
+//        Render2DUtils.drawRect(getX(),getY(),getX()+textWidth+1,getY()+10,getBackgroundColor().getRGB());
         GlStateManager.pushMatrix();
         GlStateManager.scale(0.9F, 0.9F, 0.9F);
         fontRenderer.drawStringWithShadow(text,getX()+1 ,getY()+1,getColor().getRGB());
