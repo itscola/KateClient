@@ -9,6 +9,7 @@
 (**Chat lines with nonlinear animations** and without black background. The black background will be displayed when you pressed "T")   
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
+![image](https://user-images.githubusercontent.com/47351250/162371391-749a7327-b73d-495a-a4c5-e1a5239a42e2.png)    
 ![image](https://user-images.githubusercontent.com/47351250/162371149-5c0518f7-63f2-4b99-a115-8b4b7caad78c.png)          
 (The ClickGUI modules selector is designing and dev.)
 
