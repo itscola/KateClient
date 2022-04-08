@@ -9,20 +9,22 @@
 (**Chat lines with nonlinear animations** and without black background. The black background will be displayed when you pressed "T")   
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
-![image](https://user-images.githubusercontent.com/47351250/162371580-b767824b-e7f9-43f8-8ae6-b0150e4790e0.png)    
-(The ClickGUI modules selector is designing and dev.)
+![image](https://user-images.githubusercontent.com/47351250/162402156-229f99cd-4059-4e38-9063-1d6f5d3b3e10.png)    
+(**Click** on the ClickGUI to enable or close the modules, or **slide** the scroll wheel up and down to see more modules.)
 
 
 And, you can install any **mod** you want if mods are compatible.
 
 ### To do:
 1. Loading GUI screen.   
-2. Click gui entries handler.
+2. ClickGUI dock.
+3. WidgetManager position handler.
 
 Actually the UI design progress takes more time.
 
-### >>> The client is in the development stage. It is not recommended to use it for now.
-But you can still test it if you want.
+### The client is in the development stage.
+If you want to try it now, you can build a jar file using Gradlew and put the jar into the mods folder of Forge.   
+When KateClient development is finished, I will release KateClient and provide the download URL.    
 
 ### The license is AGPLV3 and ,if you want to use the codes, please mark the author name (White_cola) in your projects .
 Why the ui is apple style, because Im an apple fan.   But to be a student,I dont have a my own macbook at present.       
