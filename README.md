@@ -28,7 +28,8 @@ Actually the UI design progress takes more time.
 GUIScrenn :   src/main/java/top/whitecola/kateclient/ui/screen/    
 ClickGUI :   src/main/java/top/whitecola/kateclient/ui/screen/MainClickUIIngame.java    
 Modules :   src/main/java/top/whitecola/kateclient/module/     
-Hooks:   src/main/java/top/whitecola/kateclient/injection**
+Hooks:   src/main/java/top/whitecola/kateclient/injection/     
+Animations   : src/main/java/top/whitecola/animationlib/functions/type/**
 
 
 ### >>> The client is in the development stage.
