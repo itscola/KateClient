@@ -2,15 +2,16 @@
 ## Dark theme mode demo  :       
 ![image](https://user-images.githubusercontent.com/47351250/161268871-2dea5bf0-0008-4575-a8c9-0e26c3e9278b.png)     
 
-![image](https://user-images.githubusercontent.com/47351250/161271090-3ab4b32b-eff2-4694-b96d-a4ea6e4d2e80.png)    
+![image](https://user-images.githubusercontent.com/47351250/162381660-e52d3066-50ec-45aa-961e-829892c7d0b6.png)         
 (Right shift to use **draggable clickgui**, open GUI with nonlinear animation)  
 
 ![image](https://user-images.githubusercontent.com/47351250/161271248-21d89261-a13d-4aae-8d6e-23650dd0fcc8.png)    
 (**Chat lines with nonlinear animations** and without black background. The black background will be displayed when you pressed "T")   
 (Animations powered by [![](https://img.shields.io/badge/itscola-AnimationLib-blue.svg)](https://github.com/itscola/AnimationLib)   , an animations lib of mine)
 
-![image](https://user-images.githubusercontent.com/47351250/162117143-07e21f2a-2d33-41e5-945e-cc626d61e89b.png)    
+![image](https://user-images.githubusercontent.com/47351250/162371580-b767824b-e7f9-43f8-8ae6-b0150e4790e0.png)    
 (The ClickGUI modules selector is designing and dev.)
+
 
 And, you can install any **mod** you want if mods are compatible.
 
