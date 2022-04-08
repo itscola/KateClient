@@ -22,16 +22,6 @@ And, you can install any **mod** you want if mods are compatible.
 
 Actually the UI design progress takes more time.
 
-### Project Directories：
-
-**UI:   src/main/java/top/whitecola/kateclient/ui    
-GUIScreen :   src/main/java/top/whitecola/kateclient/ui/screen/    
-ClickGUI :   src/main/java/top/whitecola/kateclient/ui/screen/MainClickUIIngame.java    
-Modules :   src/main/java/top/whitecola/kateclient/module/     
-Hooks:   src/main/java/top/whitecola/kateclient/injection/     
-Animations   : src/main/java/top/whitecola/animationlib/functions/type/**
-
-
 ### The client is in the development stage.
 If you want to try it now, you can build a jar file using Gradlew and put the jar into the mods folder of Forge.   
 When KateClient development is finished, I will release KateClient and provide the download URL.    
