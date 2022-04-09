@@ -13,7 +13,13 @@ public class ModuleConfig {
 
     protected void modulesToConfig(List<AbstractModule> modules){
         for(AbstractModule module : modules){
-            moduleConfigs.add(new ModuleConfigStruct(module.getModuleName(),module.isEnabled(),module.getOptions()));
+            ModuleConfigStruct moduleConfigStruct = getModuleConfigByModule(module);
+            if(moduleConfigStruct==null) {
+                moduleConfigs.add(new ModuleConfigStruct(module.getModuleName(), module.isEnabled(), module.getOptions()));
+                continue;
+            }
+            moduleConfigStruct.enabled = module.isEnabled();
+            moduleConfigStruct.moduleOptions = module.getOptions();
         }
     }
 
