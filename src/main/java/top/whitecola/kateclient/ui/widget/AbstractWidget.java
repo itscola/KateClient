@@ -3,45 +3,28 @@ package top.whitecola.kateclient.ui.widget;
 import java.awt.*;
 
 public class AbstractWidget {
-    protected float x;
-    protected float y;
     protected float width;
     protected float height;
-    public float dragX;
-    public float dragY;
-    public boolean draged;
+    protected RelativePosition relativePosition = new RelativePosition();
     protected String text;
-    protected DefaultRelativePosition relativePosition;
-
     protected Color color = new Color(237, 235, 233);
     protected Color backgroundColor = null;
 
-    public AbstractWidget(float x,float y,float width,float height){
-        this.x = x;
-        this.y = y;
+    public AbstractWidget(float width,float height){
         this.width = width;
         this.height = height;
     }
 
 
-
-        public void drawWidget(){
+    public void drawWidget(){
 
     }
 
-
-
-    @Deprecated
-    public AbstractWidget setX(float x) {
-        this.x = x;
-        return this;
+    public RelativePosition getRelativePosition() {
+        return relativePosition;
     }
 
-    @Deprecated
-    public AbstractWidget setY(float y) {
-        this.y = y;
-        return this;
-    }
+
 
     public AbstractWidget setHeight(float height) {
         this.height = height;
@@ -58,13 +41,6 @@ public class AbstractWidget {
         this.color = color;
     }
 
-    public float getY() {
-        return y;
-    }
-
-    public float getX() {
-        return x;
-    }
 
     public String getWidgetName(){
         return this.getClass().getSimpleName();
@@ -83,13 +59,10 @@ public class AbstractWidget {
         return backgroundColor;
     }
 
-    public void setPos(float x,float y){
-        setX(x);
-        setY(y);
-    }
+
 
     public boolean isHovered(int mouseX,int mouseY){
-        return mouseX >= this.getX() && mouseY >= this.getY() && mouseX < this.getX() + this.width && mouseY < this.getY() + this.height;
+        return mouseX >= this.relativePosition.getRelativeX() && mouseY >= this.relativePosition.getRelativeY() && mouseX < this.relativePosition.getRelativeX() + this.width && mouseY < this.relativePosition.getRelativeY() + this.height;
     }
 
 
@@ -101,4 +74,8 @@ public class AbstractWidget {
     public String getText() {
         return text;
     }
+
+
+
+
 }

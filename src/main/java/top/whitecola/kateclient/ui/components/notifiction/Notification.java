@@ -36,7 +36,7 @@ public class Notification extends AbstractWidget {
 
 
     private Notification(float x, float y, float width, float height) {
-        super(x,y,width,height);
+        super(width,height);
         showAnimation = new Animation();
         showAnimation.setMin(0).setMax(100).setFunction(animationFunction).setTotalTime(600).setLock(true);
 
@@ -76,10 +76,11 @@ public class Notification extends AbstractWidget {
             setShouldRemove(true);
         }
 
+        this.relativePosition.setDefaultX(scaledResolution.getScaledWidth() - scaledResolution.getScaledWidth()/5 -7 + value +3);
+        this.relativePosition.setDefaultY(scaledResolution.getScaledHeight() - scaledResolution.getScaledWidth()/14 -7);
 
-        x = scaledResolution.getScaledWidth() - scaledResolution.getScaledWidth()/5 -7 + value +3;
-        y = scaledResolution.getScaledHeight() - scaledResolution.getScaledWidth()/14 -7;
-        int titleWidth = Minecraft.getMinecraft().fontRendererObj.getStringWidth(title);
+        float x = relativePosition.getDefaultX();
+        float y = relativePosition.getRelativeY();
         Render2DUtils.drawRoundedRect(x,y,x+scaledResolution.getScaledWidth()/5+6,y+scaledResolution.getScaledWidth()/14,color.getRGB(),color.getRGB());
 //        Render2DUtils.drawCustomImage((int)x,(int)y,scaledResolution.getScaledWidth()/5,scaledResolution.getScaledWidth()/14,background);
 

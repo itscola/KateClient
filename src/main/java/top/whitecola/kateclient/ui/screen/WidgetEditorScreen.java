@@ -32,29 +32,29 @@ public class WidgetEditorScreen extends GuiScreen {
     public void drawScreen(int mouseX, int mouseY, float partialTicks) {
 
 
-        for(AbstractWidget widget : widgets){
-
-            widget.drawWidget();
-            if(widget.isHovered(mouseX,mouseY) && Mouse.isButtonDown(0)){
-                if (widget.dragX == 0 && widget.dragY == 0) {
-                    widget.dragX = mouseX - widget.getX();
-                    widget.dragY = mouseY - widget.getY();
-                } else {
-                    widget.setX(mouseX - widget.dragX);
-                    widget.setY(mouseY - widget.dragY);
-                }
-                widget.draged = true;
-            }else if(widget.dragX != 0 || widget.dragY != 0){
-
-                widget.dragX = 0;
-                widget.dragY = 0;
-                if(widget.draged){
-                    widget.draged = false;
-                }
-            }
-
-
-        }
+//        for(AbstractWidget widget : widgets){
+//
+//            widget.drawWidget();
+//            if(widget.isHovered(mouseX,mouseY) && Mouse.isButtonDown(0)){
+//                if (widget.dragX == 0 && widget.dragY == 0) {
+//                    widget.dragX = mouseX - widget.getX();
+//                    widget.dragY = mouseY - widget.getY();
+//                } else {
+//                    widget.setX(mouseX - widget.dragX);
+//                    widget.setY(mouseY - widget.dragY);
+//                }
+//                widget.draged = true;
+//            }else if(widget.dragX != 0 || widget.dragY != 0){
+//
+//                widget.dragX = 0;
+//                widget.dragY = 0;
+//                if(widget.draged){
+//                    widget.draged = false;
+//                }
+//            }
+//
+//
+//        }
 
 
 

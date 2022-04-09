@@ -14,7 +14,7 @@ public class FPSWidget extends AbstractWidget {
 
 
     public FPSWidget(float x,float y,float width,float height){
-        super(x,y,width,height);
+        super(width,height);
         setColor(new Color(239, 239, 239));
         setBackgroundColor(new Color(255,255,255, 32));
     }
@@ -28,7 +28,7 @@ public class FPSWidget extends AbstractWidget {
 //        Render2DUtils.drawRect(getX(),getY(),getX()+textWidth+1,getY()+10,getBackgroundColor().getRGB());
         GlStateManager.pushMatrix();
         GlStateManager.scale(0.9F, 0.9F, 0.9F);
-        fontRenderer.drawStringWithShadow(text,getX()+1 ,getY()+1,getColor().getRGB());
+        fontRenderer.drawStringWithShadow(text,relativePosition.getRelativeX()+1 ,relativePosition.getRelativeY()+1,getColor().getRGB());
         GlStateManager.popMatrix();
         super.drawWidget();
     }
