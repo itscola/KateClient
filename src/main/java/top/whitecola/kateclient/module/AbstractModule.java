@@ -145,4 +145,12 @@ public class AbstractModule implements IModule{
     public Vector<ModuleOption> getOptions() {
         return options;
     }
+
+    public void setOptions(Vector<ModuleOption> options) {
+        this.options = options;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 }

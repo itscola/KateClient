@@ -4,6 +4,9 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import top.whitecola.kateclient.config.HiConfig;
+import top.whitecola.kateclient.config.struct.ModuleConfig;
 import top.whitecola.kateclient.event.EventManager;
 import top.whitecola.kateclient.event.events.EventToInvokeModules;
 import top.whitecola.kateclient.event.events.EventToInvokeNotification;
@@ -21,6 +24,8 @@ import top.whitecola.kateclient.ui.GameUI;
 import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
 import top.whitecola.kateclient.ui.widget.WidgetManager;
 
+import java.nio.charset.Charset;
+
 @Mod(modid = KateClient.MODID, version = KateClient.VERSION)
 public class KateClient {
     public static final String MODID = "KateClient";
@@ -30,6 +35,7 @@ public class KateClient {
     private ModuleManager moduleManager = new ModuleManager();
     private NotificationManager notificationManager = new NotificationManager();
     private WidgetManager widgetManager = new WidgetManager();
+    private HiConfig<ModuleConfig> moduleConfig = new HiConfig<ModuleConfig>("./KateClient/Modules.json",ModuleConfig.class, Charset.forName("utf8"));
 
     private static KateClient kateClient = null;
     {
@@ -42,6 +48,7 @@ public class KateClient {
         registerKeyBinds();
         registerEvents();
         addModules();
+        moduleConfig.config.loadConfigForModules();
     }
 
     public void registerEvents(){
@@ -99,5 +106,9 @@ public class KateClient {
 
     public WidgetManager getWidgetManager() {
         return widgetManager;
+    }
+
+    public HiConfig<ModuleConfig> getModuleConfig() {
+        return moduleConfig;
     }
 }

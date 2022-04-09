@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.config.struct;
 
+import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleOption;
 
@@ -8,16 +9,49 @@ import java.util.List;
 import java.util.Vector;
 
 public class ModuleConfig {
-    public ArrayList<ModuleConfigStruct> moduleConfigs = new ArrayList<ModuleConfigStruct>();
+    protected ArrayList<ModuleConfigStruct> moduleConfigs = new ArrayList<ModuleConfigStruct>();
 
-    public void loadConfig(List<AbstractModule> modules){
+    protected void modulesToConfig(List<AbstractModule> modules){
         for(AbstractModule module : modules){
             moduleConfigs.add(new ModuleConfigStruct(module.getModuleName(),module.isEnabled(),module.getOptions()));
         }
     }
 
+    public ModuleConfigStruct getModuleConfigByModule(AbstractModule module){
+        for(ModuleConfigStruct moduleConfigStruct : moduleConfigs){
+            if(moduleConfigStruct.moduleName.equalsIgnoreCase(module.getModuleName())){
+                return  moduleConfigStruct;
+            }
+        }
+        return null;
+    }
 
-    public ModuleConfigStruct getModuleConfigStructByModuleName(String moduleName){
+    public void modulesToConfig(){
+        modulesToConfig(KateClient.getKateClient().getModuleManager().getModules());
+    }
+
+    public void loadConfigForModules(){
+        loadConfigForModules(KateClient.getKateClient().getModuleManager().getModules());
+    }
+
+    protected void loadConfigForModules(List<AbstractModule> modules){
+        for(AbstractModule module : modules){
+            ModuleConfigStruct moduleConfigStruct = getModuleConfigByModule(module);
+
+            if(moduleConfigStruct==null)
+                continue;
+
+            module.setEnabled(moduleConfigStruct.isEnabled());
+            module.setOptions(moduleConfigStruct.moduleOptions);
+
+        }
+    }
+
+
+
+
+
+    protected ModuleConfigStruct getModuleConfigStructByModuleName(String moduleName){
         for(ModuleConfigStruct struct : moduleConfigs){
             if(struct.moduleName.equalsIgnoreCase(moduleName)){
                 return struct;

@@ -96,6 +96,7 @@ public class MainClickUIIngame extends GuiScreen {
     @Override
     public void initGui() {
         super.initGui();
+        KateClient.getKateClient().getModuleConfig().config.loadConfigForModules();
 
         yPosition = UICache.mainUIPosY;
         xPosition = UICache.mainUIPosX;
@@ -358,6 +359,8 @@ public class MainClickUIIngame extends GuiScreen {
     @Override
     public void onGuiClosed() {
         ClientUtils.sendAClientMessage("ClickGUI OFF","");
+        KateClient.getKateClient().getModuleConfig().config.modulesToConfig();
+        KateClient.getKateClient().getModuleConfig().saveConfig();
         closeGUI();
     }
 
