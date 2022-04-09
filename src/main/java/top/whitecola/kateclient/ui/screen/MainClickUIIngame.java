@@ -295,7 +295,7 @@ public class MainClickUIIngame extends GuiScreen {
             if(GUIUtils.isHovered(this.xPosition, this.yPosition, this.xPosition + this.width, this.yPosition +this.height,mouseX,mouseY)){
                 int dwheel = Mouse.getDWheel();
 
-                if(dwheel<0 && rollingValue>=entries.size()*-15){
+                if(dwheel<0 && rollingValue>=-(entries.size()-4)*(this.height/5 - 16)){
 
                     rollingValue -=15;
 

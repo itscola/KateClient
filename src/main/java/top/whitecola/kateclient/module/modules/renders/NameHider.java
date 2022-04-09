@@ -3,7 +3,11 @@ package top.whitecola.kateclient.module.modules.renders;
 import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleCategory;
 
-public class NameTag extends AbstractModule {
+public class NameHider extends AbstractModule {
+
+
+
+
     @Override
     public ModuleCategory getModuleType() {
         return ModuleCategory.RENDERS;
@@ -11,7 +15,7 @@ public class NameTag extends AbstractModule {
 
     @Override
     public String getModuleName() {
-        return "NameTag";
+        return "NameHider";
 
     }
 }

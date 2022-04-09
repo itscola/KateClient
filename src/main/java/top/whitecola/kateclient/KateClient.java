@@ -4,7 +4,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import top.whitecola.kateclient.config.HiConfig;
 import top.whitecola.kateclient.config.struct.ModuleConfig;
 import top.whitecola.kateclient.event.EventManager;
@@ -17,6 +16,7 @@ import top.whitecola.kateclient.module.ModuleManager;
 import top.whitecola.kateclient.module.modules.game.DetectCheating;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
+import top.whitecola.kateclient.module.modules.server.AutoGG;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
 import top.whitecola.kateclient.module.modules.visual.HitParticle;
@@ -71,9 +71,15 @@ public class KateClient {
         this.moduleManager.addModule(new LockTime());
 
 
+
+
+
         //not finish under
+
+        this.moduleManager.addModule(new AutoGG());
+        this.moduleManager.addModule(new NameHider());
+
         this.moduleManager.addModule(new DetectCheating());
-        this.moduleManager.addModule(new NameTag());
         this.moduleManager.addModule(new Weather());
         this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new CPSDisplay());
