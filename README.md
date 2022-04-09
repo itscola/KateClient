@@ -31,7 +31,5 @@ When KateClient development is finished, I will release KateClient and provide t
 - **You must disclose the source code of your modified work and the source code you took from this project. This means you are not allowed to use code from this project (even partially) in a closed-source (or even obfuscated) application.**
 - **Your modified application must also be licensed under the GPL** 
 
-Do the above and share your source code with everyone; just like we do.
-
 #### Prohibited for commercial use.
 Why the ui is apple style, because Im an apple fan.   But to be a student,I dont have a my own macbook at present.       
