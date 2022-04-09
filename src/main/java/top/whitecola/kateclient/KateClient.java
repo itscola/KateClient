@@ -14,6 +14,7 @@ import top.whitecola.kateclient.event.events.EventToInvokeWidgets;
 import top.whitecola.kateclient.event.events.MainMenuEvent;
 import top.whitecola.kateclient.keybinds.MainMenuInGameKeybind;
 import top.whitecola.kateclient.module.ModuleManager;
+import top.whitecola.kateclient.module.modules.game.DetectCheating;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
@@ -69,12 +70,15 @@ public class KateClient {
         this.moduleManager.addModule(new HitSounds());
         this.moduleManager.addModule(new LockTime());
 
-        this.moduleManager.addModule(new Weather()); // not finish
 
+        //not finish under
+        this.moduleManager.addModule(new DetectCheating());
+        this.moduleManager.addModule(new NameTag());
+        this.moduleManager.addModule(new Weather());
         this.moduleManager.addModule(new HitParticle());
-        this.moduleManager.addModule(new CPSDisplay()); // not finish
-        this.moduleManager.addModule(new ArmorDisplay()); // not finish
-        this.moduleManager.addModule(new AttackRangeDisplay()); // not finish
+        this.moduleManager.addModule(new CPSDisplay());
+        this.moduleManager.addModule(new ArmorDisplay());
+        this.moduleManager.addModule(new AttackRangeDisplay());
 
 
         moduleManager.getModuleByName("AutoSprint").enable();

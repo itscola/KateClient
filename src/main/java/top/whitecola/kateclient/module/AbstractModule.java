@@ -152,5 +152,10 @@ public class AbstractModule implements IModule{
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+        if(enabled){
+            onEnable();
+        }else{
+            onDisable();
+        }
     }
 }
