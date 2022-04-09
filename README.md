@@ -26,7 +26,7 @@ Actually the UI design progress takes more time.
 If you want to try it now, you can build a jar file using Gradlew and put the jar into the mods folder of Forge.   
 When KateClient development is finished, I will release KateClient and provide the download URL.    
 
-### The license is the GNU General Public License v3.0 and ,if you want to use the codes, please mark the author name (White_cola) in your projects .
+### The license is the GNU Affero General Public License v3.0 and ,if you want to use the codes, please mark the author name (White_cola) in your projects .
 
 - **You must disclose the source code of your modified work and the source code you took from this project. This means you are not allowed to use code from this project (even partially) in a closed-source (or even obfuscated) application.**
 - **Your modified application must also be licensed under the GPL** 
