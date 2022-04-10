@@ -1,10 +1,12 @@
 package top.whitecola.kateclient.module;
 
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.ui.widget.AbstractWidget;
 import top.whitecola.kateclient.utils.ClientUtils;
@@ -116,6 +118,21 @@ public class AbstractModule implements IModule{
 
     @Override
     public void onWordRender(RenderWorldEvent e) {
+
+    }
+
+    @Override
+    public void onLoginIn(FMLNetworkEvent.ClientConnectedToServerEvent e) {
+
+    }
+
+    @Override
+    public void onLoginOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent e) {
+
+    }
+
+    @Override
+    public void onChatReceive(ClientChatReceivedEvent e) {
 
     }
 

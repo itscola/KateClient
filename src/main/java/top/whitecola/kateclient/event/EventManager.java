@@ -1,13 +1,16 @@
 package top.whitecola.kateclient.event;
 
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 
 import java.util.Vector;
 
@@ -97,4 +100,26 @@ public class EventManager {
             eventAdapter.onWordRender(e);
         }
     }
+
+    @SubscribeEvent
+    public void onLoginIn(FMLNetworkEvent.ClientConnectedToServerEvent e){
+        for(EventAdapter eventAdapter : events){
+            eventAdapter.onLoginIn(e);
+        }
+    }
+
+    @SubscribeEvent
+    public void onLoginOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent e){
+        for(EventAdapter eventAdapter : events){
+            eventAdapter.onLoginOut(e);
+        }
+    }
+
+    @SubscribeEvent
+    public void onChatReceive(ClientChatReceivedEvent e){
+        for(EventAdapter eventAdapter : events){
+            eventAdapter.onChatReceive(e);
+        }
+    }
+
 }

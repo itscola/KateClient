@@ -17,6 +17,7 @@ import top.whitecola.kateclient.module.modules.game.DetectCheating;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
 import top.whitecola.kateclient.module.modules.server.AutoGG;
+import top.whitecola.kateclient.module.modules.server.AutoTip;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
 import top.whitecola.kateclient.module.modules.visual.HitParticle;
@@ -69,6 +70,7 @@ public class KateClient {
         this.moduleManager.addModule(new FPSDisplay());
         this.moduleManager.addModule(new HitSounds());
         this.moduleManager.addModule(new LockTime());
+        this.moduleManager.addModule(new AutoTip());
 
 
 

@@ -1,11 +1,13 @@
 package top.whitecola.kateclient.event.events;
 
 import net.minecraft.client.Minecraft;
+import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.event.EventAdapter;
 import top.whitecola.kateclient.module.AbstractModule;
@@ -104,5 +106,36 @@ public class EventToInvokeModules extends EventAdapter {
             module.onWordRender(e);
         }
         super.onWordRender(e);
+    }
+
+    @Override
+    public void onLoginIn(FMLNetworkEvent.ClientConnectedToServerEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onLoginIn(e);
+        }
+        super.onLoginIn(e);
+    }
+
+    @Override
+    public void onLoginOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onLoginOut(e);
+        }
+
+        super.onLoginOut(e);
+    }
+
+    @Override
+    public void onChatReceive(ClientChatReceivedEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onChatReceive(e);
+        }
+        super.onChatReceive(e);
     }
 }
