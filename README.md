@@ -33,3 +33,6 @@ When KateClient development is finished, I will release KateClient and provide t
 
 #### Prohibited for commercial use.
 Why the ui is apple style, because Im an apple fan.   But to be a student,I dont have a my own macbook at present.       
+
+## Some class was created before development. 
+This is no problem , I always create most of the classes during the programming design phase.
