@@ -23,7 +23,6 @@ And, you can install any **mod** you want if mods are compatible.
 Actually the UI design progress takes more time.
 
 ### The client is in the development stage.
-If you want to try it now, you can build a jar file using Gradlew and put the jar into the mods folder of Forge.   
 When KateClient development is finished, I will release KateClient and provide the download URL.    
 
 ### The license is the [GNU Affero General Public License v3.0](LICENSE) and ,if you want to use the codes, please mark the author name (White_cola) in your projects .
