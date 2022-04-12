@@ -7,13 +7,12 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import top.whitecola.kateclient.config.HiConfig;
 import top.whitecola.kateclient.config.struct.ModuleConfig;
 import top.whitecola.kateclient.event.EventManager;
-import top.whitecola.kateclient.event.events.EventToInvokeModules;
-import top.whitecola.kateclient.event.events.EventToInvokeNotification;
-import top.whitecola.kateclient.event.events.EventToInvokeWidgets;
-import top.whitecola.kateclient.event.events.MainMenuEvent;
+import top.whitecola.kateclient.event.events.*;
+import top.whitecola.kateclient.keybinds.HypixelGameSelectorKeybind;
 import top.whitecola.kateclient.keybinds.MainMenuInGameKeybind;
 import top.whitecola.kateclient.module.ModuleManager;
 import top.whitecola.kateclient.module.modules.game.DetectCheating;
+import top.whitecola.kateclient.module.modules.game.HypixelSelector;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
 import top.whitecola.kateclient.module.modules.server.AutoGG;
@@ -56,6 +55,8 @@ public class KateClient {
     public void registerEvents(){
         MinecraftForge.EVENT_BUS.register(EventManager.getEventManager());
         EventManager.getEventManager().addEvent(new MainMenuEvent());
+        EventManager.getEventManager().addEvent(new HypixelSelectorMenuEvent());
+
         EventManager.getEventManager().addEvent(new EventToInvokeModules());
         EventManager.getEventManager().addEvent(new EventToInvokeNotification());
         EventManager.getEventManager().addEvent(new EventToInvokeWidgets());
@@ -71,6 +72,7 @@ public class KateClient {
         this.moduleManager.addModule(new HitSounds());
         this.moduleManager.addModule(new LockTime());
         this.moduleManager.addModule(new AutoTip());
+        this.moduleManager.addModule(new HypixelSelector());
 
 
 
@@ -98,6 +100,8 @@ public class KateClient {
 
     public void registerKeyBinds(){
         ClientRegistry.registerKeyBinding(MainMenuInGameKeybind.getInstance());
+        ClientRegistry.registerKeyBinding(HypixelGameSelectorKeybind.getInstance());
+
     }
 
     public static KateClient getKateClient() {

@@ -25,7 +25,7 @@ public class IconButton extends AbstractButton{
     }
 
     public void initAnimation(){
-        animation.setMin(0).setMax(3).setFunction(new CubeInOutFunction()).setTotalTime(200);
+//        animation.setMin(0).setMax(3).setFunction(new CubeInOutFunction()).setTotalTime(200);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class IconButton extends AbstractButton{
         }
 
 
-        Render2DUtils.drawCustomImage(this.xPosition, this.yPosition + animatedHeight,width ,height ,resourceLocation);
+        Render2DUtils.drawCustomImage(this.xPosition, this.yPosition,width ,height ,resourceLocation);
 
 //        if(this.isHovered(mouseX,mouseY)){
 //            animatedY -= 0.2;
@@ -49,35 +49,35 @@ public class IconButton extends AbstractButton{
 //            }
 //        }
 
-        if(this.isHovered(mouseX,mouseY)){
-
-            if(animationTime==0){
-                animationTime = System.currentTimeMillis();
-            }
-
-//            animatedHeight--;
-//            if(animatedHeight < -3) {
-//                animatedHeight = -3;
+//        if(this.isHovered(mouseX,mouseY)){
+//
+//            if(animationTime==0){
+//                animationTime = System.currentTimeMillis();
 //            }
-
-            float animationValue = animation.update(System.currentTimeMillis() - animationTime);
-//            System.out.println(animationValue);
-//            System.out.println(System.currentTimeMillis() - animationTime);
-            animatedHeight -= animationValue;
-            if(animatedHeight < -4) {
-                animatedHeight = -4;
-            }
-//            presentTextColor = textColor2;
-        }else {
-            animationTime = 0;
-            animatedHeight++;
-            if(animatedHeight > 0) {
-                animatedHeight = 0;
-            }
-
-//            presentTextColor = textColor;
-
-        }
+//
+////            animatedHeight--;
+////            if(animatedHeight < -3) {
+////                animatedHeight = -3;
+////            }
+//
+//            float animationValue = animation.update(System.currentTimeMillis() - animationTime);
+////            System.out.println(animationValue);
+////            System.out.println(System.currentTimeMillis() - animationTime);
+//            animatedHeight -= animationValue;
+//            if(animatedHeight < -4) {
+//                animatedHeight = -4;
+//            }
+////            presentTextColor = textColor2;
+//        }else {
+//            animationTime = 0;
+//            animatedHeight++;
+//            if(animatedHeight > 0) {
+//                animatedHeight = 0;
+//            }
+//
+////            presentTextColor = textColor;
+//
+//        }
 
 
     }

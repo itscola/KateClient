@@ -79,7 +79,7 @@ public class AutoTip extends AbstractModule {
     }
 
     public boolean needTip(){
-        if(System.currentTimeMillis()-getLastTip()>=180000 || getLastTip()==0){
+        if(System.currentTimeMillis()-getLastTip()>=300000 || getLastTip()==0){
             return true;
         }
 
