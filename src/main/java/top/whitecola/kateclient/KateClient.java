@@ -50,6 +50,7 @@ public class KateClient {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
+
         registerKeyBinds();
         registerEvents();
         addModules();
@@ -64,7 +65,7 @@ public class KateClient {
         EventManager.getEventManager().addEvent(new EventToInvokeModules());
         EventManager.getEventManager().addEvent(new EventToInvokeNotification());
         EventManager.getEventManager().addEvent(new EventToInvokeWidgets());
-
+        EventManager.getEventManager().addEvent(new EventToInvokeHypixelFeatures());
 
     }
 

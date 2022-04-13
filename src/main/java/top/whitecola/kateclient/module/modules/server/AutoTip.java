@@ -5,6 +5,7 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import top.whitecola.kateclient.module.AbstractModule;
 import top.whitecola.kateclient.module.ModuleCategory;
 import top.whitecola.kateclient.utils.ClientUtils;
+import static top.whitecola.kateclient.utils.ServerInfoUtils.*;
 
 import static top.whitecola.kateclient.utils.MCWrapper.*;
 
@@ -86,14 +87,5 @@ public class AutoTip extends AbstractModule {
         return false;
     }
 
-    public boolean checkHypixel(){
-        if(mc.getCurrentServerData()==null || mc.getCurrentServerData().serverIP==null){
-            return false;
-        }
-        if(mc.getCurrentServerData().serverIP.contains("hypixel")){
-            return true;
-        }
 
-        return false;
-    }
 }

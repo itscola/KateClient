@@ -10,7 +10,7 @@ public class MojangAPIWrapper {
     public final static String api = "https://api.mojang.com/";
 
     public static String getUUIDByPlayerName(String playerName) throws IOException {
-        String address = "https://api.mojang.com/users/profiles/minecraft/"+playerName;
+        String address = api+"users/profiles/minecraft/"+playerName;
         String content = UrlUtil.readURL(address);
         UUIDJson uuidJson = gson.fromJson(content, UUIDJson.class);
         String beforeUUID = uuidJson.id;
@@ -22,4 +22,6 @@ public class MojangAPIWrapper {
         public String id;
         public String name;
     }
+
+
 }
