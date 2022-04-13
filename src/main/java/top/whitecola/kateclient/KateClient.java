@@ -5,6 +5,7 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import top.whitecola.kateclient.config.HiConfig;
+import top.whitecola.kateclient.config.struct.HypixelConfig;
 import top.whitecola.kateclient.config.struct.ModuleConfig;
 import top.whitecola.kateclient.event.EventManager;
 import top.whitecola.kateclient.event.events.*;
@@ -21,6 +22,7 @@ import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
 import top.whitecola.kateclient.module.modules.visual.HitParticle;
 import top.whitecola.kateclient.module.modules.visual.Weather;
+import top.whitecola.kateclient.services.apis.HypixelAPIWrapper;
 import top.whitecola.kateclient.ui.GameUI;
 import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
 import top.whitecola.kateclient.ui.widget.WidgetManager;
@@ -37,6 +39,8 @@ public class KateClient {
     private NotificationManager notificationManager = new NotificationManager();
     private WidgetManager widgetManager = new WidgetManager();
     private HiConfig<ModuleConfig> moduleConfig = new HiConfig<ModuleConfig>("./KateClient/Modules.json",ModuleConfig.class, Charset.forName("utf8"));
+    private HiConfig<HypixelConfig> hypixelConfig = new HiConfig<HypixelConfig>("./KateClient/HypixelConfig.json",HypixelConfig.class, Charset.forName("utf8"));
+    public  HypixelAPIWrapper hypixelAPIWrapper = new HypixelAPIWrapper();
 
     private static KateClient kateClient = null;
     {
@@ -126,5 +130,9 @@ public class KateClient {
 
     public HiConfig<ModuleConfig> getModuleConfig() {
         return moduleConfig;
+    }
+
+    public HiConfig<HypixelConfig> getHypixelConfig() {
+        return hypixelConfig;
     }
 }
