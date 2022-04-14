@@ -1,7 +1,10 @@
 package top.whitecola.kateclient.services.apis;
 
+import com.google.gson.Gson;
 import net.minecraft.util.ChatComponentText;
 import top.whitecola.kateclient.KateClient;
+import top.whitecola.kateclient.services.apis.structs.hypixelapi.HypixelPlayer;
+import top.whitecola.kateclient.services.apis.structs.hypixelapi.LevelUtils;
 import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.UrlUtil;
 
@@ -12,17 +15,31 @@ import static top.whitecola.kateclient.utils.MCWrapper.visual;
 
 public class HypixelAPIWrapper {
     public static final String api = "https://api.hypixel.net/";
+    public static Gson gson = new Gson();
 
     public HypixelAPIWrapper(){
 
     }
 
-    public void getPlayerHypixelLevelByName(String name) throws IOException {
-        getPlayerHypixelLevelByUUID(MojangAPIWrapper.getUUIDByPlayerName(name));
+
+    public static int getHypixelPlayerLevelByName(String playerName) throws IOException {
+
+        return (int) LevelUtils.getLevel(getHypixelPlayerName(playerName).getPlayer().getNetworkExp());
     }
 
-    public String getPlayerHypixelLevelByUUID(String uuid) throws IOException {
-            return "";
+    public static HypixelPlayer getHypixelPlayerName(String name) throws IOException {
+        return getHypixelPlayerByUUID(MojangAPIWrapper.getUUIDByPlayerName(name));
+    }
+
+    public static HypixelPlayer getHypixelPlayerByUUID(String uuid) throws IOException {
+
+        if(KateClient.getKateClient().getHypixelConfig().config.key==null&&KateClient.getKateClient().getHypixelConfig().config.key.equals("")){
+            return null;
+        }
+
+        String content = UrlUtil.readURL(api+"player?key="+KateClient.getKateClient().getHypixelConfig().config.key+"&uuid="+uuid);
+        HypixelPlayer hypixelPlayer = gson.fromJson(content,HypixelPlayer.class);
+        return hypixelPlayer;
     }
 
     public boolean sendGettingKeyRequest(){

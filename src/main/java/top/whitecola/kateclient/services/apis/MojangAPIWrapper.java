@@ -14,8 +14,7 @@ public class MojangAPIWrapper {
         String content = UrlUtil.readURL(address);
         UUIDJson uuidJson = gson.fromJson(content, UUIDJson.class);
         String beforeUUID = uuidJson.id;
-        String uuid = beforeUUID.substring(0, 8) +"-"+ beforeUUID.substring(9, 13)+"-"+ beforeUUID.substring(14, 18) +"-"+ beforeUUID.substring(19, 23) +"-"+ beforeUUID.substring(24);
-        return uuid;
+        return beforeUUID;
     }
 
     public class UUIDJson {
