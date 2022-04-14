@@ -37,18 +37,14 @@ public class LevelTab extends AbstractModule {
             this.disable();
         }
 
-        KateClient.getKateClient().hypixelAPIWrapper.clearPlayerLevels();
-        KateClient.getKateClient().hypixelAPIWrapper.neededPlayer.clear();
-        KateClient.getKateClient().hypixelAPIWrapper.getThread().cleanTask();
+        KateClient.getKateClient().hypixelAPIWrapper.getPlayerLevelCache().clear();
         super.onEntityJoinWorld(e);
     }
 
 
     @Override
     public void onLoginOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent e) {
-        KateClient.getKateClient().hypixelAPIWrapper.clearPlayerLevels();
-        KateClient.getKateClient().hypixelAPIWrapper.neededPlayer.clear();
-        KateClient.getKateClient().hypixelAPIWrapper.getThread().cleanTask();
+        KateClient.getKateClient().hypixelAPIWrapper.getPlayerLevelCache().clear();
         super.onLoginOut(e);
     }
 

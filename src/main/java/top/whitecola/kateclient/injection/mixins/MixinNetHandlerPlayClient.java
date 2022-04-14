@@ -1,9 +1,15 @@
 package top.whitecola.kateclient.injection.mixins;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.client.network.NetworkPlayerInfo;
+import net.minecraft.entity.DataWatcher;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketThreadUtil;
+import net.minecraft.network.play.server.S0CPacketSpawnPlayer;
 import net.minecraft.network.play.server.S3EPacketTeams;
 import net.minecraft.network.play.server.S47PacketPlayerListHeaderFooter;
 import net.minecraft.scoreboard.ScorePlayerTeam;
@@ -16,9 +22,11 @@ import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.UUID;
 
 @Mixin(NetHandlerPlayClient.class)
-public class MixinNetHandlerPlayClient {
+public abstract class MixinNetHandlerPlayClient {
     @Shadow private Minecraft gameController;
 
 
@@ -38,6 +46,9 @@ public class MixinNetHandlerPlayClient {
 //            this.gameController.ingameGUI.getTabList().setFooter(p_handlePlayerListHeaderFooter_1_.getFooter());
 //        }
 //    }
+
+
+    @Shadow public abstract NetworkPlayerInfo getPlayerInfo(UUID p_getPlayerInfo_1_);
 
     /**
      * @author White_cola
@@ -104,7 +115,43 @@ public class MixinNetHandlerPlayClient {
 
     }
 
+    /**
+     * @author White_cola
+     * @reason fix the NPE bug.
+     */
+    @Overwrite
+    public void handleSpawnPlayer(S0CPacketSpawnPlayer p_handleSpawnPlayer_1_) {
+        if(p_handleSpawnPlayer_1_==null){
+            return;
+        }
 
+        PacketThreadUtil.checkThreadAndEnqueue(p_handleSpawnPlayer_1_, Minecraft.getMinecraft().getNetHandler(), this.gameController);
+        double d0 = (double)p_handleSpawnPlayer_1_.getX() / 32.0D;
+        double d1 = (double)p_handleSpawnPlayer_1_.getY() / 32.0D;
+        double d2 = (double)p_handleSpawnPlayer_1_.getZ() / 32.0D;
+        float f = (float)(p_handleSpawnPlayer_1_.getYaw() * 360) / 256.0F;
+        float f1 = (float)(p_handleSpawnPlayer_1_.getPitch() * 360) / 256.0F;
+        EntityOtherPlayerMP entityotherplayermp = new EntityOtherPlayerMP(this.gameController.theWorld, this.getPlayerInfo(p_handleSpawnPlayer_1_.getPlayer()).getGameProfile());
+        if(entityotherplayermp==null){
+            return;
+        }
+        entityotherplayermp.prevPosX = entityotherplayermp.lastTickPosX = (double)(entityotherplayermp.serverPosX = p_handleSpawnPlayer_1_.getX());
+        entityotherplayermp.prevPosY = entityotherplayermp.lastTickPosY = (double)(entityotherplayermp.serverPosY = p_handleSpawnPlayer_1_.getY());
+        entityotherplayermp.prevPosZ = entityotherplayermp.lastTickPosZ = (double)(entityotherplayermp.serverPosZ = p_handleSpawnPlayer_1_.getZ());
+        int i = p_handleSpawnPlayer_1_.getCurrentItemID();
+        if (i == 0) {
+            entityotherplayermp.inventory.mainInventory[entityotherplayermp.inventory.currentItem] = null;
+        } else {
+            entityotherplayermp.inventory.mainInventory[entityotherplayermp.inventory.currentItem] = new ItemStack(Item.getItemById(i), 1, 0);
+        }
+
+        entityotherplayermp.setPositionAndRotation(d0, d1, d2, f, f1);
+        this.clientWorldController.addEntityToWorld(p_handleSpawnPlayer_1_.getEntityID(), entityotherplayermp);
+        List<DataWatcher.WatchableObject> list = p_handleSpawnPlayer_1_.func_148944_c();
+        if (list != null) {
+            entityotherplayermp.getDataWatcher().updateWatchedObjectsFromList(list);
+        }
+    }
 
 
 }

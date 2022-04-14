@@ -2,7 +2,6 @@ package top.whitecola.kateclient.services.apis;
 
 import com.google.gson.Gson;
 import net.minecraft.client.network.NetworkPlayerInfo;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentText;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.services.apis.structs.hypixelapi.HypixelPlayer;
@@ -11,9 +10,11 @@ import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.HiThread;
 import top.whitecola.kateclient.utils.UrlUtil;
 
-import java.io.IOException;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static top.whitecola.kateclient.utils.MCWrapper.mc;
 import static top.whitecola.kateclient.utils.MCWrapper.visual;
@@ -21,106 +22,73 @@ import static top.whitecola.kateclient.utils.MCWrapper.visual;
 public class HypixelAPIWrapper {
     public static final String api = "https://api.hypixel.net/";
     public static Gson gson = new Gson();
-    private ConcurrentHashMap<String,Integer> playerLevels = new ConcurrentHashMap<String,Integer>();
-    private HiThread thread = new HiThread("HypixelAPIWrapper",800);
-    public Vector<String> neededPlayer = new Vector<String>();
+    private ConcurrentHashMap<String,Integer> playerLevelCache = new ConcurrentHashMap<String,Integer>();
+
+    private ExecutorService executorService = Executors.newFixedThreadPool(5);
+
 
     public HypixelAPIWrapper(){
-        thread.start();
     }
 
 
-    @Deprecated
-    public String needPlayer(String name){
-
-        if(neededPlayer.contains(name)){
-            if(playerLevels.containsKey(name)){
-                return playerLevels.get(name)+"";
-            }
-            addLevelForPlayer(name);
-            return "";
-        }
-
-        neededPlayer.add(name);
-        return "";
-    }
-
-    public String needPlayer(NetworkPlayerInfo networkPlayerInfo){
-        String name = networkPlayerInfo.getGameProfile().getName();
 
 
-        if(neededPlayer.contains(name)){
-            if(playerLevels.containsKey(name)){
-                return playerLevels.get(name)+"";
-            }
+    public String needPlayerLevel(NetworkPlayerInfo networkPlayerInfo){
+        final String name = networkPlayerInfo.getGameProfile().getName();
+        if(playerLevelCache.get(name)==null){
             addLevelForPlayer(networkPlayerInfo);
             return "";
         }
 
-        neededPlayer.add(name);
-        return "";
+        if(playerLevelCache.get(name)==-1){
+            return "";
+        }
+
+        return playerLevelCache.get(name)+"";
     }
 
-    @Deprecated
-    private void addLevelForPlayer(final String name){
-        thread.addTask(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    int level = getHypixelPlayerLevelByName(name);
-                    playerLevels.put(name,level);
-                } catch (IOException e) {
 
-                }
-            }
-        });
-    }
 
 
     private void addLevelForPlayer(final NetworkPlayerInfo networkPlayerInfo){
-        thread.addTask(new Runnable() {
+        final String name = networkPlayerInfo.getGameProfile().getName();
+        playerLevelCache.put(name,-1);
+        executorService.submit(new Runnable() {
             @Override
             public void run() {
                 try {
-                    playerLevels.put(networkPlayerInfo.getGameProfile().getName(),getHypixelPlayerLevelByUUID(networkPlayerInfo.getGameProfile().getId().toString().replace("-","")));
-                } catch (IOException e) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException interruptedException) {}
-                    addLevelForPlayer(networkPlayerInfo);
-                }
+                    playerLevelCache.put(name,getHypixelPlayerLevelByUUID(networkPlayerInfo.getGameProfile().getId().toString().replace("-","")));
+                } catch (Throwable e) { }
             }
         });
     }
 
-    public void clearPlayerLevels(){
-        playerLevels.clear();
-    }
 
 
 
 
-    public int getHypixelPlayerLevelByName(String playerName) throws IOException {
+
+    public int getHypixelPlayerLevelByName(String playerName) throws Throwable {
         HypixelPlayer hypixelPlayer = getHypixelPlayerName(playerName);
         if(hypixelPlayer==null){
-            return -1;
+            return 0;
         }
         return (int) LevelUtils.getLevel(hypixelPlayer.getPlayer().getNetworkExp());
     }
 
-    public int getHypixelPlayerLevelByUUID(String uuid) throws IOException {
+    public int getHypixelPlayerLevelByUUID(String uuid) throws Throwable {
         HypixelPlayer hypixelPlayer = getHypixelPlayerByUUID(uuid);
         if(hypixelPlayer==null){
-            return -1;
+            return 0;
         }
         return (int) LevelUtils.getLevel(hypixelPlayer.getPlayer().getNetworkExp());
     }
 
-    public HypixelPlayer getHypixelPlayerName(String name) throws IOException {
+    public HypixelPlayer getHypixelPlayerName(String name) throws Throwable {
         return getHypixelPlayerByUUID(MojangAPIWrapper.getUUIDByPlayerName(name));
     }
 
-    public HypixelPlayer getHypixelPlayerByUUID(String uuid) throws IOException {
+    public HypixelPlayer getHypixelPlayerByUUID(String uuid) throws Throwable {
 
         if(KateClient.getKateClient().getHypixelConfig().config.key==null&&KateClient.getKateClient().getHypixelConfig().config.key.equals("")){
             return null;
@@ -129,6 +97,9 @@ public class HypixelAPIWrapper {
         String url = api+"player?key="+KateClient.getKateClient().getHypixelConfig().config.key+"&uuid="+uuid;
 
         String content = UrlUtil.readURL(url);
+        if(content==null){
+            return null;
+        }
         HypixelPlayer hypixelPlayer = gson.fromJson(content,HypixelPlayer.class);
         return hypixelPlayer;
     }
@@ -144,11 +115,12 @@ public class HypixelAPIWrapper {
     }
 
 
-    public ConcurrentHashMap<String, Integer> getPlayerLevels() {
-        return playerLevels;
+    public ConcurrentHashMap<String, Integer> getPlayerLevelCache() {
+        return playerLevelCache;
     }
 
-    public HiThread getThread() {
-        return thread;
+
+    public ExecutorService getExecutorService() {
+        return executorService;
     }
 }

@@ -170,12 +170,12 @@ public abstract class MixinGuiPlayerTabOverlay extends Gui{
                 boolean canDisplayPing = !(ping==0||ping==1||ping==-1);
                 String display = playerName;
 
-//                if(!canDisplayPing) {
-//                    if (KateClient.getKateClient().getModuleManager().getModuleByName("LevelTab").isEnabled() && KateClient.getKateClient().getHypixelConfig().config.key != null && !KateClient.getKateClient().getHypixelConfig().config.key.equals("")) {
-//                        level = KateClient.getKateClient().hypixelAPIWrapper.needPlayer(lvt_24_1_);
-//                        display += EnumChatFormatting.GOLD+" ["+level+"]";
-//                    }
-//                }
+                if(!canDisplayPing) {
+                    if (KateClient.getKateClient().getModuleManager().getModuleByName("LevelTab").isEnabled() && KateClient.getKateClient().getHypixelConfig().config.key != null && !KateClient.getKateClient().getHypixelConfig().config.key.equals("")) {
+                        level = KateClient.getKateClient().hypixelAPIWrapper.needPlayerLevel(lvt_24_1_);
+                        display += EnumChatFormatting.GOLD+" ["+level+"]";
+                    }
+                }
                 if(KateClient.getKateClient().getModuleManager().getModuleByClass(PingDisplay.class).isEnabled() && canDisplayPing){
                     lvt_25_1_ = display +(EnumChatFormatting.LIGHT_PURPLE +" ["+lvt_24_1_.getResponseTime()+"ms]");
                 }else {
