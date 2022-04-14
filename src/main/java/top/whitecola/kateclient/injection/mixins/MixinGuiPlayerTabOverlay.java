@@ -162,13 +162,27 @@ public abstract class MixinGuiPlayerTabOverlay extends Gui{
                 NetworkPlayerInfo lvt_24_1_ = (NetworkPlayerInfo)lvt_5_1_.get(lvt_19_4_);
                 String lvt_25_1_;
 
+
                 String playerName = this.getPlayerName(lvt_24_1_);
-                if(KateClient.getKateClient().getModuleManager().getModuleByClass(PingDisplay.class).isEnabled()){
-                    int ping = lvt_24_1_.getResponseTime();
-                    lvt_25_1_ = playerName + (ping==1?"":(EnumChatFormatting.LIGHT_PURPLE +" ["+lvt_24_1_.getResponseTime()+"ms]"));
+                String level = "";
+
+                int ping = lvt_24_1_.getResponseTime();
+                boolean canDisplayPing = !(ping==0||ping==1||ping==-1);
+                String display = playerName;
+
+//                if(!canDisplayPing) {
+//                    if (KateClient.getKateClient().getModuleManager().getModuleByName("LevelTab").isEnabled() && KateClient.getKateClient().getHypixelConfig().config.key != null && !KateClient.getKateClient().getHypixelConfig().config.key.equals("")) {
+//                        level = KateClient.getKateClient().hypixelAPIWrapper.needPlayer(lvt_24_1_);
+//                        display += EnumChatFormatting.GOLD+" ["+level+"]";
+//                    }
+//                }
+                if(KateClient.getKateClient().getModuleManager().getModuleByClass(PingDisplay.class).isEnabled() && canDisplayPing){
+                    lvt_25_1_ = display +(EnumChatFormatting.LIGHT_PURPLE +" ["+lvt_24_1_.getResponseTime()+"ms]");
                 }else {
-                    lvt_25_1_ = playerName;
+                    lvt_25_1_ = display;
                 }
+
+
 
                 GameProfile lvt_26_1_ = lvt_24_1_.getGameProfile();
                 if (lvt_11_1_) {

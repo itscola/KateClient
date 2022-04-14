@@ -4,6 +4,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -18,6 +19,8 @@ public class AbstractModule implements IModule{
     Vector<ModuleOption> options = new Vector<ModuleOption>();
     protected boolean enabled;
     protected AbstractWidget widget;
+
+
 
     @Override
     public void onTick() {
@@ -36,6 +39,11 @@ public class AbstractModule implements IModule{
 
     @Override
     public void onRenderOverLay(RenderGameOverlayEvent event) {
+
+    }
+
+    @Override
+    public void onEntityJoinWorld(EntityJoinWorldEvent e) {
 
     }
 

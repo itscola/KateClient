@@ -1,7 +1,9 @@
 package top.whitecola.kateclient.event.events;
 
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.event.EventAdapter;
@@ -29,6 +31,8 @@ public class EventToInvokeHypixelFeatures extends EventAdapter {
         isHypixel = false;
         super.onLoginOut(e);
     }
+
+
 
     @Override
     public void onChatReceive(ClientChatReceivedEvent e) {

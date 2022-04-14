@@ -4,6 +4,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -15,7 +16,7 @@ public interface IModule {
 
     void onRender(TickEvent.RenderTickEvent e);
     void onRenderOverLay(RenderGameOverlayEvent event);
-
+    void onEntityJoinWorld(EntityJoinWorldEvent e);
     void onEnable();
     void onDisable();
 

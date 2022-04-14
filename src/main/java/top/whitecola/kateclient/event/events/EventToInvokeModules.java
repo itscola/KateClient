@@ -5,6 +5,7 @@ import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -137,5 +138,15 @@ public class EventToInvokeModules extends EventAdapter {
             module.onChatReceive(e);
         }
         super.onChatReceive(e);
+    }
+
+    @Override
+    public void onEntityJoinWorld(EntityJoinWorldEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onEntityJoinWorld(e);
+        }
+        super.onEntityJoinWorld(e);
     }
 }

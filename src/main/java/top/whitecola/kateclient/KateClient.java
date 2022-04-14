@@ -18,6 +18,7 @@ import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
 import top.whitecola.kateclient.module.modules.server.AutoGG;
 import top.whitecola.kateclient.module.modules.server.AutoTip;
+import top.whitecola.kateclient.module.modules.server.LevelTab;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
 import top.whitecola.kateclient.module.modules.visual.HitParticle;
@@ -57,6 +58,7 @@ public class KateClient {
         moduleConfig.config.loadConfigForModules();
     }
 
+
     public void registerEvents(){
         MinecraftForge.EVENT_BUS.register(EventManager.getEventManager());
         EventManager.getEventManager().addEvent(new MainMenuEvent());
@@ -78,6 +80,7 @@ public class KateClient {
         this.moduleManager.addModule(new LockTime());
         this.moduleManager.addModule(new AutoTip());
         this.moduleManager.addModule(new HypixelSelector());
+        this.moduleManager.addModule(new LevelTab());
 
 
 
@@ -87,8 +90,6 @@ public class KateClient {
 
         this.moduleManager.addModule(new AutoGG());
         this.moduleManager.addModule(new NameHider());
-
-        this.moduleManager.addModule(new DetectCheating());
         this.moduleManager.addModule(new Weather());
         this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new CPSDisplay());

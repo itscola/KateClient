@@ -12,6 +12,7 @@ public class UrlUtil {
         URL url = new URL(Iurl);
 
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setConnectTimeout(3000);
         con.setDoOutput(true);
         con.setUseCaches(false);
         con.setRequestMethod("GET");
