@@ -38,4 +38,4 @@ This is no problem , I always create most of the classes during the programming 
 
 # The official KateClient repository: 
 The official repository is https://github.com/itscola/KateClient .     
-If you found KateClient from another link, well ,The link is not official.     
+If you found KateClient from another link, well ,the link you found is not official.
