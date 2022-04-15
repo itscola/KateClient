@@ -18,6 +18,7 @@ import top.whitecola.kateclient.module.modules.movment.AutoSprint;
 import top.whitecola.kateclient.module.modules.renders.*;
 import top.whitecola.kateclient.module.modules.server.AutoGG;
 import top.whitecola.kateclient.module.modules.server.AutoTip;
+import top.whitecola.kateclient.module.modules.server.LevelHead;
 import top.whitecola.kateclient.module.modules.server.LevelTab;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
@@ -81,16 +82,13 @@ public class KateClient {
         this.moduleManager.addModule(new AutoTip());
         this.moduleManager.addModule(new HypixelSelector());
         this.moduleManager.addModule(new LevelTab());
-
-
-
+        this.moduleManager.addModule(new LevelHead());
 
 
         //not finish under
 
         this.moduleManager.addModule(new AutoGG());
         this.moduleManager.addModule(new NameHider());
-        this.moduleManager.addModule(new Weather());
         this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new CPSDisplay());
         this.moduleManager.addModule(new ArmorDisplay());

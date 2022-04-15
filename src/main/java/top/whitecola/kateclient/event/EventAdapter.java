@@ -1,5 +1,6 @@
 package top.whitecola.kateclient.event;
 
+import net.minecraft.client.renderer.entity.RenderItem;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
@@ -83,6 +84,7 @@ public abstract class EventAdapter {
     public void onEntityJoinWorld(EntityJoinWorldEvent e){
 
     }
+
 
 
 }

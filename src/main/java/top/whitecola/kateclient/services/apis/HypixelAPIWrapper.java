@@ -10,6 +10,7 @@ import top.whitecola.kateclient.utils.ClientUtils;
 import top.whitecola.kateclient.utils.HiThread;
 import top.whitecola.kateclient.utils.UrlUtil;
 
+import java.util.UUID;
 import java.util.Vector;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executor;
@@ -47,6 +48,30 @@ public class HypixelAPIWrapper {
         return playerLevelCache.get(name)+"";
     }
 
+    public String needPlayerLevel(String name, UUID uuid){
+        if(playerLevelCache.get(name)==null){
+            addLevelForPlayer(name,uuid.toString().replace("-",""));
+            return "";
+        }
+
+        if(playerLevelCache.get(name)==-1){
+            return "";
+        }
+
+        return playerLevelCache.get(name)+"";
+    }
+
+    public String needPlayerLevelFromCache(String name){
+        if(playerLevelCache.get(name)==null){
+            return "";
+        }
+
+        if(playerLevelCache.get(name)==-1){
+            return "";
+        }
+
+        return playerLevelCache.get(name)+"";
+    }
 
 
 
@@ -58,6 +83,18 @@ public class HypixelAPIWrapper {
             public void run() {
                 try {
                     playerLevelCache.put(name,getHypixelPlayerLevelByUUID(networkPlayerInfo.getGameProfile().getId().toString().replace("-","")));
+                } catch (Throwable e) { }
+            }
+        });
+    }
+
+    private void addLevelForPlayer(final String name, final String uuid){
+        playerLevelCache.put(name,-1);
+        executorService.submit(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    playerLevelCache.put(name,getHypixelPlayerLevelByUUID(uuid));
                 } catch (Throwable e) { }
             }
         });

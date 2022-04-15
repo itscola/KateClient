@@ -13,13 +13,12 @@ import static top.whitecola.kateclient.utils.MCWrapper.*;
 public class LevelTab extends AbstractModule {
 
     @Override
-    public void onEnable() {
-
-
-        super.onEnable();
+    public void onDisable() {
+        if(KateClient.getKateClient().getModuleManager().getModuleByName("LevelHead").isEnabled()){
+            KateClient.getKateClient().getModuleManager().getModuleByName("LevelHead").disable();
+        }
+        super.onDisable();
     }
-
-
 
     @Override
     public void onEntityJoinWorld(EntityJoinWorldEvent e) {
