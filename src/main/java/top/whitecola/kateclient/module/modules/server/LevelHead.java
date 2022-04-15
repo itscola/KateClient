@@ -23,6 +23,19 @@ public class LevelHead extends AbstractModule {
     }
 
     @Override
+    public void onEntityJoinWorld(EntityJoinWorldEvent e) {
+        if(!(e.entity instanceof EntityPlayerSP)){
+            return;
+        }
+
+        if(!ServerInfoUtils.checkHypixel()){
+            mc.thePlayer.addChatComponentMessage(new ChatComponentText("[KateClient] the LevelHead module only for Hypixel server."));
+            this.disable();
+        }
+        super.onEntityJoinWorld(e);
+    }
+
+    @Override
     public ModuleCategory getModuleType() {
         return ModuleCategory.SERVER;
     }
