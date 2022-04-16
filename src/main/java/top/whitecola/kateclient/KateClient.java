@@ -23,6 +23,7 @@ import top.whitecola.kateclient.module.modules.server.LevelTab;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
 import top.whitecola.kateclient.module.modules.visual.FullBright;
 import top.whitecola.kateclient.module.modules.visual.HitParticle;
+import top.whitecola.kateclient.module.modules.visual.ItemPhysic;
 import top.whitecola.kateclient.module.modules.visual.Weather;
 import top.whitecola.kateclient.services.apis.HypixelAPIWrapper;
 import top.whitecola.kateclient.ui.GameUI;
@@ -83,7 +84,7 @@ public class KateClient {
         this.moduleManager.addModule(new HypixelSelector());
         this.moduleManager.addModule(new LevelTab());
         this.moduleManager.addModule(new LevelHead());
-
+        this.moduleManager.addModule(new ItemPhysic());
 
         //not finish under
 
@@ -92,7 +93,6 @@ public class KateClient {
         this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new CPSDisplay());
         this.moduleManager.addModule(new ArmorDisplay());
-        this.moduleManager.addModule(new AttackRangeDisplay());
 
 
         moduleManager.getModuleByName("AutoSprint").enable();

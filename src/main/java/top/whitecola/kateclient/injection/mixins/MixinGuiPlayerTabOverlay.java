@@ -173,7 +173,7 @@ public abstract class MixinGuiPlayerTabOverlay extends Gui{
                 if(!canDisplayPing) {
                     if (KateClient.getKateClient().getModuleManager().getModuleByName("LevelTab").isEnabled() && KateClient.getKateClient().getHypixelConfig().config.key != null && !KateClient.getKateClient().getHypixelConfig().config.key.equals("")) {
                         level = KateClient.getKateClient().hypixelAPIWrapper.needPlayerLevel(lvt_24_1_);
-                        display += EnumChatFormatting.DARK_BLUE+" ["+level+"]";
+                        display += EnumChatFormatting.BLUE+" ["+level+"]";
                     }
                 }
                 if(KateClient.getKateClient().getModuleManager().getModuleByClass(PingDisplay.class).isEnabled() && canDisplayPing){

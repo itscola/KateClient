@@ -18,7 +18,8 @@
     "MixinRegionRenderCache",
     "MixinBlockModelRenderer",
     "MixinRender",
-    "MixinRenderPlayer"
+    "MixinRenderPlayer",
+    "MixinRenderEntityItem"
 
   ]
 }

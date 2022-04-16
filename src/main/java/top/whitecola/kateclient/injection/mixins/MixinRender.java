@@ -60,10 +60,13 @@ public abstract class MixinRender<T extends Entity> {
 
             if (p_renderLivingLabel_1_ instanceof EntityPlayer) {
                 EntityPlayer entityPlayer = (EntityPlayer) p_renderLivingLabel_1_;
+                String name = entityPlayer.getGameProfile().getName();
+                
+
                 if (ServerInfoUtils.checkHypixel() && KateClient.getKateClient().getModuleManager().getModuleByName("LevelHead").isEnabled() && KateClient.getKateClient().getModuleManager().getModuleByName("LevelTab").isEnabled()) {
-                    String level = KateClient.getKateClient().hypixelAPIWrapper.needPlayerLevelFromCache(entityPlayer.getGameProfile().getName());
+                    String level = KateClient.getKateClient().hypixelAPIWrapper.needPlayerLevelFromCache(name);
                     if (level != null && !level.equals("")) {
-                        p_renderLivingLabel_2_ += EnumChatFormatting.DARK_BLUE +" [" + level + "]";
+                        p_renderLivingLabel_2_ += EnumChatFormatting.BLUE +" [" + level + "]";
 
 
                     }
