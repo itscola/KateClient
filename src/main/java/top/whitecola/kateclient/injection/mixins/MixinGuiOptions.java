@@ -1,10 +1,6 @@
 package top.whitecola.kateclient.injection.mixins;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.PositionedSoundRecord;
-import net.minecraft.client.audio.SoundCategory;
-import net.minecraft.client.audio.SoundEventAccessorComposite;
-import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.client.gui.*;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
@@ -15,7 +11,7 @@ import net.minecraft.world.EnumDifficulty;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import top.whitecola.kateclient.ui.components.buttons.LongReactButton;
+import top.whitecola.kateclient.ui.components.buttons.LongRectButton;
 
 @Mixin(GuiOptions.class)
 public class MixinGuiOptions extends GuiScreen{
@@ -78,17 +74,17 @@ public class MixinGuiOptions extends GuiScreen{
             this.buttonList.add(lvt_2_3_);
         }
 
-        this.buttonList.add(new LongReactButton(110, this.width / 2 - 155, this.height / 6 + 48 - 6, 150, 20, I18n.format("options.skinCustomisation", new Object[0])));
-        this.buttonList.add(new LongReactButton(8675309, this.width / 2 + 5, this.height / 6 + 48 - 6, 150, 20, "Super Secret Settings..."));
-        this.buttonList.add(new LongReactButton(106, this.width / 2 - 155, this.height / 6 + 72 - 6, 150, 20, I18n.format("options.sounds", new Object[0])));
-        this.buttonList.add(new LongReactButton(107, this.width / 2 + 5, this.height / 6 + 72 - 6, 150, 20, I18n.format("options.stream", new Object[0])));
-        this.buttonList.add(new LongReactButton(101, this.width / 2 - 155, this.height / 6 + 96 - 6, 150, 20, I18n.format("options.video", new Object[0])));
-        this.buttonList.add(new LongReactButton(100, this.width / 2 + 5, this.height / 6 + 96 - 6, 150, 20, I18n.format("options.controls", new Object[0])));
-        this.buttonList.add(new LongReactButton(102, this.width / 2 - 155, this.height / 6 + 120 - 6, 150, 20, I18n.format("options.language", new Object[0])));
-        this.buttonList.add(new LongReactButton(103, this.width / 2 + 5, this.height / 6 + 120 - 6, 150, 20, I18n.format("options.chat.title", new Object[0])));
-        this.buttonList.add(new LongReactButton(105, this.width / 2 - 155, this.height / 6 + 144 - 6, 150, 20, I18n.format("options.resourcepack", new Object[0])));
-        this.buttonList.add(new LongReactButton(104, this.width / 2 + 5, this.height / 6 + 144 - 6, 150, 20, I18n.format("options.snooper.view", new Object[0])));
-        this.buttonList.add(new LongReactButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done", new Object[0])));
+        this.buttonList.add(new LongRectButton(110, this.width / 2 - 155, this.height / 6 + 48 - 6, 150, 20, I18n.format("options.skinCustomisation", new Object[0])));
+        this.buttonList.add(new LongRectButton(8675309, this.width / 2 + 5, this.height / 6 + 48 - 6, 150, 20, "Super Secret Settings..."));
+        this.buttonList.add(new LongRectButton(106, this.width / 2 - 155, this.height / 6 + 72 - 6, 150, 20, I18n.format("options.sounds", new Object[0])));
+        this.buttonList.add(new LongRectButton(107, this.width / 2 + 5, this.height / 6 + 72 - 6, 150, 20, I18n.format("options.stream", new Object[0])));
+        this.buttonList.add(new LongRectButton(101, this.width / 2 - 155, this.height / 6 + 96 - 6, 150, 20, I18n.format("options.video", new Object[0])));
+        this.buttonList.add(new LongRectButton(100, this.width / 2 + 5, this.height / 6 + 96 - 6, 150, 20, I18n.format("options.controls", new Object[0])));
+        this.buttonList.add(new LongRectButton(102, this.width / 2 - 155, this.height / 6 + 120 - 6, 150, 20, I18n.format("options.language", new Object[0])));
+        this.buttonList.add(new LongRectButton(103, this.width / 2 + 5, this.height / 6 + 120 - 6, 150, 20, I18n.format("options.chat.title", new Object[0])));
+        this.buttonList.add(new LongRectButton(105, this.width / 2 - 155, this.height / 6 + 144 - 6, 150, 20, I18n.format("options.resourcepack", new Object[0])));
+        this.buttonList.add(new LongRectButton(104, this.width / 2 + 5, this.height / 6 + 144 - 6, 150, 20, I18n.format("options.snooper.view", new Object[0])));
+        this.buttonList.add(new LongRectButton(200, this.width / 2 - 100, this.height / 6 + 168, I18n.format("gui.done", new Object[0])));
     }
 
 //    @Inject(method = "<init>", at = @At(value = "HEAD"), cancellable = true)

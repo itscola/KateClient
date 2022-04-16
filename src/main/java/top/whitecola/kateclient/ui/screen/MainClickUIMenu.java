@@ -1,7 +1,7 @@
 package top.whitecola.kateclient.ui.screen;
 
 import net.minecraft.client.gui.GuiScreen;
-import top.whitecola.kateclient.ui.components.buttons.LongReactButton;
+import top.whitecola.kateclient.ui.components.buttons.LongRectButton;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ public class MainClickUIMenu extends GuiScreen {
     @Override
     public void initGui() {
         int j = this.height / 4 + 48;
-        this.buttonList.add(new LongReactButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, "Settings"));
+        this.buttonList.add(new LongRectButton(0, this.width / 2 - 100, j + 72 + 12, 98, 20, "Settings"));
     }
 
     @Override

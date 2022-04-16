@@ -10,7 +10,7 @@ import top.whitecola.kateclient.utils.Render2DUtils;
 
 import java.awt.*;
 
-public class LongReactButton extends AbstractButton {
+public class LongRectButton extends AbstractButton {
     protected Color mainColor = new Color(31, 31, 31);
     protected Color mainColor2 = new Color(27, 27, 27);
     protected Color presentColor = mainColor;
@@ -25,11 +25,11 @@ public class LongReactButton extends AbstractButton {
 
     int animatedHeight = 0;
 
-    public LongReactButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
+    public LongRectButton(int buttonId, int x, int y, int widthIn, int heightIn, String buttonText) {
         super(buttonId, x, y, widthIn, heightIn, buttonText);
     }
 
-    public LongReactButton(int buttonId, int x, int y, String buttonText){
+    public LongRectButton(int buttonId, int x, int y, String buttonText){
         super(buttonId, x, y, 200, 20, buttonText);
     }
 
