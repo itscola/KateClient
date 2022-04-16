@@ -5,6 +5,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -152,6 +153,11 @@ public class AbstractModule implements IModule{
     @Override
     public void removeWidget(AbstractWidget widget) {
         KateClient.getKateClient().getWidgetManager().removeWidget(widget);
+    }
+
+    @Override
+    public void onLivingHurt(LivingHurtEvent e) {
+
     }
 
     public void setWidget(AbstractWidget widget) {

@@ -6,6 +6,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -148,5 +149,15 @@ public class EventToInvokeModules extends EventAdapter {
             module.onEntityJoinWorld(e);
         }
         super.onEntityJoinWorld(e);
+    }
+
+    @Override
+    public void onLivingHurtEvent(LivingHurtEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onLivingHurt(e);
+        }
+        super.onLivingHurtEvent(e);
     }
 }

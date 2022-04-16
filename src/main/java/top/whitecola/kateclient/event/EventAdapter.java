@@ -6,6 +6,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -84,6 +85,12 @@ public abstract class EventAdapter {
     public void onEntityJoinWorld(EntityJoinWorldEvent e){
 
     }
+
+    @SubscribeEvent
+    public void onLivingHurtEvent(LivingHurtEvent e){
+
+    }
+
 
 
 

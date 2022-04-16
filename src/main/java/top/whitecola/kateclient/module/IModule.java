@@ -5,6 +5,7 @@ import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
@@ -42,6 +43,7 @@ public interface IModule {
 
     void addWidget(AbstractWidget widget);
     void removeWidget(AbstractWidget widget);
+    void onLivingHurt(LivingHurtEvent e);
 
     String getDescription();
 

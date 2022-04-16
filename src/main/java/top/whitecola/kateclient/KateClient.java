@@ -78,19 +78,21 @@ public class KateClient {
         this.moduleManager.addModule(new PingDisplay());
         this.moduleManager.addModule(new FullBright());
         this.moduleManager.addModule(new FPSDisplay());
-        this.moduleManager.addModule(new HitSounds());
+        this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new LockTime());
         this.moduleManager.addModule(new AutoTip());
         this.moduleManager.addModule(new HypixelSelector());
         this.moduleManager.addModule(new LevelTab());
         this.moduleManager.addModule(new LevelHead());
         this.moduleManager.addModule(new ItemPhysic());
+        this.moduleManager.addModule(new HitSounds());
+
+
 
         //not finish under
 
         this.moduleManager.addModule(new AutoGG());
         this.moduleManager.addModule(new NameHider());
-        this.moduleManager.addModule(new HitParticle());
         this.moduleManager.addModule(new CPSDisplay());
         this.moduleManager.addModule(new ArmorDisplay());
 
