@@ -53,9 +53,8 @@ public class KateClient {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
-
-        registerKeyBinds();
         registerEvents();
+        registerKeyBinds();
         addModules();
         moduleConfig.config.loadConfigForModules();
     }
@@ -65,7 +64,6 @@ public class KateClient {
         MinecraftForge.EVENT_BUS.register(EventManager.getEventManager());
         EventManager.getEventManager().addEvent(new MainMenuEvent());
         EventManager.getEventManager().addEvent(new HypixelSelectorMenuEvent());
-
         EventManager.getEventManager().addEvent(new EventToInvokeModules());
         EventManager.getEventManager().addEvent(new EventToInvokeNotification());
         EventManager.getEventManager().addEvent(new EventToInvokeWidgets());

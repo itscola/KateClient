@@ -37,10 +37,10 @@ public class ClientPhysic {
     }
 
     public static void doRender(Entity entity, double x, double y, double z) {
-//        float rotationSpeed = (float) 900000000;
-//        rotation = (double) (System.nanoTime() - tick) / 2500000 * rotationSpeed;
-        rotation = 3;
-//        if (!mc.inGameHasFocus) rotation = 0;
+        float rotationSpeed = (float) 0.2;
+        rotation = (double) (System.nanoTime() - tick) / 2500000 * rotationSpeed;
+//        rotation = 1;
+        if (!mc.inGameHasFocus) rotation = 0;
         EntityItem item = ((EntityItem) entity);
 
         ItemStack itemstack = item.getEntityItem();

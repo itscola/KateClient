@@ -10,12 +10,18 @@ import static top.whitecola.kateclient.utils.MCWrapper.*;
 public class ParticleUtils {
 
     public static void spawnBloodParticle(Entity entity){
+        if(entity==null){
+            return;
+        }
         BlockPos blockPos = new BlockPos(entity.posX, entity.posY + entity.getEyeHeight(), entity.posZ);
         spawnBloodParticle(blockPos);
     }
 
     public static void spawnBloodParticle(BlockPos blockPos){
         IBlockState blockState = Blocks.redstone_block.getDefaultState();
+        if(mc.renderGlobal==null){
+            return;
+        }
         mc.renderGlobal.playAuxSFX(null,2001,blockPos, Block.getStateId(blockState));
     }
 

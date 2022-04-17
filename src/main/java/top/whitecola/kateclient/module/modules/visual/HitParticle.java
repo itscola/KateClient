@@ -11,16 +11,11 @@ import top.whitecola.kateclient.utils.ParticleUtils;
 
 public class HitParticle extends AbstractModule {
 
-    public HitParticle(){
-
-    }
 
     @Override
     public void onLivingHurt(LivingHurtEvent e) {
         Entity entity = e.entity;
         ParticleUtils.spawnBloodParticle(entity);
-
-
         super.onLivingHurt(e);
     }
 

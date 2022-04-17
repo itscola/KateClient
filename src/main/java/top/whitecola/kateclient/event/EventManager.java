@@ -1,5 +1,7 @@
 package top.whitecola.kateclient.event;
 
+import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
@@ -20,8 +22,10 @@ public class EventManager {
     private static EventManager eventManager = new EventManager();
     protected Vector<EventAdapter> events = new Vector<EventAdapter>();
 
-    private EventManager(){
-        MinecraftForge.EVENT_BUS.register(this);
+
+
+    public EventManager(){
+
     }
 
     public static EventManager getEventManager() {
@@ -137,5 +141,8 @@ public class EventManager {
             eventAdapter.onLivingHurtEvent(e);
         }
     }
+
+
+
 
 }
