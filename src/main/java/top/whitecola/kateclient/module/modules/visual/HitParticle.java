@@ -18,9 +18,7 @@ public class HitParticle extends AbstractModule {
     @Override
     public void onLivingHurt(LivingHurtEvent e) {
         Entity entity = e.entity;
-        if(entity instanceof EntityPlayer){
-            ParticleUtils.spawnBloodParticle(entity.getPosition());
-        }
+        ParticleUtils.spawnBloodParticle(entity);
 
 
         super.onLivingHurt(e);
