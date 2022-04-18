@@ -184,10 +184,7 @@ public class AbstractModule implements IModule{
 
     }
 
-    @Override
-    public void onSendAttackPacket(Entity entity, C02PacketUseEntity.Action action, CallbackInfo ci) {
 
-    }
 
     @Override
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {

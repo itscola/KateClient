@@ -158,11 +158,6 @@ public class EventManager {
         }
     }
 
-    public void onSendAttackPacket(Entity entity, C02PacketUseEntity.Action action, CallbackInfo ci){
-        for (EventAdapter eventAdapter : events) {
-            eventAdapter.onSendAttackPacket(entity,action,ci);
-        }
-    }
 
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {

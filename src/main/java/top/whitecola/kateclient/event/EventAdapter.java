@@ -103,9 +103,7 @@ public abstract class EventAdapter {
 
     }
 
-    public void onSendAttackPacket(Entity entity, C02PacketUseEntity.Action action, CallbackInfo ci){
 
-    }
 
     @SubscribeEvent
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {

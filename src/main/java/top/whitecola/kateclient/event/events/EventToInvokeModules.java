@@ -175,16 +175,7 @@ public class EventToInvokeModules extends EventAdapter {
         }
         super.onLivingAttack(e);
     }
-
-    @Override
-    public void onSendAttackPacket(Entity entity, C02PacketUseEntity.Action action, CallbackInfo ci) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
-                continue;
-            module.onSendAttackPacket(entity, action, ci);
-        }
-        super.onSendAttackPacket(entity, action, ci);
-    }
+    
 
     @Override
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {

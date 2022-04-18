@@ -53,6 +53,5 @@ public interface IModule {
 
     String getDescription();
     void onLivingAttack(LivingAttackEvent e);
-    void onSendAttackPacket(Entity entity, C02PacketUseEntity.Action action, CallbackInfo ci);
     void onLivingUpdate(LivingEvent.LivingUpdateEvent e);
 }
