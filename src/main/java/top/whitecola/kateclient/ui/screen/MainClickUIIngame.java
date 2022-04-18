@@ -89,7 +89,7 @@ public class MainClickUIIngame extends GuiScreen {
     }
 
     public void initAnimation(){
-        displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(350);
+        displayAnimation.setMin(0).setMax(150).setFunction(new CubicOutFunction()).setTotalTime(300);
         closeAnimation.setMin(0).setMax(200).setFunction(new CubicOutFunction()).setTotalTime(150);
     }
 
