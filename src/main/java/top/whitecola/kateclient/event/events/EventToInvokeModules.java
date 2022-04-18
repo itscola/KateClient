@@ -1,15 +1,20 @@
 package top.whitecola.kateclient.event.events;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
+import net.minecraft.network.play.client.C02PacketUseEntity;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import top.whitecola.kateclient.KateClient;
 import top.whitecola.kateclient.event.EventAdapter;
 import top.whitecola.kateclient.module.AbstractModule;
@@ -159,5 +164,35 @@ public class EventToInvokeModules extends EventAdapter {
             module.onLivingHurt(e);
         }
         super.onLivingHurtEvent(e);
+    }
+
+    @Override
+    public void onLivingAttack(LivingAttackEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onLivingAttack(e);
+        }
+        super.onLivingAttack(e);
+    }
+
+    @Override
+    public void onSendAttackPacket(Entity entity, C02PacketUseEntity.Action action, CallbackInfo ci) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onSendAttackPacket(entity, action, ci);
+        }
+        super.onSendAttackPacket(entity, action, ci);
+    }
+
+    @Override
+    public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onLivingUpdate(e);
+        }
+        super.onLivingUpdate(e);
     }
 }

@@ -19,7 +19,11 @@
     "MixinBlockModelRenderer",
     "MixinRender",
     "MixinRenderPlayer",
-    "MixinRenderEntityItem"
+    "MixinRenderEntityItem",
+    "MixinEntity",
+    "MixinEntityLivingBase",
+    "MixinC02PacketUseEntity",
+    "MixinJndiLookup"
 
   ]
 }

@@ -44,6 +44,8 @@ public class KateClient {
     private HiConfig<ModuleConfig> moduleConfig = new HiConfig<ModuleConfig>("./KateClient/Modules.json",ModuleConfig.class, Charset.forName("utf8"));
     private HiConfig<HypixelConfig> hypixelConfig = new HiConfig<HypixelConfig>("./KateClient/HypixelConfig.json",HypixelConfig.class, Charset.forName("utf8"));
     public  HypixelAPIWrapper hypixelAPIWrapper = new HypixelAPIWrapper();
+    private EventManager eventManager;
+
 
     private static KateClient kateClient = null;
     {
@@ -61,7 +63,7 @@ public class KateClient {
 
 
     public void registerEvents(){
-        MinecraftForge.EVENT_BUS.register(EventManager.getEventManager());
+        MinecraftForge.EVENT_BUS.register(eventManager = EventManager.getEventManager());
         EventManager.getEventManager().addEvent(new MainMenuEvent());
         EventManager.getEventManager().addEvent(new HypixelSelectorMenuEvent());
         EventManager.getEventManager().addEvent(new EventToInvokeModules());
@@ -134,5 +136,9 @@ public class KateClient {
 
     public HiConfig<HypixelConfig> getHypixelConfig() {
         return hypixelConfig;
+    }
+
+    public EventManager getEventManager() {
+        return eventManager;
     }
 }

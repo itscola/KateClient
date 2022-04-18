@@ -10,13 +10,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketThreadUtil;
 import net.minecraft.network.play.server.S0CPacketSpawnPlayer;
+import net.minecraft.network.play.server.S3CPacketUpdateScore;
 import net.minecraft.network.play.server.S3EPacketTeams;
 import net.minecraft.network.play.server.S47PacketPlayerListHeaderFooter;
-import net.minecraft.scoreboard.ScorePlayerTeam;
-import net.minecraft.scoreboard.Scoreboard;
-import net.minecraft.scoreboard.Team;
+import net.minecraft.scoreboard.*;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IChatComponent;
+import net.minecraft.util.StringUtils;
+import org.apache.logging.log4j.core.lookup.JndiLookup;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
@@ -153,5 +154,30 @@ public abstract class MixinNetHandlerPlayClient {
         }
     }
 
+
+    /**
+     * @author white_cola
+     * @reason fix NPE for some sever.
+     */
+    @Overwrite
+    public void handleUpdateScore(S3CPacketUpdateScore p_handleUpdateScore_1_) {
+        if(p_handleUpdateScore_1_==null){
+            return;
+        }
+        PacketThreadUtil.checkThreadAndEnqueue(p_handleUpdateScore_1_, Minecraft.getMinecraft().getNetHandler(), this.gameController);
+        Scoreboard scoreboard = this.clientWorldController.getScoreboard();
+        ScoreObjective scoreobjective = scoreboard.getObjective(p_handleUpdateScore_1_.getObjectiveName());
+        if (p_handleUpdateScore_1_.getScoreAction() == net.minecraft.network.play.server.S3CPacketUpdateScore.Action.CHANGE) {
+            Score score = scoreboard.getValueFromObjective(p_handleUpdateScore_1_.getPlayerName(), scoreobjective);
+            score.setScorePoints(p_handleUpdateScore_1_.getScoreValue());
+        } else if (p_handleUpdateScore_1_.getScoreAction() == net.minecraft.network.play.server.S3CPacketUpdateScore.Action.REMOVE) {
+            if (StringUtils.isNullOrEmpty(p_handleUpdateScore_1_.getObjectiveName())) {
+                scoreboard.removeObjectiveFromEntity(p_handleUpdateScore_1_.getPlayerName(), (ScoreObjective)null);
+            } else if (scoreobjective != null) {
+                scoreboard.removeObjectiveFromEntity(p_handleUpdateScore_1_.getPlayerName(), scoreobjective);
+            }
+        }
+
+    }
 
 }
