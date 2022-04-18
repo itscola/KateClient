@@ -22,8 +22,7 @@
     "MixinRenderEntityItem",
     "MixinEntity",
     "MixinEntityLivingBase",
-    "MixinC02PacketUseEntity",
-    "MixinJndiLookup"
+    "MixinC02PacketUseEntity"
 
   ]
 }
