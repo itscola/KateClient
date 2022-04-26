@@ -170,7 +170,6 @@ public class EventManager {
     }
 
 
-    @SideOnly(Side.CLIENT)
     @SubscribeEvent
     public void onPlayerInteract(PlayerInteractEvent e){
         for (EventAdapter eventAdapter : events) {
