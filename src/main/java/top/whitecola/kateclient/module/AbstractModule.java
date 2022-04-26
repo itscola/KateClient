@@ -2,7 +2,9 @@ package top.whitecola.kateclient.module;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
@@ -197,6 +199,13 @@ public class AbstractModule implements IModule{
 
     }
 
+    @Override
+    public void onPlayerClickBlock(BlockPos p_clickBlock_1_, EnumFacing p_clickBlock_2_) {
+
+    }
+
+
+
 
     public Vector<ModuleOption> getOptions() {
         return options;
@@ -214,4 +223,6 @@ public class AbstractModule implements IModule{
             onDisable();
         }
     }
+
+
 }

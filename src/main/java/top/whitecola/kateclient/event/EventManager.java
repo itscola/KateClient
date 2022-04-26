@@ -4,7 +4,9 @@ import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.util.BlockPos;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
@@ -24,6 +26,7 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import java.util.Vector;
 
@@ -174,6 +177,12 @@ public class EventManager {
     public void onPlayerInteract(PlayerInteractEvent e){
         for (EventAdapter eventAdapter : events) {
             eventAdapter.onPlayerInteract(e);
+        }
+    }
+
+    public void onPlayerClickBlock(BlockPos p_clickBlock_1_, EnumFacing p_clickBlock_2_){
+        for (EventAdapter eventAdapter : events) {
+            eventAdapter.onPlayerClickBlock(p_clickBlock_1_,p_clickBlock_2_);
         }
     }
 }

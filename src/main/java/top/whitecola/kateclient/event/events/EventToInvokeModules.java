@@ -3,6 +3,8 @@ package top.whitecola.kateclient.event.events;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.client.C02PacketUseEntity;
+import net.minecraft.util.BlockPos;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.client.event.RenderWorldEvent;
@@ -37,8 +39,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onRender2D(RenderWorldLastEvent event) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onRender2D(event);
         }
@@ -48,8 +50,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onRender(TickEvent.RenderTickEvent event) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onRender(event);
         }
@@ -59,8 +61,8 @@ public class EventToInvokeModules extends EventAdapter {
     @Override
     public void tickEvent(TickEvent event) {
 
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onTick();
         }
@@ -70,7 +72,7 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onRenderOverLay(RenderGameOverlayEvent event) {
-        if(Minecraft.getMinecraft()==null||Minecraft.getMinecraft().theWorld==null || mc.thePlayer==null){
+        if (Minecraft.getMinecraft() == null || Minecraft.getMinecraft().theWorld == null || mc.thePlayer == null) {
             return;
         }
 
@@ -78,8 +80,8 @@ public class EventToInvokeModules extends EventAdapter {
             return;
         }
 
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onRenderOverLay(event);
         }
@@ -88,8 +90,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void renderGameOverlayRETURN() {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.renderGameOverlayRETURN();
         }
@@ -98,8 +100,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onAttackEntity(AttackEntityEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onAttackEntity(e);
         }
@@ -109,8 +111,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onWordRender(RenderWorldEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onWordRender(e);
         }
@@ -119,8 +121,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onLoginIn(FMLNetworkEvent.ClientConnectedToServerEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onLoginIn(e);
         }
@@ -129,8 +131,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onLoginOut(FMLNetworkEvent.ClientDisconnectionFromServerEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onLoginOut(e);
         }
@@ -140,8 +142,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onChatReceive(ClientChatReceivedEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onChatReceive(e);
         }
@@ -150,8 +152,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onEntityJoinWorld(EntityJoinWorldEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onEntityJoinWorld(e);
         }
@@ -160,8 +162,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onLivingHurtEvent(LivingHurtEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onLivingHurt(e);
         }
@@ -170,8 +172,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onLivingAttack(LivingAttackEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onLivingAttack(e);
         }
@@ -181,8 +183,8 @@ public class EventToInvokeModules extends EventAdapter {
 
     @Override
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onLivingUpdate(e);
         }
@@ -190,12 +192,21 @@ public class EventToInvokeModules extends EventAdapter {
     }
 
     @SubscribeEvent
-    public void onPlayerInteract(PlayerInteractEvent e){
-        for(AbstractModule module : modules){
-            if(!module.isEnabled())
+    public void onPlayerInteract(PlayerInteractEvent e) {
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
                 continue;
             module.onPlayerInteract(e);
         }
         super.onPlayerInteract(e);
+    }
+
+    public void onPlayerClickBlock(BlockPos p_clickBlock_1_, EnumFacing p_clickBlock_2_) {
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
+                continue;
+            module.onPlayerClickBlock(p_clickBlock_1_,p_clickBlock_2_);
+        }
+        super.onPlayerClickBlock(p_clickBlock_1_,p_clickBlock_2_);
     }
 }

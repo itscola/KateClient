@@ -21,7 +21,8 @@
     "MixinRenderPlayer",
     "MixinRenderEntityItem",
     "MixinRendererLivingEntity",
-    "MixinAbstractClientPlayer"
+    "MixinAbstractClientPlayer",
+    "MixinPlayerControllerMP"
 
   ]
 }
