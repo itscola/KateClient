@@ -19,7 +19,9 @@
     "MixinBlockModelRenderer",
     "MixinRender",
     "MixinRenderPlayer",
-    "MixinRenderEntityItem"
+    "MixinRenderEntityItem",
+    "MixinRendererLivingEntity",
+    "MixinAbstractClientPlayer"
 
   ]
 }

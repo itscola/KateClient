@@ -175,7 +175,7 @@ public class EventToInvokeModules extends EventAdapter {
         }
         super.onLivingAttack(e);
     }
-    
+
 
     @Override
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {

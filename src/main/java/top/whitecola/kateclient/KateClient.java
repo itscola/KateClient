@@ -12,6 +12,7 @@ import top.whitecola.kateclient.event.events.*;
 import top.whitecola.kateclient.keybinds.HypixelGameSelectorKeybind;
 import top.whitecola.kateclient.keybinds.MainMenuInGameKeybind;
 import top.whitecola.kateclient.module.ModuleManager;
+import top.whitecola.kateclient.module.modules.debug.Chams;
 import top.whitecola.kateclient.module.modules.game.DetectCheating;
 import top.whitecola.kateclient.module.modules.game.HypixelSelector;
 import top.whitecola.kateclient.module.modules.movment.AutoSprint;
@@ -86,6 +87,8 @@ public class KateClient {
         this.moduleManager.addModule(new LevelHead());
         this.moduleManager.addModule(new ItemPhysic());
         this.moduleManager.addModule(new HitSounds());
+        this.moduleManager.addModule(new Chams());
+        this.moduleManager.addModule(new NoFov());
 
 
 
