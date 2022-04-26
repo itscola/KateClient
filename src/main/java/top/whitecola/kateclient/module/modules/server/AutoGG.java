@@ -24,6 +24,9 @@ public class AutoGG extends AbstractModule {
 
         for(String str : trriger){
             if(e.message.getFormattedText().contains(str)){
+                if(e.message.getFormattedText().contains("任务")){
+                    continue;
+                }
                 speaked = true;
                 Minecraft.getMinecraft().thePlayer.sendChatMessage("GG");
                 return;
