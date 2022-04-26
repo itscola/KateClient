@@ -12,6 +12,8 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -185,5 +187,15 @@ public class EventToInvokeModules extends EventAdapter {
             module.onLivingUpdate(e);
         }
         super.onLivingUpdate(e);
+    }
+
+    @SubscribeEvent
+    public void onPlayerInteract(PlayerInteractEvent e){
+        for(AbstractModule module : modules){
+            if(!module.isEnabled())
+                continue;
+            module.onPlayerInteract(e);
+        }
+        super.onPlayerInteract(e);
     }
 }

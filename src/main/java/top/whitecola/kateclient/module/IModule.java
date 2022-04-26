@@ -12,6 +12,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -54,4 +55,5 @@ public interface IModule {
     String getDescription();
     void onLivingAttack(LivingAttackEvent e);
     void onLivingUpdate(LivingEvent.LivingUpdateEvent e);
+    void onPlayerInteract(PlayerInteractEvent e);
 }

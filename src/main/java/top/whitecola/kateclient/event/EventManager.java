@@ -15,11 +15,14 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.Vector;
@@ -163,6 +166,15 @@ public class EventManager {
     public void onLivingUpdate(LivingEvent.LivingUpdateEvent e) {
         for (EventAdapter eventAdapter : events) {
             eventAdapter.onLivingUpdate(e);
+        }
+    }
+
+
+    @SideOnly(Side.CLIENT)
+    @SubscribeEvent
+    public void onPlayerInteract(PlayerInteractEvent e){
+        for (EventAdapter eventAdapter : events) {
+            eventAdapter.onPlayerInteract(e);
         }
     }
 }
