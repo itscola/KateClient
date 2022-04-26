@@ -17,6 +17,11 @@ public class AutoGG extends AbstractModule {
         if(speaked){
             return;
         }
+
+        if(e.message.getFormattedText().contains(":")){
+            return;
+        }
+
         for(String str : trriger){
             if(e.message.getFormattedText().contains(str)){
                 speaked = true;

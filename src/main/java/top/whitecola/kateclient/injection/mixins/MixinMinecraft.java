@@ -90,6 +90,7 @@ public abstract class MixinMinecraft {
 
     @Shadow public abstract void setIngameFocus();
 
+
     @Inject(method = "startGame", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;ingameGUI:Lnet/minecraft/client/gui/GuiIngame;", shift = At.Shift.AFTER))
     private void startGame(CallbackInfo ci) {
     }
@@ -100,8 +101,10 @@ public abstract class MixinMinecraft {
     @Overwrite
     private void createDisplay() throws LWJGLException {
         Display.setResizable(true);
-        Display.setTitle("KateClient 1.0 beta | Minecraft 1.8.9");
+        Display.setTitle("KateClient 1.1 beta | Minecraft 1.8.9");
 
+
+//        this.mojangLogo
         try {
             Display.create((new PixelFormat()).withDepthBits(24));
         } catch (LWJGLException var4) {
