@@ -89,12 +89,10 @@ public class KateClient {
         this.moduleManager.addModule(new HitSounds());
         this.moduleManager.addModule(new Chams());
         this.moduleManager.addModule(new NoFov());
-
-
+        this.moduleManager.addModule(new AutoGG());
 
         //not finish under
 
-        this.moduleManager.addModule(new AutoGG());
         this.moduleManager.addModule(new NameHider());
         this.moduleManager.addModule(new CPSDisplay());
         this.moduleManager.addModule(new ArmorDisplay());
