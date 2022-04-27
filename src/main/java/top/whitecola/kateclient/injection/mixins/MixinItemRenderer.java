@@ -57,9 +57,7 @@ public abstract class MixinItemRenderer {
     @Overwrite
     public void renderItemInFirstPerson(float p_renderItemInFirstPerson_1_) {
 
-//        if(KateClient.getKateClient().getModuleManager().getModuleByName("OldAnimation").isEnabled()){
-//
-//        }
+
 
 
         float f = 1.0F - (this.prevEquippedProgress + (this.equippedProgress - this.prevEquippedProgress) * p_renderItemInFirstPerson_1_);
@@ -72,6 +70,9 @@ public abstract class MixinItemRenderer {
         this.func_178101_a(f2, f3);
         this.func_178109_a(abstractclientplayer);
         this.func_178110_a((EntityPlayerSP)abstractclientplayer, p_renderItemInFirstPerson_1_);
+
+
+
         GlStateManager.enableRescaleNormal();
         GlStateManager.pushMatrix();
         if (this.itemToRender != null) {
@@ -81,15 +82,25 @@ public abstract class MixinItemRenderer {
                 EnumAction enumaction = this.itemToRender.getItemUseAction();
                 switch(enumaction) {
                     case NONE:
+
+
                         this.transformFirstPersonItem(f, 0.0F);
                         break;
                     case EAT:
                     case DRINK:
                         this.func_178104_a(abstractclientplayer, p_renderItemInFirstPerson_1_);
-                        this.transformFirstPersonItem(f, 0.0F);
+                        this.transformFirstPersonItem(f, f1);
+                        GlStateManager.rotate(1.0F, 3F, 0.0F, -0.1F);
+
                         break;
                     case BLOCK:
-                        this.transformFirstPersonItem(f, 0.0F);
+                        if(KateClient.getKateClient().getModuleManager().getModuleByName("OldAnimation").isEnabled()){
+                            this.transformFirstPersonItem(f, f1);
+                            GlStateManager.translate(0.0F, 0.0F, -0.02F);
+                            GlStateManager.rotate(1.0F, 0.0F, 0.0F, -0.1F);
+                        }else{
+                            this.transformFirstPersonItem(f, 0.0F);
+                        }
                         this.func_178103_d();
                         break;
                     case BOW:

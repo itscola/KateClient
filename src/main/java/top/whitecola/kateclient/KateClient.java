@@ -23,10 +23,7 @@ import top.whitecola.kateclient.module.modules.server.AutoTip;
 import top.whitecola.kateclient.module.modules.server.LevelHead;
 import top.whitecola.kateclient.module.modules.server.LevelTab;
 import top.whitecola.kateclient.module.modules.sound.HitSounds;
-import top.whitecola.kateclient.module.modules.visual.FullBright;
-import top.whitecola.kateclient.module.modules.visual.HitParticle;
-import top.whitecola.kateclient.module.modules.visual.ItemPhysic;
-import top.whitecola.kateclient.module.modules.visual.Weather;
+import top.whitecola.kateclient.module.modules.visual.*;
 import top.whitecola.kateclient.services.apis.HypixelAPIWrapper;
 import top.whitecola.kateclient.ui.GameUI;
 import top.whitecola.kateclient.ui.components.notifiction.NotificationManager;
@@ -77,6 +74,7 @@ public class KateClient {
 
     public void addModules(){
         this.moduleManager.addModule(new AutoSprint());
+        this.moduleManager.addModule(new OldAnimation());
         this.moduleManager.addModule(new PingDisplay());
         this.moduleManager.addModule(new FullBright());
         this.moduleManager.addModule(new FPSDisplay());
@@ -92,11 +90,12 @@ public class KateClient {
         this.moduleManager.addModule(new NoFov());
         this.moduleManager.addModule(new AutoGG());
         this.moduleManager.addModule(new AutoTools());
+        this.moduleManager.addModule(new HitColor());
+
 
 
         //not finish under
 
-        this.moduleManager.addModule(new NameHider());
         this.moduleManager.addModule(new ArmorDisplay());
 
 

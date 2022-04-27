@@ -2,7 +2,7 @@ package top.whitecola.kateclient.module.modules.game;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -11,7 +11,6 @@ import top.whitecola.kateclient.module.ModuleCategory;
 import static top.whitecola.kateclient.utils.MCWrapper.*;
 
 public class AutoTools extends AbstractModule {
-
 
     @Override
     public void onPlayerClickBlock(BlockPos blockPos, EnumFacing enumFacing) {
@@ -22,6 +21,12 @@ public class AutoTools extends AbstractModule {
         if(mc.playerController.isInCreativeMode()){
             return;
         }
+
+
+        if(!isBreakingBlockTool(mc.thePlayer.inventory.getCurrentItem())){
+            return;
+        }
+
 
         IBlockState blockState = mc.theWorld.getBlockState(blockPos);
         int selectSolt = mc.thePlayer.inventory.currentItem;
@@ -40,6 +45,9 @@ public class AutoTools extends AbstractModule {
             }
         }
 
+        if(selectSolt==0) {
+            return;
+        }
         mc.thePlayer.inventory.currentItem = selectSolt;
     }
 
@@ -90,5 +98,30 @@ public class AutoTools extends AbstractModule {
     public String getModuleName() {
         return "AutoTools";
 
+    }
+
+    public boolean isBreakingBlockTool(ItemStack itemStack){
+        if(itemStack==null){
+            return false;
+        }
+
+        Item item = itemStack.getItem();
+
+        if(item==null){
+            return false;
+        }
+
+
+        if(item instanceof ItemPickaxe){
+            return true;
+        }else if(item instanceof ItemAxe){
+            return true;
+        }else if(item instanceof ItemShears){
+            return true;
+        }else if(item instanceof ItemSpade){
+            return true;
+        }
+
+        return false;
     }
 }
