@@ -96,7 +96,7 @@ public class KateClient {
 
         //not finish under
 
-        this.moduleManager.addModule(new ArmorDisplay());
+        this.moduleManager.addModule(new NoHurtCam());
 
 
         moduleManager.getModuleByName("AutoSprint").enable();

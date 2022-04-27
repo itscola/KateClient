@@ -31,7 +31,7 @@ public class MixinAbstractClientPlayer extends EntityPlayer {
             return 1.1F;
         }
 
-            if (this.capabilities.isFlying) {
+        if (this.capabilities.isFlying) {
             f *= 1.1F;
         }
 

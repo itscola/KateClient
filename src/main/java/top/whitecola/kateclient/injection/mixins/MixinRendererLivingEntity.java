@@ -85,10 +85,19 @@ public abstract class MixinRendererLivingEntity {
             GL11.glTexEnvi(8960, OpenGlHelper.GL_OPERAND0_ALPHA, 770);
             this.brightnessBuffer.position(0);
             if (flag1) {
-                this.brightnessBuffer.put(1.0F);
-                this.brightnessBuffer.put(0.0F);
-                this.brightnessBuffer.put(0.0F);
-                this.brightnessBuffer.put(0.3F);
+                if(KateClient.getKateClient().getModuleManager().getModuleByName("HitColor").isEnabled()) {
+                    this.brightnessBuffer.put(0.0F);
+                    this.brightnessBuffer.put(0.0F);
+                    this.brightnessBuffer.put(0.3F);
+                    this.brightnessBuffer.put(0.3F);
+                }else{
+                    this.brightnessBuffer.put(1.0F);
+                    this.brightnessBuffer.put(0.0F);
+                    this.brightnessBuffer.put(0.0F);
+                    this.brightnessBuffer.put(0.3F);
+                }
+
+
             } else {
                 float f1 = (float)(i >> 24 & 255) / 255.0F;
                 float f2 = (float)(i >> 16 & 255) / 255.0F;

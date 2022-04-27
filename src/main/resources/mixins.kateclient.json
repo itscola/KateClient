@@ -23,7 +23,9 @@
     "MixinRendererLivingEntity",
     "MixinAbstractClientPlayer",
     "MixinPlayerControllerMP",
-    "MixinItemRenderer"
+    "MixinItemRenderer",
+    "MixinEntityRenderer",
+    "MixinS0CPacketSpawnPlayer"
 
   ]
 }
