@@ -88,7 +88,7 @@ public abstract class MixinRendererLivingEntity {
                 if(KateClient.getKateClient().getModuleManager().getModuleByName("HitColor").isEnabled()) {
                     this.brightnessBuffer.put(0.0F);
                     this.brightnessBuffer.put(0.0F);
-                    this.brightnessBuffer.put(0.3F);
+                    this.brightnessBuffer.put(0.6F);
                     this.brightnessBuffer.put(0.3F);
                 }else{
                     this.brightnessBuffer.put(1.0F);

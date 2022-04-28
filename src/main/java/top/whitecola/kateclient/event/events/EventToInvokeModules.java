@@ -5,10 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.network.play.client.C02PacketUseEntity;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumFacing;
-import net.minecraftforge.client.event.ClientChatReceivedEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderWorldEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
@@ -208,5 +205,16 @@ public class EventToInvokeModules extends EventAdapter {
             module.onPlayerClickBlock(p_clickBlock_1_,p_clickBlock_2_);
         }
         super.onPlayerClickBlock(p_clickBlock_1_,p_clickBlock_2_);
+    }
+
+
+    @SubscribeEvent
+    public void onRenderPlayer(RenderPlayerEvent.Post e){
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
+                continue;
+            module.onRenderPlayer(e);
+        }
+        super.onRenderPlayer(e);
     }
 }

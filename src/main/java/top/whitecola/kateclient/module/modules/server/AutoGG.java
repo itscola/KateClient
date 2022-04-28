@@ -24,11 +24,11 @@ public class AutoGG extends AbstractModule {
 
         for(String str : trriger){
             if(e.message.getFormattedText().contains(str)){
-                if(e.message.getFormattedText().contains("任务")){
+                if(e.message.getFormattedText().contains("任务") || e.message.getFormattedText().contains("加入")){
                     continue;
                 }
                 speaked = true;
-                Minecraft.getMinecraft().thePlayer.sendChatMessage("GG");
+                Minecraft.getMinecraft().thePlayer.sendChatMessage("/achat GG");
                 return;
             }
         }

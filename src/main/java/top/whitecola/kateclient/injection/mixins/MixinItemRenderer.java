@@ -82,17 +82,19 @@ public abstract class MixinItemRenderer {
                 EnumAction enumaction = this.itemToRender.getItemUseAction();
                 switch(enumaction) {
                     case NONE:
-
-
                         this.transformFirstPersonItem(f, 0.0F);
                         break;
                     case EAT:
                     case DRINK:
                         this.func_178104_a(abstractclientplayer, p_renderItemInFirstPerson_1_);
-                        this.transformFirstPersonItem(f, f1);
-                        GlStateManager.rotate(1.0F, 3F, 0.0F, -0.1F);
+                        if(KateClient.getKateClient().getModuleManager().getModuleByName("OldAnimation").isEnabled()) {
+                            this.transformFirstPersonItem(f, f1);
+                        }else {
+                            this.transformFirstPersonItem(f, 0.0F);
 
+                        }
                         break;
+
                     case BLOCK:
                         if(KateClient.getKateClient().getModuleManager().getModuleByName("OldAnimation").isEnabled()){
                             this.transformFirstPersonItem(f, f1);
@@ -104,7 +106,13 @@ public abstract class MixinItemRenderer {
                         this.func_178103_d();
                         break;
                     case BOW:
-                        this.transformFirstPersonItem(f, 0.0F);
+                        if(KateClient.getKateClient().getModuleManager().getModuleByName("OldAnimation").isEnabled()) {
+                            this.transformFirstPersonItem(f, f1);
+                            GlStateManager.translate(0.0F, 0.0F, -0.02F);
+                            GlStateManager.rotate(1.0F, 0.0F, 0.0F, -0.1F);
+                        }else {
+                            this.transformFirstPersonItem(f, 0.0F);
+                        }
                         this.func_178098_a(p_renderItemInFirstPerson_1_, abstractclientplayer);
                 }
             } else {
