@@ -92,8 +92,7 @@ public class KateClient {
         this.moduleManager.addModule(new AutoTools());
         this.moduleManager.addModule(new HitColor());
         this.moduleManager.addModule(new DragonWings());
-
-
+//        this.moduleManager.addModule(new BowTargetTip());
 
         //not finish under
 

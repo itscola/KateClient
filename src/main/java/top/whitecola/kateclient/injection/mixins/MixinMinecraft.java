@@ -102,7 +102,7 @@ public abstract class MixinMinecraft {
     @Overwrite
     private void createDisplay() throws LWJGLException {
         Display.setResizable(true);
-        Display.setTitle("KateClient 1.5 beta | Minecraft 1.8.9");
+        Display.setTitle("KateClient 1.6 beta | Minecraft 1.8.9");
 
 
 //        this.mojangLogo

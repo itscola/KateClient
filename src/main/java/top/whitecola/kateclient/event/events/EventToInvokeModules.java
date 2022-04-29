@@ -217,4 +217,15 @@ public class EventToInvokeModules extends EventAdapter {
         }
         super.onRenderPlayer(e);
     }
+
+    @Override
+    public void onRenderOverLayPre(RenderGameOverlayEvent.Pre e) {
+        for (AbstractModule module : modules) {
+            if (!module.isEnabled())
+                continue;
+            module.onRenderOverLayPre(e);
+        }
+
+        super.onRenderOverLayPre(e);
+    }
 }

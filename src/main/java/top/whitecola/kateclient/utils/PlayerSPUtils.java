@@ -1,6 +1,9 @@
 package top.whitecola.kateclient.utils;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiKeyBindingList;
+import net.minecraft.entity.Entity;
+import net.minecraft.util.MathHelper;
 
 import static top.whitecola.kateclient.utils.MCWrapper.mc;
 

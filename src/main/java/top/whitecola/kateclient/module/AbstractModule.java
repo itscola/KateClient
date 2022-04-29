@@ -206,6 +206,11 @@ public class AbstractModule implements IModule{
 
     }
 
+    @Override
+    public void onRenderOverLayPre(RenderGameOverlayEvent.Pre event) {
+
+    }
+
 
     public Vector<ModuleOption> getOptions() {
         return options;

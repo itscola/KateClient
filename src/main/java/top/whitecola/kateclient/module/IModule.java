@@ -83,4 +83,6 @@ public interface IModule {
     void onPlayerClickBlock(BlockPos p_clickBlock_1_, EnumFacing p_clickBlock_2_);
 
     void onRenderPlayer(RenderPlayerEvent.Post e);
+
+    void onRenderOverLayPre(RenderGameOverlayEvent.Pre event);
 }

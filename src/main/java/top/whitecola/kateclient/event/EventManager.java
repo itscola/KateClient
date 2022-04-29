@@ -190,4 +190,12 @@ public class EventManager {
         }
     }
 
+
+    @SubscribeEvent
+    public void onRenderOverLayPre(RenderGameOverlayEvent.Pre e) {
+        for (EventAdapter eventAdapter : events) {
+            eventAdapter.onRenderOverLayPre(e);
+        }
+    }
+
 }

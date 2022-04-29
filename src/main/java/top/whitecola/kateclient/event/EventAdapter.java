@@ -126,4 +126,12 @@ public abstract class EventAdapter {
     public void onRenderPlayer(RenderPlayerEvent.Post event){
 
     }
+
+
+    @SubscribeEvent
+    public void onRenderOverLayPre(RenderGameOverlayEvent.Pre event) {
+
+    }
+
+
 }
