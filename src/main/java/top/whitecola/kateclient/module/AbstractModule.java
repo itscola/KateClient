@@ -211,6 +211,11 @@ public class AbstractModule implements IModule{
 
     }
 
+    @Override
+    public void onRender3D(int pass, float partialTicks, long finishTimeNano) {
+
+    }
+
 
     public Vector<ModuleOption> getOptions() {
         return options;

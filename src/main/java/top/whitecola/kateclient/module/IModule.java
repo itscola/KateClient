@@ -85,4 +85,6 @@ public interface IModule {
     void onRenderPlayer(RenderPlayerEvent.Post e);
 
     void onRenderOverLayPre(RenderGameOverlayEvent.Pre event);
+
+    void onRender3D(int pass, float partialTicks, long finishTimeNano);
 }

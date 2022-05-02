@@ -198,4 +198,10 @@ public class EventManager {
         }
     }
 
+    public void onRender3D(int pass, float partialTicks, long finishTimeNano){
+        for (EventAdapter eventAdapter : events) {
+            eventAdapter.onRender3D(pass,partialTicks,finishTimeNano);
+        }
+    }
+
 }

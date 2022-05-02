@@ -41,6 +41,7 @@ public abstract class MixinRendererLivingEntity {
             GL11.glPolygonOffset(1.0F, 1000000F);
             GL11.glDisable(GL11.GL_POLYGON_OFFSET_FILL);
         }
+
     }
 
 

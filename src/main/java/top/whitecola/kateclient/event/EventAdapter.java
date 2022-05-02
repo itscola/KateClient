@@ -133,5 +133,8 @@ public abstract class EventAdapter {
 
     }
 
+    public void onRender3D(int pass, float partialTicks, long finishTimeNano){
+
+    }
 
 }
