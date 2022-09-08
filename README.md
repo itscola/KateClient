@@ -15,11 +15,6 @@
 
 And, you can install any **mod** you want if mods are compatible.
 
-### To do:
-1. Loading GUI screen.   
-2. ClickGUI dock.
-3. WidgetManager relative position handler.
-
 Actually the UI design progress takes more time.
 
 ### The client is in the development stage.
